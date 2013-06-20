@@ -9,5 +9,10 @@ mechanize/edx-platform/lms/test_scripts LMS API calls to forum posts, login, reg
 How to use:  
 multimech-run lms/ username password org coursename runtime  
 Example:  
+multimech-run lms/ test@edx.org test MITx 6.00x 2013_Spring  
+  
+Requirements:  
+Mechanize  
+matplotlib (if you wish to plot the results)  
+Multi-mechanize  
 
-multimech-run lms/ test@edx.org test MITx 6.00x 2013_Spring
