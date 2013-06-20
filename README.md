@@ -6,7 +6,7 @@ Folders:
 
 mechanize/edx-platform/lms/test_scripts LMS API calls to forum posts, login, register, etc.  
 
-How to use:
+How to use:  
 multimech-run lms/ username password org coursename runtime  
 Example:  
 
