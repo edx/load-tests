@@ -12,7 +12,8 @@ Example:
 multimech-run lms/ test@edx.org test MITx 6.00x 2013_Spring  
   
 Requirements:  
-Mechanize  
-matplotlib (if you wish to plot the results)  
-Multi-mechanize  
+Mechanize http://wwwsearch.sourceforge.net/mechanize/  
+matplotlib (if you wish to plot the results)http://matplotlib.org/  
+Multi-mechanize http://testutils.org/multi-mechanize/  
+loremipsum (https://pypi.python.org/pypi/loremipsum)  
 
