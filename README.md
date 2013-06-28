@@ -30,13 +30,13 @@ This code runs on Python 2.7.
 
 Execution
 ---------
-Run the scripts:
+Run the scripts with the multimech-run command. The lms tests take command line arguments:
 
 ```
-multimech-run lms/ username password org coursename runtime
+multimech-run edx-platform/lms/ username password org coursename runtime
 ```
 
 Example:
 ```
-multimech-run lms/ test@edx.org test MITx 6.00x 2013_Spring
+multimech-run edx-platform/lms/ test@edx.org test MITx 6.00x 2013_Spring
 ```
