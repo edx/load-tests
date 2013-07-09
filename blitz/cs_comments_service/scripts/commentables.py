@@ -23,7 +23,7 @@ class Thread(CsApiCall):
             self.commentable_id = 'MReV_Summer2013_Skier'
             self.method = 'get'
             self.url = '%s/%s/threads' % (self.service_host, self.commentable_id)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'user_id': self.user_id,
@@ -39,7 +39,7 @@ class Thread(CsApiCall):
             self.commentable_id = 'MReV_Summer2013_Skier'
             self.method = 'post'
             self.url = '%s/%s/threads' % (self.service_host, self.commentable_id)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'user_id': self.user_id,

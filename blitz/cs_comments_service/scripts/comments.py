@@ -15,7 +15,7 @@ class Comment(CsApiCall):
             self.comment_id = self._get_comment_id()
             self.method = 'get'
             self.url = '%s/comments/%s' % (self.service_host, self.comment_id)
-            self.content = {
+            self.params = {
                 'api_key': self.api_key,
                 'recursive': False
             }

@@ -24,7 +24,7 @@ class Search(CsApiCall):
 
             self.method = 'get'
             self.url = '%s/search/threads' % (self.service_host)
-            self.content = {
+            self.params = {
                 'text': search_term,
                 'course_id': self.course_id,
                 'api_key': self.api_key,
@@ -45,7 +45,7 @@ class Search(CsApiCall):
 
             self.method = 'get'
             self.url = '%s/search/threads' % (self.service_host)
-            self.content = {
+            self.params = {
                 'text': search_term,
                 'course_id': self.course_id,
                 'api_key': self.api_key,

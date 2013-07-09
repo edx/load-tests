@@ -12,7 +12,7 @@ class User(CsApiCall):
         if api_call == 'get_user':
             self.method = 'get'
             self.url = '%s/users/%s' % (self.service_host, self.user_id)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'complete': True
@@ -21,7 +21,7 @@ class User(CsApiCall):
         elif api_call == 'put_user':
             self.method = 'put'
             self.url = '%s/users/%s' % (self.service_host, self.user_id)
-            self.content = {
+            self.params = {
                 'username': u'roboto',
                 'external_id': '2',
                 'email': u'robot@edx.org'
@@ -30,7 +30,7 @@ class User(CsApiCall):
         elif api_call == 'get_user_active_threads':
             self.method = 'get'
             self.url = '%s/users/%s/active_threads' % (self.service_host, self.user_id)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'per_page': 20,

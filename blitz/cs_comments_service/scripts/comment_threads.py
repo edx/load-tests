@@ -23,7 +23,7 @@ class Thread(CsApiCall):
             self.thread_id = self._get_thread_id()
             self.method = 'get'
             self.url = '%s/threads/%s' % (self.service_host, self.thread_id)
-            self.content = {
+            self.params = {
                 'api_key': self.api_key,
                 'user_id': self.user_id,
                 'mark_as_read': True,
@@ -33,7 +33,7 @@ class Thread(CsApiCall):
         elif api_call == 'get_threads':
             self.method = 'get'
             self.url = '%s/threads' % (self.service_host)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'user_id': self.user_id,
@@ -48,7 +48,7 @@ class Thread(CsApiCall):
             self.thread_id = self._get_thread_id()
             self.method = 'post'
             self.url = '%s/threads/%s/comments' % (self.service_host, self.thread_id)
-            self.content = {
+            self.params = {
                 'body': get_paragraphs(3),
                 'anonymous_to_peers': False,
                 'user_id': self.user_id,

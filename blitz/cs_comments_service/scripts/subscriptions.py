@@ -20,7 +20,7 @@ class Subscription(CsApiCall):
         if api_call == 'get_user_subscribed_threads':
             self.method = 'get'
             self.url = '%s/users/%s/subscribed_threads' % (self.service_host, self.user_id)
-            self.content = {
+            self.params = {
                 'course_id': self.course_id,
                 'api_key': self.api_key,
                 'sort_key': choice(SORT_KEYS),
@@ -33,7 +33,8 @@ class Subscription(CsApiCall):
         # elif api_call == 'post_user_subscriptions':
         #     self.method = 'post'
         #     self.url = '%s/users/%s/subscriptions' % (self.service_host, self.user_id)
-        #     self.content = {
+        #     self.params = {
+
         #         'course_id': self.course_id,
         #         'api_key': self.api_key,
         #     }

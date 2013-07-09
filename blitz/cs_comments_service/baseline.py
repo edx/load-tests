@@ -1,5 +1,5 @@
 from blitz.sprint import Sprint
-from scripts.search import Search
+# from scripts.search import Search
 from scripts.users import User
 
 USER_ID = 'zoldak@edx.org'
@@ -21,17 +21,17 @@ def main():
     steps = []
     step_list = []
 
-    # steps.append(Search(api_call='get_search_threads'))
     steps.append(User(api_call='get_user'))
 
     for step in steps:
-        step_list.append({'method': step.method, 'url': step.url, 'content': step.content})
+        param_list = '&'.join(['%s=%s' % (k, v) for k, v in step.params.items()])
+        step_list.append({
+            'method': step.method, 'url': '%s?%s' % (step.url, param_list), 'timeout': 10000})
 
     options = {'steps': step_list}
 
     s = Sprint(USER_ID, API_KEY)
-
-    from pdb import set_trace; set_trace()
+    print options['steps']
     s.execute(options, callback)
 
 if __name__ == '__main__':
