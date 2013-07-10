@@ -1,7 +1,6 @@
 from helpers import CsApiCall
 from loremipsum import get_sentence
 from random import choice
-from time import time
 from json import loads
 
 SORT_KEYS = [
@@ -20,13 +19,9 @@ class Transaction(CsApiCall):
     def run(self):
         # Search for a random word each time
         search_term = choice(get_sentence().split())
-
+        timer_name = __file__[:-3]
         # Use a random sort key each time
         sort_key = choice(SORT_KEYS)
-
-        start_timer = time()
-
-        timer_name = 'cs_get_search_threads'
         method = 'get'
         url = '%s/search/threads' % (self.service_host)
         data_or_params = {
@@ -46,11 +41,6 @@ class Transaction(CsApiCall):
         )
         num_pages = loads(response.content)['num_pages']
 
-        latency = time() - start_timer
-
-        # Report another timer grouped by number of results returned.
-        # This can be use to correlate response time v. number of results.
-        self.custom_timers['num_pages_%s' % num_pages] = latency
 
         return
 

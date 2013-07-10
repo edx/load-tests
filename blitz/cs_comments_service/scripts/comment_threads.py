@@ -15,7 +15,7 @@ class Thread(CsApiCall):
     """
     Thread API calls
     """
-    def __init__(self, api_call='get_threads'):
+    def __init__(self, api_call='post_thread_comment'):
 
         CsApiCall.__init__(self)
 
