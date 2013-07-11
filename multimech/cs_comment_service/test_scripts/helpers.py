@@ -3,7 +3,7 @@ Helper methods for API calls to the cs_comments_service
 '''
 import requests
 from ConfigParser import ConfigParser
-from random import randint
+from random import randint, sample
 import os
 from time import time, sleep
 
@@ -29,10 +29,21 @@ class CsApiCall(object):
         self.pacing_delay = float(self.global_options['pacing_delay'])
 
         # Each iteration will use a random user
-        self.user_id = randint(1, self.max_user_id)
+        self.user_id = self._get_random_user()
 
         self.custom_timers = {}
         return
+
+    def _get_random_user(self):
+        # read in a list of possible user ids to use
+        this_dir = os.path.dirname(os.path.realpath(__file__))
+        fname = os.path.join(this_dir, '../data/users.txt')
+        with open(fname) as f:
+            users = f.readlines()
+
+        # choose a random user
+        random_user = sample(users, 1)[0].rstrip('\n')
+        return random_user.split(',')[0]
 
     def get_user(self):
         '''
@@ -60,7 +71,6 @@ class CsApiCall(object):
         '''
         sleep(self.pacing_delay)
         return
-
 
     def perform_request(self, method, url, data_or_params, timer_name):
         '''
