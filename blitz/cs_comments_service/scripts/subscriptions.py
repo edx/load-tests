@@ -14,7 +14,7 @@ class Subscription(CsApiCall):
     User Subscriptions API calls
     """
     def __init__(self, api_call='get_user_subscribed_threads'):
-        print "here"
+
         CsApiCall.__init__(self)
 
         if api_call == 'get_user_subscribed_threads':

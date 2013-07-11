@@ -2,9 +2,8 @@ from blitz.sprint import Sprint
 # from scripts.search import Search
 from scripts.users import User
 
-USER_ID = 'test@edx.org'
-API_KEY = 'PUT_YOUR_API_KEY_HERE'
-
+USER_ID = 'zoldak@edx.org'
+API_KEY = '4d45fc15-539c4c39-eb0064d8-4d75cc78'
 
 def callback(result):
     print("> Result:")
