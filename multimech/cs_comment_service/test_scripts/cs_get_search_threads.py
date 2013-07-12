@@ -19,7 +19,7 @@ class Transaction(CsApiCall):
     def run(self):
         # Search for a random word each time
         search_term = choice(get_sentence().split())
-        timer_name = __file__[:-3]
+        timer_name = "cs_get_search_threads"
         # Use a random sort key each time
         sort_key = choice(SORT_KEYS)
         method = 'get'

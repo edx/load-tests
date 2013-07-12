@@ -19,7 +19,7 @@ class Transaction(CsApiCall):
         # choose a random thread to comment on
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_pin_thread"
         method = 'put'
         url = '%s/threads/%s/pin' % (self.service_host, self.thread_id)
         data_or_params = {

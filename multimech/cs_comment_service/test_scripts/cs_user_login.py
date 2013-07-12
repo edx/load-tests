@@ -8,7 +8,7 @@ class Transaction(CsApiCall):
 
     def run(self):
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_user_login"
         method = 'put'
         url = '%s/users/%s' % (self.service_host, self.user_id)
         data_or_params = {

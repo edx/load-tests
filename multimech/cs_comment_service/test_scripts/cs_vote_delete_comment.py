@@ -21,7 +21,7 @@ class Transaction(CsApiCall):
         # choose a random comment to pin
         self.comment_id = sample(self.comments, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_vote_delete_comment"
         method = 'delete'
         url = '%s/comments/%s/votes' % (self.service_host, self.comment_id)
         data_or_params = {

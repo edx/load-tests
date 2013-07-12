@@ -1,7 +1,8 @@
 import os
 from random import sample
 from helpers import CsApiCall
-
+##### NOT WORKING ######
+##### RETURNS 500 when the thread is not upvoted#####
 
 class Transaction(CsApiCall):
     def __init__(self):
@@ -19,7 +20,7 @@ class Transaction(CsApiCall):
         # choose a random thread to comment on
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_vote_delete"
         method = 'delete'
         url = '%s/threads/%s/votes' % (self.service_host, self.thread_id)
         data_or_params = {

@@ -19,7 +19,7 @@ class Transaction(CsApiCall):
         # choose a random thread to unpin
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_unpin_thread"
         method = 'put'
         url = '%s/threads/%s/unpin' % (self.service_host, self.thread_id)
         data_or_params = {

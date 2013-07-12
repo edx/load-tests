@@ -11,7 +11,7 @@ class Transaction(CsApiCall):
     def run(self):
         self.get_user()
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_get_comments"
         comment_id = self._get_comment_id()
         method = 'get'
         url = '%s/comments/%s' % (self.service_host, comment_id)
@@ -37,7 +37,7 @@ class Transaction(CsApiCall):
 
         # choose a random comment
         self.comment_id = sample(self.comments, 1)[0].rstrip('\n')
-        return
+        return self.comment_id
 
 # define main so that we can test out the script with
 # `python <filename>`

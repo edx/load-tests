@@ -19,7 +19,7 @@ class Transaction(CsApiCall):
         # choose a random comment to unreport
         self.comment_id = sample(self.comments, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_unreport_comment"
         method = 'put'
         url = '%s/comments/%s/abuse_unflag' % (self.service_host, self.comment_id)
         data_or_params = {

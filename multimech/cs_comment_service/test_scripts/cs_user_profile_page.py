@@ -11,7 +11,7 @@ class Transaction(CsApiCall):
         # Each iteration gets a random user's profile page
         self.profile_user = randint(1, self.max_user_id)
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_user_profile_page"
         method = 'get'
         url = '%s/users/%s/active_threads' % (self.service_host, self.profile_user)
         data_or_params = {

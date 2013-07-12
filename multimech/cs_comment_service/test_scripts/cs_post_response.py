@@ -21,7 +21,7 @@ class Transaction(CsApiCall):
         # choose a random thread to comment on
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 
-        timer_name = 'PR_01_mark_thread_read'
+        timer_name = "cs_post_response_mark_thread_read"
         method = 'get'
         url = '%s/threads/%s' % (self.service_host, self.thread_id)
         data_or_params = {
@@ -33,7 +33,7 @@ class Transaction(CsApiCall):
             url=url, data_or_params=data_or_params
         )
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_post_response_post_comment"
         method = 'post'
         url = '%s/threads/%s/comments' % (self.service_host, self.thread_id)
         data_or_params = {

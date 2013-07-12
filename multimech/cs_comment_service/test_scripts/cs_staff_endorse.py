@@ -19,7 +19,7 @@ class Transaction(CsApiCall):
         # choose a random comment to endorse
         self.comment_id = sample(self.comments, 1)[0].rstrip('\n')
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_staff_endorse"
         method = 'put'
         url = '%s/comments/%s' % (self.service_host, self.comment_id)
         data_or_params = {

@@ -25,7 +25,7 @@ class Transaction(CsApiCall):
 
         self.get_user()
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_search"
         method = 'get'
         url = '%s/search/threads' % (self.service_host)
         data_or_params = {

@@ -21,7 +21,7 @@ class Transaction(CsApiCall):
 
         # TODO parameterize the commentable id
         commentable_id = 'MReV_Summer2013_Skier'
-        timer_name = __file__[:-3]
+        timer_name = "cs_get_search_threads_commentable"
         method = 'get'
         url = '%s/search/threads' % (self.service_host)
         data_or_params = {

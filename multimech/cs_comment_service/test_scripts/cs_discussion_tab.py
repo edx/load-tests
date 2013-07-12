@@ -9,7 +9,7 @@ class Transaction(CsApiCall):
     def run(self):
         self.get_user()
 
-        timer_name = __file__[:-3]
+        timer_name = "cs_discussion_tab"
         method = 'get'
         url = '%s/threads' % (self.service_host)
         data_or_params = {
