@@ -14,7 +14,7 @@ class Transaction(CsApiCall):
         timer_name = __file__[:-3]
         comment_id = self._get_comment_id()
         method = 'get'
-        url = '%s/comments/%s' % (self.service_host, self.comment_id)
+        url = '%s/comments/%s' % (self.service_host, comment_id)
         data_or_params = {
             'api_key': self.api_key,
             'recursive': False
@@ -27,6 +27,7 @@ class Transaction(CsApiCall):
         self.get_user()
         self.delay_for_pacing()
         return
+
     def _get_comment_id(self):
         # read in a list of possible threads to use
         this_dir = os.path.dirname(os.path.realpath(__file__))

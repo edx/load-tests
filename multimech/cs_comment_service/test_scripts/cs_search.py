@@ -2,6 +2,7 @@ from helpers import CsApiCall
 from loremipsum import get_sentence
 from random import choice
 
+
 SORT_KEYS = [
     'date',
     'activity',
@@ -33,7 +34,7 @@ class Transaction(CsApiCall):
             'api_key': self.api_key,
             'user_id': self.user_id,
             'recursive': False,
-            'sort_key': u'date',
+            'sort_key': sort_key,
             'sort_order': 'desc',
             'per_page': self.per_page,
             'page': 1

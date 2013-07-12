@@ -1,7 +1,6 @@
 import os
 from random import sample
 from helpers import CsApiCall
-from time import time
 
 
 class Transaction(CsApiCall):

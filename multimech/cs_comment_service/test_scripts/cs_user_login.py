@@ -16,7 +16,7 @@ class Transaction(CsApiCall):
             'external_id': '2',
             'email': u'test@edx.org'
         }
-        response = self.perform_request(
+        self.perform_request(
             timer_name=timer_name, method=method,
             url=url, data_or_params=data_or_params
         )

@@ -2,6 +2,7 @@ import os
 from random import sample
 from helpers import CsApiCall
 
+
 class Transaction(CsApiCall):
     def __init__(self):
         super(Transaction, self).__init__()

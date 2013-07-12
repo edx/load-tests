@@ -1,5 +1,6 @@
 from helpers import CsApiCall
 
+
 class Transaction(CsApiCall):
     def __init__(self):
         super(Transaction, self).__init__()
@@ -14,7 +15,7 @@ class Transaction(CsApiCall):
             'api_key': self.api_key,
             'complete': True
         }
-        response = self.perform_request(
+        self.perform_request(
             timer_name=timer_name, method=method,
             url=url, data_or_params=data_or_params
         )

@@ -1,6 +1,7 @@
 from helpers import CsApiCall
 from random import choice
 
+
 SORT_KEYS = [
     'date',
     'activity',

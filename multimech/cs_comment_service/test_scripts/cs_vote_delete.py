@@ -16,7 +16,6 @@ class Transaction(CsApiCall):
         return
 
     def run(self):
-
         # choose a random thread to comment on
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 

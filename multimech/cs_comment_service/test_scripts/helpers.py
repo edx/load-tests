@@ -61,7 +61,6 @@ class CsApiCall(object):
         sleep(self.pacing_delay)
         return
 
-
     def perform_request(self, method, url, data_or_params, timer_name):
         '''
         Do the request to the comment service.
