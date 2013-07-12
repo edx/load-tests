@@ -2,7 +2,6 @@ import os
 from random import sample
 from loremipsum import get_paragraphs
 from helpers import CsApiCall
-from time import time
 
 
 class Transaction(CsApiCall):
@@ -18,13 +17,11 @@ class Transaction(CsApiCall):
         return
 
     def run(self):
-        # Capture the end to end time for the entire transaction
-        start_e2e_timer = time()
 
         # choose a random thread to comment on
         self.thread_id = sample(self.threads, 1)[0].rstrip('\n')
 
-        timer_name = 'PR_01_mark_thread_read'
+        timer_name = "cs_post_response_mark_thread_read"
         method = 'get'
         url = '%s/threads/%s' % (self.service_host, self.thread_id)
         data_or_params = {
@@ -36,7 +33,7 @@ class Transaction(CsApiCall):
             url=url, data_or_params=data_or_params
         )
 
-        timer_name = 'PR_02_post_response'
+        timer_name = "cs_post_response_post_comment"
         method = 'post'
         url = '%s/threads/%s/comments' % (self.service_host, self.thread_id)
         data_or_params = {
@@ -53,12 +50,6 @@ class Transaction(CsApiCall):
         )
 
         self.get_user()
-
-        # Stop the timer and record the results
-        e2e_latency = time() - start_e2e_timer
-
-        # Record the transation timing results
-        self.custom_timers['PR_00_post_response_e2e'] = e2e_latency
 
         self.delay_for_pacing()
         return

@@ -13,7 +13,7 @@ class Transaction(CsApiCall):
         # Capture the end to end time for the entire transaction
         start_e2e_timer = time()
 
-        timer_name = 'CT_01_post_thread'
+        timer_name = "create_thread_post_thread"
         method = 'post'
         url = '%s/%s/threads' % (self.service_host, '4x-edx-templates-course-Empty')
         data_or_params = {
@@ -37,7 +37,7 @@ class Transaction(CsApiCall):
         self.get_user()
         self.get_user()
 
-        timer_name = 'CT_02_get_threads'
+        timer_name = "create_thread_get_threads"
         method = 'get'
         url = '%s/%s/threads' % (self.service_host, '4x-edx-templates-course-Empty')
         data_or_params = {
@@ -58,7 +58,7 @@ class Transaction(CsApiCall):
         self.get_user()
         self.get_user()
 
-        timer_name = 'CT_03_mark_thread_read'
+        timer_name = "create_thread_mark_thread_read"
         method = 'get'
         url = '%s/threads/%s' % (self.service_host, thread_id)
         data_or_params = {
@@ -76,7 +76,7 @@ class Transaction(CsApiCall):
         e2e_latency = time() - start_e2e_timer
 
         # Record the transation timing results
-        self.custom_timers['CT_00_create_thread_e2e'] = e2e_latency
+        self.custom_timers["create_thread_e2e"] = e2e_latency
 
         self.delay_for_pacing()
         return
