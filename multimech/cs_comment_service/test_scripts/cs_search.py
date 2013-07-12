@@ -1,7 +1,7 @@
 from helpers import CsApiCall
 from loremipsum import get_sentence
 from random import choice
-from json import loads
+
 
 SORT_KEYS = [
     'date',
@@ -19,9 +19,13 @@ class Transaction(CsApiCall):
     def run(self):
         # Search for a random word each time
         search_term = choice(get_sentence().split())
-        timer_name = "cs_get_search_threads"
+
         # Use a random sort key each time
         sort_key = choice(SORT_KEYS)
+
+        self.get_user()
+
+        timer_name = "cs_search"
         method = 'get'
         url = '%s/search/threads' % (self.service_host)
         data_or_params = {
@@ -35,13 +39,13 @@ class Transaction(CsApiCall):
             'per_page': self.per_page,
             'page': 1
         }
-        response = self.perform_request(
+        self.perform_request(
             timer_name=timer_name, method=method,
             url=url, data_or_params=data_or_params
         )
-        num_pages = loads(response.content)['num_pages']
 
-
+        self.get_user()
+        self.delay_for_pacing()
         return
 
 # define main so that we can test out the script with

@@ -1,5 +1,13 @@
 from helpers import CsApiCall
-from time import time
+from loremipsum import get_sentence
+from random import choice
+
+SORT_KEYS = [
+    'date',
+    'activity',
+    'votes',
+    'comments'
+]
 
 
 class Transaction(CsApiCall):
@@ -8,38 +16,30 @@ class Transaction(CsApiCall):
         return
 
     def run(self):
-        # Capture the end to end time for the entire transaction
-        start_e2e_timer = time()
+        # Search for a random word each time
+        search_term = choice(get_sentence().split())
 
-        self.get_user()
-
-        timer_name = 'DT_01_get_threads'
+        # TODO parameterize the commentable id
+        commentable_id = 'MReV_Summer2013_Skier'
+        timer_name = "cs_get_search_threads_commentable"
         method = 'get'
-        url = '%s/threads' % (self.service_host)
+        url = '%s/search/threads' % (self.service_host)
         data_or_params = {
+            'text': search_term,
             'course_id': self.course_id,
             'api_key': self.api_key,
             'user_id': self.user_id,
             'recursive': False,
-            'sort_key': u'date',
+            'sort_key': choice(SORT_KEYS),
             'sort_order': 'desc',
             'per_page': self.per_page,
-            'page': 1
+            'page': 1,
+            'commentable_id': commentable_id
         }
         self.perform_request(
             timer_name=timer_name, method=method,
             url=url, data_or_params=data_or_params
         )
-
-        self.get_user()
-
-        # Stop the timer and record the results
-        e2e_latency = time() - start_e2e_timer
-
-        # Record the transation timing results
-        self.custom_timers['DT_00_discussion_tab_e2e'] = e2e_latency
-
-        self.delay_for_pacing()
         return
 
 # define main so that we can test out the script with

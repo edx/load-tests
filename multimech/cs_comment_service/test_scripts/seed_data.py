@@ -34,6 +34,7 @@ class SeedUsersTransaction(CsApiCall):
         )
         return
 
+
 class SeedThreadsTransaction(CsApiCall):
     def __init__(self):
         super(SeedThreadsTransaction, self).__init__()
@@ -64,7 +65,6 @@ class SeedThreadsTransaction(CsApiCall):
         return thread_id
 
 
-
 class SeedCommentsTransaction(CsApiCall):
     def __init__(self):
         super(SeedCommentsTransaction, self).__init__()
@@ -88,16 +88,15 @@ class SeedCommentsTransaction(CsApiCall):
         )
 
 
-
 def main():
     # First clean your db with: `bundle exec rake db:clean`
-    for x in xrange(1,NUM_USERS):
+    for x in xrange(1, NUM_USERS):
         SeedUsersTransaction().run(userid=x)
-    for x in xrange(1,NUM_THREADS):
+    for x in xrange(1, NUM_THREADS):
         thread_id = SeedThreadsTransaction().run()
         # create 1 comment for every 10 threads
         SeedCommentsTransaction().run(thread_id=thread_id)
-        for y in xrange(1,9):
+        for y in xrange(1, 9):
             SeedThreadsTransaction().run()
 
     # Reindex with: `bundle exec rake db:reindex_search`

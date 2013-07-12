@@ -1,5 +1,4 @@
 from helpers import CsApiCall
-from time import time
 
 
 class Transaction(CsApiCall):
@@ -8,23 +7,20 @@ class Transaction(CsApiCall):
         return
 
     def run(self):
-
-        timer_name = 'UL_00_user_login_e2e'
-        method = 'put'
+        timer_name = "cs_get_user"
+        method = 'get'
         url = '%s/users/%s' % (self.service_host, self.user_id)
         data_or_params = {
-            'username': u'roboto',
-            'external_id': '2',
-            'email': u'robot@edx.org'
+            'course_id': self.course_id,
+            'api_key': self.api_key,
+            'complete': True
         }
-        response = self.perform_request(
+        self.perform_request(
             timer_name=timer_name, method=method,
             url=url, data_or_params=data_or_params
         )
-
         self.delay_for_pacing()
         return
-
 # define main so that we can test out the script with
 # `python <filename>`
 if __name__ == '__main__':
