@@ -40,7 +40,7 @@
           <stringProp name="filename">ids.txt</stringProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
+          <stringProp name="shareMode">Current thread group</stringProp>
           <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">user-id</stringProp>
         </CSVDataSet>
@@ -161,7 +161,7 @@
           <stringProp name="filename">ids.txt</stringProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
+          <stringProp name="shareMode">Current thread group</stringProp>
           <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">user-id</stringProp>
         </CSVDataSet>
@@ -259,7 +259,7 @@
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
+          <stringProp name="shareMode">Current thread group</stringProp>
         </CSVDataSet>
         <hashTree/>
       </hashTree>
@@ -363,7 +363,7 @@
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
+          <stringProp name="shareMode">Current thread group</stringProp>
         </CSVDataSet>
         <hashTree/>
       </hashTree>
