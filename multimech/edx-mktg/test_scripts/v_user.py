@@ -66,6 +66,12 @@ class Transaction(object):
         0.01175,
     ]
 
+    def __init__(self):
+        """
+        Intialize custom timers.
+        """
+        self.custom_timers = dict()
+
     def run(self):
         """
         Access one or more URLs in the marketing site.
@@ -91,7 +97,9 @@ class Transaction(object):
 
         # Perform the requests
         for url in url_list:
+            start = time.time()
             resp = requests.get(self.BASE_URL + url, verify=False)
+            self.custom_timers['request_latency'] = time.time() - start
             assert(resp.status_code == 200)
 
 if __name__ == '__main__':
