@@ -88,61 +88,6 @@
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Auth" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
-          <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/auto_auth</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="change_enrollment_subscribe" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="course_id" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">edx/${COURSE_NUM}/Manual_Test_Course</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">course_id</stringProp>
-              </elementProp>
-              <elementProp name="enrollment_action" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">enroll</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">enrollment_action</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
-          <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/change_enrollment</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
@@ -161,48 +106,6 @@
                 <elementProp name="event" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1=rho*omega%5E2*(L%5E2%2F2+%2BR*L)+&amp;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath=%3Cmath+xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%0D%0A++%3Cmstyle+displaystyle%3D%22true%22%3E%0D%0A++++%3Cmi%3E%26%23x3C1%3B%3C%2Fmi%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmsup%3E%0D%0A++++++%3Cmi%3E%26%23x3C9%3B%3C%2Fmi%3E%0D%0A++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++%3C%2Fmsup%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmrow%3E%0D%0A++++++%3Cmo%3E(%3C%2Fmo%3E%0D%0A++++++%3Cmfrac%3E%0D%0A++++++++%3Cmsup%3E%0D%0A++++++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++++%3C%2Fmsup%3E%0D%0A++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++%3C%2Fmfrac%3E%0D%0A++++++%3Cmo%3E%2B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3ER%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E)%3C%2Fmo%3E%0D%0A++++%3C%2Fmrow%3E%0D%0A++%3C%2Fmstyle%3E%0D%0A%3C%2Fmath%3E</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event</stringProp>
-                </elementProp>
-                <elementProp name="page" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">${URL}/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware/ca74c64d167c4926b9bb31eab4db430c/6d184c70c53a4ae1acb4315d897af7cf/</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">page</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
-            <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/event</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="event_problem_graded" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="event_type" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">problem_graded</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event_type</stringProp>
-                </elementProp>
-                <elementProp name="event" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1=rho*omega%5E2*(L%5E2%2F2+%2BR*L)+&amp;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath=%3Cmath+xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%0D%0A++%3Cmstyle+displaystyle%3D%22true%22%3E%0D%0A++++%3Cmi%3E%26%23x3C1%3B%3C%2Fmi%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmsup%3E%0D%0A++++++%3Cmi%3E%26%23x3C9%3B%3C%2Fmi%3E%0D%0A++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++%3C%2Fmsup%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmrow%3E%0D%0A++++++%3Cmo%3E(%3C%2Fmo%3E%0D%0A++++++%3Cmfrac%3E%0D%0A++++++++%3Cmsup%3E%0D%0A++++++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++++%3C%2Fmsup%3E%0D%0A++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++%3C%2Fmfrac%3E%0D%0A++++++%3Cmo%3E%2B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3ER%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E)%3C%2Fmo%3E%0D%0A++++%3C%2Fmrow%3E%0D%0A++%3C%2Fmstyle%3E%0D%0A%3C%2Fmath%3E&quot;,&quot;\n&lt;h2 class=\&quot;problem-header\&quot;&gt;\n  Rotating Blade\n&lt;/h2&gt;\n\n&lt;section class=\&quot;problem\&quot;&gt;\n  &lt;div&gt;&lt;span&gt;&lt;p&gt;A blade is fixed to a rigid rotor of radius R spinning at  [mathjaxinline] \\omega [/mathjaxinline] rad/sec around the vertical z-axis (see figure). Neglect the effects of gravity. The x-axis is affixed to the rotating blade (it rotates with the blade), with the origin [mathjaxinline] \\left( x=0 \\right) [/mathjaxinline] at the \&quot;root\&quot; of the blade, i.e., at the outer radius of the rotor.&lt;/p&gt;&lt;/span&gt;&lt;ol&gt;&lt;li&gt;Calculate the peak stress in the blade: [mathjaxinline] \\sigma_{n}^{max} [/mathjaxinline]&lt;/li&gt;&lt;li&gt;Calculate the blade elongation: [mathjaxinline] \\delta [/mathjaxinline]&lt;/li&gt;&lt;li&gt;Calculate the displacement of the blade mid-section: [mathjaxinline] u_{x}(L/2) [/mathjaxinline]&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Given:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Young&apos;s modulus, [mathjaxinline]E[/mathjaxinline], mass density, [mathjaxinline] \\rho [/mathjaxinline].&lt;/li&gt;&lt;li&gt;Constant cross sectional area, [mathjaxinline]A[/mathjaxinline]&lt;/li&gt;&lt;li&gt;Rotor radius [mathjaxinline]R[/mathjaxinline], blade length [mathjaxinline]L[/mathjaxinline]&lt;/li&gt;&lt;li&gt;Angular velocity [mathjaxinline] \\omega [/mathjaxinline]&lt;/li&gt;&lt;p&gt;(Hint: if you work in the non-inertial frame of the rotating blade, the d&amp;#8217;Alembert force/unit volume is [mathjaxinline]\\rho \\omega^2r = \\rho\\omega^2 \\left( R+x \\right)[/mathjaxinline] along the +\\(x\\) direction)&lt;/p&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Try it: [Correct: rho*omega^2*(L^2/2 +R*L) ]&lt;/b&gt;&lt;/p&gt;\n\t\t[mathjax] \\sigma_{n}^{max} = [/mathjax]\n\t\t&lt;span&gt;&lt;section id=\&quot;inputtype_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; class=\&quot;text-input-dynamath capa_inputtype \&quot;&gt;&lt;div class=\&quot;correct \&quot; id=\&quot;status_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot;&gt;&lt;input type=\&quot;text\&quot; name=\&quot;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; id=\&quot;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; aria-describedby=\&quot;answer_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; value=\&quot;rho*omega^2*(L^2/2 +R*L) \&quot; class=\&quot;math\&quot; size=\&quot;40\&quot;/&gt;&lt;p class=\&quot;status\&quot; aria-describedby=\&quot;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot;&gt;\n        correct\n      &lt;/p&gt;&lt;p id=\&quot;answer_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; class=\&quot;answer\&quot;/&gt;&lt;div id=\&quot;display_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1\&quot; class=\&quot;equation\&quot;&gt;`{::}`&lt;/div&gt;&lt;textarea style=\&quot;display:none\&quot; id=\&quot;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath\&quot; name=\&quot;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath\&quot;&gt;\n      &lt;/textarea&gt;&lt;/div&gt;&lt;/section&gt;&lt;/span&gt;  \n&lt;/div&gt;\n\n  &lt;section class=\&quot;action\&quot;&gt;\n    &lt;input type=\&quot;hidden\&quot; name=\&quot;problem_id\&quot; value=\&quot;Rotating Blade\&quot; /&gt;\n\n    &lt;input class=\&quot;check Check\&quot; type=\&quot;button\&quot; value=\&quot;Check\&quot; /&gt;\n  &lt;/section&gt;\n&lt;/section&gt;\n</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">event</stringProp>
