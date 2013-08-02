@@ -1616,48 +1616,6 @@
           <intProp name="LoopController.loops">-1</intProp>
         </LoopController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="event_problem_check" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="event_type" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">problem_check</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event_type</stringProp>
-                </elementProp>
-                <elementProp name="event" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">input_i4x-edx-001-problem-b1384f77258e48a89c29d71b538f3f17_2_1=%23+students+please+write+your+program+here%0D%0Aprint+%22foo%22%0D%0A++++++++++++</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event</stringProp>
-                </elementProp>
-                <elementProp name="page" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">${URL}/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware/c6a51bd6831842888c6a7fc319313793/00339c11673b46cba6fb8d065ac55c6e/</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">page</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
-            <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/event</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="code_response_correct" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments">
@@ -1686,48 +1644,32 @@
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="event_problem_graded" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="event_type" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">problem_graded</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event_type</stringProp>
-                </elementProp>
-                <elementProp name="event" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">[&quot;input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1=%23+students+please+write+your+program+here%0D%0Aprint+%22helly%22&quot;,&quot;\n&lt;h2 class=\&quot;problem-header\&quot;&gt;\n  Code Response Problem\n&lt;/h2&gt;\n\n&lt;section class=\&quot;problem-progress\&quot;&gt;\n&lt;/section&gt;\n\n&lt;section class=\&quot;problem\&quot;&gt;\n  &lt;div&gt;&lt;span&gt;&lt;p&gt;Write a program that prints \&quot;hello world\&quot;.&lt;/p&gt;&lt;/span&gt;&lt;span&gt;&lt;section id=\&quot;textbox_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot; class=\&quot;textbox\&quot;&gt;&lt;textarea rows=\&quot;10\&quot; cols=\&quot;80\&quot; name=\&quot;input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot; aria-describedby=\&quot;answer_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot; id=\&quot;input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;&gt;# students please write your program here\nprint \&quot;helly\&quot;&lt;/textarea&gt;&lt;div class=\&quot;grader-status\&quot;&gt;&lt;span class=\&quot;processing\&quot; id=\&quot;status_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot; aria-describedby=\&quot;input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;&gt;&lt;span class=\&quot;sr\&quot;&gt;Status: &lt;/span&gt;Queued&lt;/span&gt;&lt;span style=\&quot;display:none;\&quot; class=\&quot;xqueue\&quot; id=\&quot;i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;&gt;0&lt;/span&gt;&lt;p class=\&quot;debug\&quot;&gt;queued&lt;/p&gt;&lt;/div&gt;&lt;span id=\&quot;answer_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;/&gt;&lt;div class=\&quot;external-grader-message\&quot;&gt;\n    Submitted.  As soon as your submission is graded, this message will be replaced with the grader&apos;s feedback.\n  &lt;/div&gt;&lt;script&gt;\n    // Note: We need to make the area follow the CodeMirror for this to work.\n    $(function(){\n      var cm = CodeMirror.fromTextArea(document.getElementById(\&quot;input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;), {\n        lineNumbers: true,\n        mode: \&quot;python\&quot;,\n        matchBrackets: true,\n        lineWrapping: true,\n        indentUnit: \&quot;4\&quot;,\n        tabSize: \&quot;4\&quot;,\n        indentWithTabs: false,\n        extraKeys: {\n            \&quot;Tab\&quot;: function(cm) {\n                cm.replaceSelection(\&quot;    \&quot;, \&quot;end\&quot;);\n            }\n        },\n        smartIndent: false\n      });\n      $(\&quot;#textbox_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1\&quot;).find(&apos;.CodeMirror-scroll&apos;).height(135);\n    });\n  &lt;/script&gt;&lt;/section&gt;&lt;/span&gt;&lt;/div&gt;\n\n  &lt;section class=\&quot;action\&quot;&gt;\n    &lt;input type=\&quot;hidden\&quot; name=\&quot;problem_id\&quot; value=\&quot;Code Response Problem\&quot; /&gt;\n\n    &lt;input class=\&quot;check Check\&quot; type=\&quot;button\&quot; value=\&quot;Check\&quot; /&gt;\n    &lt;button class=\&quot;show\&quot;&gt;&lt;span class=\&quot;show-label\&quot;&gt;Show Answer(s)&lt;/span&gt; &lt;span class=\&quot;sr\&quot;&gt;(for question(s) above - adjacent to each field)&lt;/span&gt;&lt;/button&gt;\n  &lt;/section&gt;\n&lt;/section&gt;\n&quot;]</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">event</stringProp>
-                </elementProp>
-                <elementProp name="page" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">${URL}/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware/c6a51bd6831842888c6a7fc319313793/00339c11673b46cba6fb8d065ac55c6e/</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">page</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
-            <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/event</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+            <boolProp name="LoopController.continue_forever">true</boolProp>
+            <stringProp name="LoopController.loops">1</stringProp>
+          </LoopController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="problem_get_code_response" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
+              <stringProp name="HTTPSampler.port">${PORT}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_get</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
         </hashTree>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="custom_randomized" enabled="true">
