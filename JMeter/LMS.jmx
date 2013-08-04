@@ -53,6 +53,11 @@
             <stringProp name="Argument.value">1200</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="TIMEOUT_MS" elementType="Argument">
+            <stringProp name="Argument.name">TIMEOUT_MS</stringProp>
+            <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -121,8 +126,8 @@
             </elementProp>
             <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
             <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+            <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
             <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/event</stringProp>
@@ -239,8 +244,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/progress</stringProp>
@@ -259,8 +264,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware</stringProp>
@@ -279,8 +284,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/info</stringProp>
@@ -299,8 +304,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/dashboard</stringProp>
@@ -418,8 +423,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/fa2c7f1e0f18452aba1b39bc64bb058c/problem_show</stringProp>
@@ -458,8 +463,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_check</stringProp>
@@ -486,8 +491,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_reset</stringProp>
@@ -520,8 +525,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_check</stringProp>
@@ -540,8 +545,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_get</stringProp>
@@ -595,8 +600,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_check</stringProp>
@@ -623,8 +628,8 @@
                 </elementProp>
                 <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
                 <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+                <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                 <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_reset</stringProp>
@@ -659,8 +664,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/74566a17d61a4adfa6b38175fa4f23d1/problem_check</stringProp>
@@ -687,8 +692,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_check</stringProp>
@@ -715,8 +720,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/d631ef90301b4c5fb720611af01e39c5/problem_check</stringProp>
@@ -757,8 +762,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/4c0151c75bb947b6bddef18b607dae93/problem_check</stringProp>
@@ -785,8 +790,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_check</stringProp>
@@ -820,8 +825,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/39d331eb9b0a48bfbc8a1640bc2871b4/problem_check</stringProp>
@@ -939,8 +944,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_get</stringProp>
@@ -959,8 +964,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_get</stringProp>
@@ -979,8 +984,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/c35654f5b6104696bd69446bc4746e3e/problem_get</stringProp>
@@ -999,8 +1004,8 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+              <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_get</stringProp>
@@ -1057,7 +1062,7 @@
         <stringProp name="calcMode">all active threads (shared)</stringProp>
       </ConstantThroughputTimer>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
