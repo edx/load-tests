@@ -50,7 +50,7 @@
           </elementProp>
           <elementProp name="RAMPUP_SEC" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP_SEC</stringProp>
-            <stringProp name="Argument.value">1200</stringProp>
+            <stringProp name="Argument.value">2400</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="TIMEOUT_MS" elementType="Argument">
@@ -1056,7 +1056,7 @@
       <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
         <doubleProp>
           <name>throughput</name>
-          <value>1749.0</value>
+          <value>9000.0</value>
           <savedValue>0.0</savedValue>
         </doubleProp>
         <stringProp name="calcMode">all active threads (shared)</stringProp>
