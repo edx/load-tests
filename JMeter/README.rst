@@ -28,3 +28,19 @@ Test assumptions:
 * Sends all requests to one test course.
 * Ramps up number of users (threads).
 * Throttles throughput to approximately 1x current peak load in prod.
+
+
+Marketing site tests
+--------------------
+
+Required setup:
+
+* Drupal site
+* To avoid crashing the server, make sure Varnish (caching) is turned on
+
+
+Test assumptions:
+
+* Equal distribution among marketing URLs (obtained using web crawler).
+* Ramps up number of users (threads)
+* Throttles throughput at peak load in prod.
