@@ -35,12 +35,12 @@
           </elementProp>
           <elementProp name="BASIC_AUTH_USER" elementType="Argument">
             <stringProp name="Argument.name">BASIC_AUTH_USER</stringProp>
-            <stringProp name="Argument.value">guido</stringProp>
+            <stringProp name="Argument.value">anant</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="BASIC_AUTH_PASSWORD" elementType="Argument">
             <stringProp name="Argument.name">BASIC_AUTH_PASSWORD</stringProp>
-            <stringProp name="Argument.value">vanrossum</stringProp>
+            <stringProp name="Argument.value">agarwal</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PROTOCOL" elementType="Argument">
@@ -55,7 +55,7 @@
           </elementProp>
           <elementProp name="TIMEOUT_MS" elementType="Argument">
             <stringProp name="Argument.name">TIMEOUT_MS</stringProp>
-            <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.value">5000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
