@@ -17,19 +17,30 @@ This will print a description of what the script would have done.
 import sys
 import uuid
 import requests
+from time import sleep
 
 # Number of users to create and enroll
-NUM_USERS = 5
+NUM_USERS = 1
+SUCCESS = 0
+ERROR = 0
 
 # Course ID to enroll users in
 # Example: edx/999/2013_Spring
-COURSE_ID = "edx/999/2013_Spring"
+
+#COURSE_ID = "BerkeleyX/Stat2.3x/2013_SOND"         ## SPOC: 300
+#COURSE_ID = "HahvahdX/BE101x/2013_Fall"            ## Small: 5k
+#COURSE_ID = "8888/8888/importtesttest"             ## Small-average : 10k
+#COURSE_ID = "Disney/1920/Mikis_Test_Course"        ## Large-average: 20k
+#COURSE_ID = "YodaU/JEDI102/2013_Spring"            ## Large: 50k
+#COURSE_ID = "StuckInThePast/Retro411/2013_Spring"  ## ENORMOUS: 100k
 
 # Base email address to use
 # e.g. success@simulator.amazonses.com
 # We will use mailbox labelling to generate unique emails
 # (for example, success+1234@simulator.amazonses.com
 EMAIL_USERNAME = "success"
+# others are: "suppressionlist", "bounce", "ooto", "complaint"
+# see http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html
 EMAIL_URL = "simulator.amazonses.com"
 
 # Set a password for the users
@@ -37,7 +48,7 @@ USER_PASSWORD = "test"
 
 # URL of the environment to test against
 # Should not contain a trailing slash
-TEST_URL = "http://dev.edx.org"
+TEST_URL = "https://edxapp.vpc-69f5a307.vpc.edx.org"
 
 
 def auto_auth(username, email):
@@ -58,7 +69,7 @@ def auto_auth(username, email):
         'name': username,
     }
 
-    resp = requests.get(TEST_URL + "/auto_auth", params=params)
+    resp = requests.get(TEST_URL + "/auto_auth", params=params, verify=False)
 
     if resp.status_code == 200:
         return (True, resp.cookies)
@@ -85,11 +96,15 @@ def enroll_user(cookies):
     resp = requests.post(
         TEST_URL + '/change_enrollment',
         data=params,
-        cookies=cookies
+        cookies=cookies,
+        verify=False
     )
 
     if resp.status_code != 200:
         print "Warning: Could not enroll user"
+        return False
+
+    return True
 
 
 def create_and_enroll_user(no_op_mode):
@@ -99,6 +114,8 @@ def create_and_enroll_user(no_op_mode):
     If `no_op_mode` is True, print what we would have
     done instead of actually doing it.
     """
+    global SUCCESS
+    global ERROR
 
     # Generate a random and hopefully unique email
     # Since we're using auto_auth, if this email isn't unique
@@ -122,8 +139,15 @@ def create_and_enroll_user(no_op_mode):
         success, cookies = auto_auth(username, full_email)
 
         if success:
-            enroll_user(cookies)
-
+            if enroll_user(cookies):
+                print "Enrolled {0} in {1} with email {2}".format(
+                    username, COURSE_ID, full_email
+                )
+                SUCCESS += 1
+            else:
+                ERROR += 1
+        else:
+            ERROR += 1
 
 if __name__ == "__main__":
 
@@ -138,5 +162,8 @@ if __name__ == "__main__":
             print "Usage: {0} [-n]\n   Use -n for no-op mode.".format(sys.argv[0])
             sys.exit(1)
 
-    for _ in range(NUM_USERS):
+    for user in range(NUM_USERS):
+        if user % 10 == 0:
+            print 'Users created: {0} ({1}% done)'.format(SUCCESS, (float(SUCCESS)/NUM_USERS)*100)
         create_and_enroll_user(NO_OP_MODE)
+    print "Successfully enrolled {0} students ({1} failures)".format(SUCCESS, ERROR)
