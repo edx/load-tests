@@ -80,12 +80,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">api_key</stringProp>
               </elementProp>
-              <elementProp name="completed" elementType="HTTPArgument">
+              <elementProp name="complete" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">True</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">completed</stringProp>
+                <stringProp name="Argument.name">complete</stringProp>
               </elementProp>
               <elementProp name="source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -198,14 +198,6 @@
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>
-        <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-          <stringProp name="FileSaver.filename"></stringProp>
-          <boolProp name="FileSaver.errorsonly">false</boolProp>
-          <boolProp name="FileSaver.skipautonumber">false</boolProp>
-          <boolProp name="FileSaver.skipsuffix">false</boolProp>
-          <boolProp name="FileSaver.successonly">false</boolProp>
-        </ResultSaver>
         <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="cs_get_thread" enabled="true">
