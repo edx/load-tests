@@ -1,6 +1,6 @@
 load-tests
 ==========
-Load tests for the edX platform, currently only in multimechanize.
+Multimechanize load tests for the edX platform.
 
 
 Installation
