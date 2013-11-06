@@ -4,19 +4,18 @@ import mechanize
 import csv
 
 class Crawler(object):
-    MAX_DEPTH = 4
-    ROOT = 'https://edx-loadtest.elasticbeanstalk.com/'
-    USER = "anant"
-    PASSWORD = "agarwal"
-
-    EXCLUDE = ['https://courses.stage.edx.org/register',
-                'https://courses.edx.org/login']
+    MAX_DEPTH = 6
+    ROOT = 'https://edx-loadtest.elasticbeanstalk.com'
+    USER = None
+    PASSWORD = None
+    EXCLUDE = []
 
 
     def __init__(self):
         self.browser = mechanize.Browser()
         self.browser.set_handle_robots(False)
-        self.browser.add_password(self.ROOT, self.USER, self.PASSWORD)
+        if self.USER and self.PASSWORD:
+            self.browser.add_password(self.ROOT, self.USER, self.PASSWORD)
         self.visited = set()
 
     def crawl(self, start_page):
@@ -43,13 +42,15 @@ class Crawler(object):
                     print "Following %s" % link.url
 
                     try:
-                        resp = self.browser.follow_link(link)
+                        self.browser.follow_link(link)
                     except:
                         print "Could not follow link: {}".format(link)
                         pass
                     else:
                         self._crawl_all_links(depth + 1)
 
+                        # This could fail if, for example the previous link
+                        # failed with a redirect loop.
                         try:
                             self.browser.back()
                         except:
@@ -59,18 +60,36 @@ class Crawler(object):
             pass
 
     def _should_follow(self, link):
+        # Already been there.
         if link.url in self.visited:
             return False
 
-        # Make sure we don't go to Google/Youtube/Twitter!
-        elif "/" != link.url[0] and "#" != link.url[0]:
+        # Don't go to another domain.
+        if not link.absolute_url.startswith(self.ROOT):
             return False
 
-        elif link.url in self.EXCLUDE:
+        # Don't go to "/" because it will effectively shorten the depth.
+        # if traversed from the first page.
+        if link.url == '/':
             return False
 
-        else:
-            return True
+        # Don't go to "#foo" because it will effectively shorten the depth.
+        if link.url.startswith('#'.format(self.ROOT)):
+            return False
+
+        # Each course has 2 links to it in the course listing pages,
+        # one that starts with https://...
+        # and the other that starts with /course/...
+        # Only follow the second style.
+        if link.url.startswith('{}/course/'.format(self.ROOT)):
+            return False
+
+        # Specifically do not want to go there.
+        if link.url in self.EXCLUDE:
+            return False
+
+        return True
+
 
 if __name__ == '__main__':
 
