@@ -13,8 +13,7 @@ Required setup:
 
 .. code :: bash
 
-    MITX_FEATURES['AUTOMATIC_AUTH_FOR_LOAD_TESTING'] = True
-    MITX_FEATURES['MAX_AUTO_AUTH_USERS'] = 10000
+    FEATURES['AUTOMATIC_AUTH_FOR_LOAD_TESTING'] = True
 
 * XQueue configured to point to grader stub
 * Grader stub running in Heroku
