@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="2.4" jmeter="2.9 r1437961">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Comments Service Test Plan" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -15,12 +15,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="API_HOST" elementType="Argument">
             <stringProp name="Argument.name">API_HOST</stringProp>
-            <stringProp name="Argument.value">forum.edx.org</stringProp>
+            <stringProp name="Argument.value">MUST_PROVIDE_API_HOST</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="API_KEY" elementType="Argument">
             <stringProp name="Argument.name">API_KEY</stringProp>
-            <stringProp name="Argument.value">cH0FtuV1iLp3wG5hFHMSaP</stringProp>
+            <stringProp name="Argument.value">MUST_PROVIDE_API_KEY</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="URL_PATH_PREFIX" elementType="Argument">
@@ -31,6 +31,11 @@
           <elementProp name="LAST_USER_ID" elementType="Argument">
             <stringProp name="Argument.name">LAST_USER_ID</stringProp>
             <stringProp name="Argument.value">1000000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="API_SCHEME" elementType="Argument">
+            <stringProp name="Argument.name">API_SCHEME</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -51,14 +56,6 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <ConfigTestElement guiclass="SimpleConfigGui" testclass="ConfigTestElement" testname="Simple Config Element" enabled="true">
-          <stringProp name="BASE_URL">https://comments-loadtest.herokuapp.com</stringProp>
-          <stringProp name=""></stringProp>
-          <stringProp name="URL_PATH_PREFIX">/api/v1</stringProp>
-          <stringProp name="API_HOST">comments-loadtest.herokuapp.com</stringProp>
-          <stringProp name="API_KEY">fRhEKMThudKHgrvHio</stringProp>
-        </ConfigTestElement>
-        <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="users config" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding"></stringProp>
@@ -100,7 +97,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/users/${user-id}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -252,7 +249,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads/${thread-id}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -364,7 +361,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -489,7 +486,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/${commentable-id}/threads</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -555,7 +552,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/comments/${comment-id}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -709,7 +706,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/search/threads</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -777,7 +774,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/users/${user-id}/subscribed_threads?api_key=${API_KEY}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -846,7 +843,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/api/v1/users/${user-id}/subscriptions</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -983,7 +980,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/${commentable}/threads</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1127,7 +1124,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads/${thread-id}/comments</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1217,7 +1214,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads/${thread-id}/votes?api_key=${API_KEY}&amp;user_id=${user-id}&amp;value=up</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -1297,7 +1294,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/users/${user-id}/active_threads</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1355,7 +1352,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/comments/${comment-id}/abuse_flag?api_key=${API_KEY}&amp;user_id=${user-id}</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -1413,7 +1410,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads/${thread-id}/abuse_flag?api_key=${API_KEY}&amp;user_id=${user-id}</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -1471,7 +1468,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/comments/${comment-id}/abuse_unflag?api_key=${API_KEY}&amp;user_id=${user-id}</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -1529,7 +1526,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.protocol">${API_SCHEME}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/threads/${thread-id}/abuse_unflag?api_key=${API_KEY}&amp;user_id=${user-id}</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
@@ -1680,7 +1677,7 @@
       </ConstantThroughputTimer>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
