@@ -15,12 +15,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="API_HOST" elementType="Argument">
             <stringProp name="Argument.name">API_HOST</stringProp>
-            <stringProp name="Argument.value">comments-loadtest.herokuapp.com</stringProp>
+            <stringProp name="Argument.value">MUST_PROVIDE_API_HOST</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="API_KEY" elementType="Argument">
             <stringProp name="Argument.name">API_KEY</stringProp>
-            <stringProp name="Argument.value">fRhEKMThudKHgrvHio</stringProp>
+            <stringProp name="Argument.value">MUST_PROVIDE_API_KEY</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="URL_PATH_PREFIX" elementType="Argument">
