@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVER" elementType="Argument">
             <stringProp name="Argument.name">SERVER</stringProp>
-            <stringProp name="Argument.value">edx-loadtest.elasticbeanstalk.com</stringProp>
+            <stringProp name="Argument.value">edx-mktg-bane.elasticbeanstalk.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
@@ -25,7 +25,7 @@
           </elementProp>
           <elementProp name="URL" elementType="Argument">
             <stringProp name="Argument.name">URL</stringProp>
-            <stringProp name="Argument.value">https://edx-loadtest.elasticbeanstalk.com/</stringProp>
+            <stringProp name="Argument.value">https://edx-mktg-bane.elasticbeanstalk.com/</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PROTOCOL" elementType="Argument">
@@ -35,7 +35,7 @@
           </elementProp>
           <elementProp name="RAMPUP_SEC" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP_SEC</stringProp>
-            <stringProp name="Argument.value">2400</stringProp>
+            <stringProp name="Argument.value">1200</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="TIMEOUT_MS" elementType="Argument">
@@ -215,14 +215,14 @@
       <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
         <doubleProp>
           <name>throughput</name>
-          <value>200000.0</value>
+          <value>35500.0</value>
           <savedValue>0.0</savedValue>
         </doubleProp>
         <intProp name="calcMode">3</intProp>
       </ConstantThroughputTimer>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
