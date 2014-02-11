@@ -28,11 +28,6 @@
             <stringProp name="Argument.value">/api/v1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="LAST_USER_ID" elementType="Argument">
-            <stringProp name="Argument.name">LAST_USER_ID</stringProp>
-            <stringProp name="Argument.value">2000000</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="API_SCHEME" elementType="Argument">
             <stringProp name="Argument.name">API_SCHEME</stringProp>
             <stringProp name="Argument.value">https</stringProp>
@@ -118,14 +113,14 @@
           <stringProp name="variableNames">put_user_id</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="next user id" enabled="true">
-          <stringProp name="CounterConfig.start">${LAST_USER_ID}</stringProp>
-          <stringProp name="CounterConfig.end"></stringProp>
-          <stringProp name="CounterConfig.incr">1</stringProp>
-          <stringProp name="CounterConfig.name">next-id</stringProp>
-          <stringProp name="CounterConfig.format"></stringProp>
-          <boolProp name="CounterConfig.per_user">false</boolProp>
-        </CounterConfig>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="random new user id" enabled="true">
+          <stringProp name="maximumValue">99999999</stringProp>
+          <stringProp name="minimumValue">10000000</stringProp>
+          <stringProp name="outputFormat">00000000</stringProp>
+          <boolProp name="perThread">false</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">new_user_id</stringProp>
+        </RandomVariableConfig>
         <hashTree/>
         <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Random Controller" enabled="true">
           <intProp name="InterleaveControl.style">1</intProp>
@@ -141,7 +136,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/users/${next-id}?username=loadtest_${next-id}&amp;email=loadtest_${next-id}@edx.org</stringProp>
+            <stringProp name="HTTPSampler.path">${URL_PATH_PREFIX}/users/${new_user_id}?username=loadtest_${new_user_id}&amp;email=loadtest_${new_user_id}@edx.org</stringProp>
             <stringProp name="HTTPSampler.method">PUT</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1552,7 +1547,7 @@
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-        <boolProp name="ResultCollector.error_logging">true</boolProp>
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
