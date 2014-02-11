@@ -478,7 +478,7 @@
               </HTTPSamplerProxy>
               <hashTree/>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_get_threads: 50%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_get_threads: 60%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -1047,13 +1047,13 @@
               </HTTPSamplerProxy>
               <hashTree/>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_get_user_active_threads: 1.5%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_get_user_active_threads: 5%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
               <FloatProperty>
                 <name>ThroughputController.percentThroughput</name>
-                <value>10.0</value>
+                <value>5.0</value>
                 <savedValue>0.0</savedValue>
               </FloatProperty>
             </ThroughputController>
@@ -1246,7 +1246,7 @@
               </FloatProperty>
             </ThroughputController>
             <hashTree/>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_flag_comment: 0.1%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_flag_comment: 1.0%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -1278,7 +1278,7 @@
               </HTTPSamplerProxy>
               <hashTree/>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_flag_thread: 0.1%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_flag_thread: 1.0%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -1318,7 +1318,7 @@
               </HTTPSamplerProxy>
               <hashTree/>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_unflag_thread: 0.1%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_unflag_thread: 1.0%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
@@ -1358,7 +1358,7 @@
               </HTTPSamplerProxy>
               <hashTree/>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_unflag_comment: 0.1%" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="cs_put_unflag_comment: 1.0%" enabled="true">
               <intProp name="ThroughputController.style">1</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <intProp name="ThroughputController.maxThroughput">1</intProp>
