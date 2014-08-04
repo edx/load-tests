@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVER" elementType="Argument">
             <stringProp name="Argument.name">SERVER</stringProp>
-            <stringProp name="Argument.value">dev.edx.org</stringProp>
+            <stringProp name="Argument.value">courses-loadtest-edx.edx.org</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
@@ -25,12 +25,12 @@
           </elementProp>
           <elementProp name="URL" elementType="Argument">
             <stringProp name="Argument.name">URL</stringProp>
-            <stringProp name="Argument.value">https://dev.edx.org</stringProp>
+            <stringProp name="Argument.value">https://courses-loadtest-edx.edx.org</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="COURSE_NUM" elementType="Argument">
             <stringProp name="Argument.name">COURSE_NUM</stringProp>
-            <stringProp name="Argument.value">001</stringProp>
+            <stringProp name="Argument.value">121</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="BASIC_AUTH_USER" elementType="Argument">
@@ -56,6 +56,16 @@
           <elementProp name="TIMEOUT_MS" elementType="Argument">
             <stringProp name="Argument.name">TIMEOUT_MS</stringProp>
             <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COURSE_ORG" elementType="Argument">
+            <stringProp name="Argument.name">COURSE_ORG</stringProp>
+            <stringProp name="Argument.value">edX</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COURSE_NAME" elementType="Argument">
+            <stringProp name="Argument.name">COURSE_NAME</stringProp>
+            <stringProp name="Argument.value">Manual_Test_Course</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -110,14 +120,14 @@
                 </elementProp>
                 <elementProp name="event" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1=rho*omega%5E2*(L%5E2%2F2+%2BR*L)+&amp;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath=%3Cmath+xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%0D%0A++%3Cmstyle+displaystyle%3D%22true%22%3E%0D%0A++++%3Cmi%3E%26%23x3C1%3B%3C%2Fmi%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmsup%3E%0D%0A++++++%3Cmi%3E%26%23x3C9%3B%3C%2Fmi%3E%0D%0A++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++%3C%2Fmsup%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmrow%3E%0D%0A++++++%3Cmo%3E(%3C%2Fmo%3E%0D%0A++++++%3Cmfrac%3E%0D%0A++++++++%3Cmsup%3E%0D%0A++++++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++++%3C%2Fmsup%3E%0D%0A++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++%3C%2Fmfrac%3E%0D%0A++++++%3Cmo%3E%2B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3ER%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E)%3C%2Fmo%3E%0D%0A++++%3C%2Fmrow%3E%0D%0A++%3C%2Fmstyle%3E%0D%0A%3C%2Fmath%3E</stringProp>
+                  <stringProp name="Argument.value">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1=rho*omega%5E2*(L%5E2%2F2+%2BR*L)+&amp;input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath=%3Cmath+xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%0D%0A++%3Cmstyle+displaystyle%3D%22true%22%3E%0D%0A++++%3Cmi%3E%26%23x3C1%3B%3C%2Fmi%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmsup%3E%0D%0A++++++%3Cmi%3E%26%23x3C9%3B%3C%2Fmi%3E%0D%0A++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++%3C%2Fmsup%3E%0D%0A++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++%3Cmrow%3E%0D%0A++++++%3Cmo%3E(%3C%2Fmo%3E%0D%0A++++++%3Cmfrac%3E%0D%0A++++++++%3Cmsup%3E%0D%0A++++++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++++%3C%2Fmsup%3E%0D%0A++++++++%3Cmn%3E2%3C%2Fmn%3E%0D%0A++++++%3C%2Fmfrac%3E%0D%0A++++++%3Cmo%3E%2B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3ER%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E%26%23x22C5%3B%3C%2Fmo%3E%0D%0A++++++%3Cmi%3EL%3C%2Fmi%3E%0D%0A++++++%3Cmo%3E)%3C%2Fmo%3E%0D%0A++++%3C%2Fmrow%3E%0D%0A++%3C%2Fmstyle%3E%0D%0A%3C%2Fmath%3E</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">event</stringProp>
                 </elementProp>
                 <elementProp name="page" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">${URL}/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware/ca74c64d167c4926b9bb31eab4db430c/6d184c70c53a4ae1acb4315d897af7cf/</stringProp>
+                  <stringProp name="Argument.value">${URL}/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/courseware/ca74c64d167c4926b9bb31eab4db430c/6d184c70c53a4ae1acb4315d897af7cf/</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">page</stringProp>
@@ -175,8 +185,15 @@
         </CookieManager>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Auth" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
           <stringProp name="HTTPSampler.port">${PORT}</stringProp>
@@ -199,7 +216,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="course_id" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">edx/${COURSE_NUM}/Manual_Test_Course</stringProp>
+                <stringProp name="Argument.value">edx/${COURSE_NUM}/${COURSE_NAME}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">course_id</stringProp>
@@ -248,7 +265,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/progress</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/progress</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -268,7 +285,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/courseware</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/courseware</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -288,7 +305,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/info</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/info</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -378,7 +395,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="course_id" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">edx/${COURSE_NUM}/Manual_Test_Course</stringProp>
+                <stringProp name="Argument.value">edx/${COURSE_NUM}/${COURSE_NAME}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">course_id</stringProp>
@@ -427,7 +444,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/fa2c7f1e0f18452aba1b39bc64bb058c/problem_show</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/fa2c7f1e0f18452aba1b39bc64bb058c/problem_show</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -445,19 +462,19 @@
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="custom_randomized" enabled="true">
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                   <collectionProp name="Arguments.arguments">
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_1" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_1" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">40</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_1</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_1</stringProp>
                     </elementProp>
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_2" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_2" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">5</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_2</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-50d67ebe768f4ad4a50a30d6f68bf341_2_2</stringProp>
                     </elementProp>
                   </collectionProp>
                 </elementProp>
@@ -467,7 +484,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_check</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -482,7 +499,7 @@
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="id" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341</stringProp>
+                      <stringProp name="Argument.value">i4x://${COURSE_ORG}/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                       <stringProp name="Argument.name">id</stringProp>
@@ -495,7 +512,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_reset</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_reset</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -514,12 +531,12 @@
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="code_response_correct" enabled="true">
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                   <collectionProp name="Arguments.arguments">
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.value">print &quot;hello world&quot;</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-b1384f77258e48a89c29d71b538f3f17_2_1</stringProp>
                     </elementProp>
                   </collectionProp>
                 </elementProp>
@@ -529,7 +546,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_check</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -549,7 +566,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_get</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/b1384f77258e48a89c29d71b538f3f17/problem_get</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -568,33 +585,33 @@
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="symbolic_correct" enabled="true">
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                   <collectionProp name="Arguments.arguments">
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">-I*pi**R^2*B_y</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1</stringProp>
                     </elementProp>
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1_dynamath" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1_dynamath" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;   &lt;mstyle displaystyle=&quot;true&quot;&gt;     &lt;mo&gt;-&lt;/mo&gt;     &lt;mi&gt;I&lt;/mi&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;mi&gt;&amp;#x3C0;&lt;/mi&gt;     &lt;mo&gt;&amp;#x22C6;&lt;/mo&gt;     &lt;msup&gt;       &lt;mi&gt;R&lt;/mi&gt;       &lt;mn&gt;2&lt;/mn&gt;     &lt;/msup&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;msub&gt;       &lt;mi&gt;B&lt;/mi&gt;       &lt;mi&gt;y&lt;/mi&gt;     &lt;/msub&gt;   &lt;/mstyle&gt; &lt;/math&gt;</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1_dynamath</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_2_1_dynamath</stringProp>
                     </elementProp>
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">I*pi**R^2*B_x</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1</stringProp>
                     </elementProp>
-                    <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1_dynamath" elementType="HTTPArgument">
+                    <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1_dynamath" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;   &lt;mstyle displaystyle=&quot;true&quot;&gt;     &lt;mi&gt;I&lt;/mi&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;mi&gt;&amp;#x3C0;&lt;/mi&gt;     &lt;mo&gt;&amp;#x22C6;&lt;/mo&gt;     &lt;msup&gt;       &lt;mi&gt;R&lt;/mi&gt;       &lt;mn&gt;2&lt;/mn&gt;     &lt;/msup&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;msub&gt;       &lt;mi&gt;B&lt;/mi&gt;       &lt;mi&gt;x&lt;/mi&gt;     &lt;/msub&gt;   &lt;/mstyle&gt; &lt;/math&gt;</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1_dynamath</stringProp>
+                      <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-da668d665e8e4354a1ffb221a218eee0_3_1_dynamath</stringProp>
                     </elementProp>
                   </collectionProp>
                 </elementProp>
@@ -604,7 +621,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_check</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -619,7 +636,7 @@
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="id" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">i4x://edx/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0</stringProp>
+                      <stringProp name="Argument.value">i4x://${COURSE_ORG}/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                       <stringProp name="Argument.name">id</stringProp>
@@ -632,7 +649,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_reset</stringProp>
+                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/da668d665e8e4354a1ffb221a218eee0/problem_reset</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -646,19 +663,19 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="numerical_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_2_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_2_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">2268000.0</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_2_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_2_1</stringProp>
                   </elementProp>
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_3_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_3_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">2160000</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_3_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-74566a17d61a4adfa6b38175fa4f23d1_3_1</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -668,7 +685,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/74566a17d61a4adfa6b38175fa4f23d1/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/74566a17d61a4adfa6b38175fa4f23d1/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -681,12 +698,12 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="string_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-0302c6f2497d4a4189d42eafe9494873_2_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-0302c6f2497d4a4189d42eafe9494873_2_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">gpa</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-0302c6f2497d4a4189d42eafe9494873_2_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-0302c6f2497d4a4189d42eafe9494873_2_1</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -696,7 +713,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -709,12 +726,12 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="option_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-d631ef90301b4c5fb720611af01e39c5_2_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-d631ef90301b4c5fb720611af01e39c5_2_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">num</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-d631ef90301b4c5fb720611af01e39c5_2_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-d631ef90301b4c5fb720611af01e39c5_2_1</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -724,7 +741,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/d631ef90301b4c5fb720611af01e39c5/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/d631ef90301b4c5fb720611af01e39c5/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -737,26 +754,26 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="choice_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">choice_0</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
                   </elementProp>
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">choice_2</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
                   </elementProp>
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">choice_5</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-4c0151c75bb947b6bddef18b607dae93_2_1[]</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -766,7 +783,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/4c0151c75bb947b6bddef18b607dae93/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/4c0151c75bb947b6bddef18b607dae93/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -779,12 +796,12 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="multi_choice_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-5ba39d15309f4e29a51e7c2e765defbc_2_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-5ba39d15309f4e29a51e7c2e765defbc_2_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">choice_d</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-5ba39d15309f4e29a51e7c2e765defbc_2_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-5ba39d15309f4e29a51e7c2e765defbc_2_1</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -794,7 +811,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -807,19 +824,19 @@
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="formula_problem_correct" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments">
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;   &lt;mstyle displaystyle=&quot;true&quot;&gt;     &lt;mi&gt;&amp;#x3C1;&lt;/mi&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;msup&gt;       &lt;mi&gt;&amp;#x3C9;&lt;/mi&gt;       &lt;mn&gt;2&lt;/mn&gt;     &lt;/msup&gt;     &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;     &lt;mrow&gt;       &lt;mo&gt;(&lt;/mo&gt;       &lt;mfrac&gt;         &lt;msup&gt;           &lt;mi&gt;L&lt;/mi&gt;           &lt;mn&gt;2&lt;/mn&gt;         &lt;/msup&gt;         &lt;mn&gt;2&lt;/mn&gt;       &lt;/mfrac&gt;       &lt;mo&gt;+&lt;/mo&gt;       &lt;mi&gt;R&lt;/mi&gt;       &lt;mo&gt;&amp;#x22C5;&lt;/mo&gt;       &lt;mi&gt;L&lt;/mi&gt;       &lt;mo&gt;)&lt;/mo&gt;     &lt;/mrow&gt;   &lt;/mstyle&gt; &lt;/math&gt;</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1_dynamath</stringProp>
                   </elementProp>
-                  <elementProp name="input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1" elementType="HTTPArgument">
+                  <elementProp name="input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.value">rho*omega^2*(L^2/2 +R*L)</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">input_i4x-edx-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1</stringProp>
+                    <stringProp name="Argument.name">input_i4x-${COURSE_ORG}-${COURSE_NUM}-problem-39d331eb9b0a48bfbc8a1640bc2871b4_2_1</stringProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
@@ -829,7 +846,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/39d331eb9b0a48bfbc8a1640bc2871b4/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/39d331eb9b0a48bfbc8a1640bc2871b4/problem_check</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -899,7 +916,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="course_id" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">edx/${COURSE_NUM}/Manual_Test_Course</stringProp>
+                <stringProp name="Argument.value">edx/${COURSE_NUM}/${COURSE_NAME}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">course_id</stringProp>
@@ -948,7 +965,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/50d67ebe768f4ad4a50a30d6f68bf341/problem_get</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -968,7 +985,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/5ba39d15309f4e29a51e7c2e765defbc/problem_get</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -988,7 +1005,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/c35654f5b6104696bd69446bc4746e3e/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/c35654f5b6104696bd69446bc4746e3e/problem_get</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1008,7 +1025,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/edx/${COURSE_NUM}/Manual_Test_Course/modx/i4x://edx/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_NAME}/modx/i4x://${COURSE_ORG}/${COURSE_NUM}/problem/0302c6f2497d4a4189d42eafe9494873/problem_get</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
