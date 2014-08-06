@@ -15,17 +15,13 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVER" elementType="Argument">
             <stringProp name="Argument.name">SERVER</stringProp>
-            <stringProp name="Argument.value">courses-loadtest-edx.edx.org</stringProp>
+            <stringProp name="Argument.value">${__property(server,,courses.dev.edx.org)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">courses-loadtest-edx.edx.org</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
             <stringProp name="Argument.name">PORT</stringProp>
             <stringProp name="Argument.value">443</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="URL" elementType="Argument">
-            <stringProp name="Argument.name">URL</stringProp>
-            <stringProp name="Argument.value">https://courses-loadtest-edx.edx.org</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="BASIC_AUTH_USER" elementType="Argument">
@@ -50,7 +46,7 @@
           </elementProp>
           <elementProp name="TIMEOUT_MS" elementType="Argument">
             <stringProp name="Argument.name">TIMEOUT_MS</stringProp>
-            <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.value">8000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="COURSE_NUM" elementType="Argument">
@@ -73,20 +69,50 @@
             <stringProp name="Argument.value">2014_8_e0d</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="CSRF_TOKEN" elementType="Argument">
-            <stringProp name="Argument.name">CSRF_TOKEN</stringProp>
-            <stringProp name="Argument.value">ZIgbo4Oumix8ls7wlCgYPks4aAkiK0Kw</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="PROBLEM_URL_PREFIX" elementType="Argument">
-            <stringProp name="Argument.name">PROBLEM_URL_PREFIX</stringProp>
-            <stringProp name="Argument.value">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_</stringProp>
+          <elementProp name="HANDLER_URL_PART" elementType="Argument">
+            <stringProp name="Argument.name">HANDLER_URL_PART</stringProp>
+            <stringProp name="Argument.value">/handler/xmodule_handler</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="event" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Composite Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="PROBLEM_URL_PREFIX" elementType="Argument">
+            <stringProp name="Argument.name">PROBLEM_URL_PREFIX</stringProp>
+            <stringProp name="Argument.value">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="URL" elementType="Argument">
+            <stringProp name="Argument.name">URL</stringProp>
+            <stringProp name="Argument.value">${PROTOCOL}://${SERVER}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PROBLEM_SHOW" elementType="Argument">
+            <stringProp name="Argument.name">PROBLEM_SHOW</stringProp>
+            <stringProp name="Argument.value">${HANDLER_URL_PART}/problem_show</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PROBLEM_GET" elementType="Argument">
+            <stringProp name="Argument.name">PROBLEM_GET</stringProp>
+            <stringProp name="Argument.value">${HANDLER_URL_PART}/problem_get</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PROBLEM_CHECK" elementType="Argument">
+            <stringProp name="Argument.name">PROBLEM_CHECK</stringProp>
+            <stringProp name="Argument.value">${HANDLER_URL_PART}/problem_check</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PROBLEM_RESET" elementType="Argument">
+            <stringProp name="Argument.name">PROBLEM_RESET</stringProp>
+            <stringProp name="Argument.value">${HANDLER_URL_PART}/problem_reset</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="event" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -309,7 +335,7 @@
               <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="courseware" enabled="false">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="courseware" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
@@ -478,7 +504,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_fa2c7f1e0f18452aba1b39bc64bb058c/handler/xmodule_handler/problem_show</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}fa2c7f1e0f18452aba1b39bc64bb058c${PROBLEM_SHOW}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -518,7 +544,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_50d67ebe768f4ad4a50a30d6f68bf341/handler/xmodule_handler/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}50d67ebe768f4ad4a50a30d6f68bf341${PROBLEM_CHECK}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -546,7 +572,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_50d67ebe768f4ad4a50a30d6f68bf341/handler/xmodule_handler/problem_reset</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}50d67ebe768f4ad4a50a30d6f68bf341${PROBLEM_RESET}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -580,7 +606,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_b1384f77258e48a89c29d71b538f3f17/handler/xmodule_handler/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}b1384f77258e48a89c29d71b538f3f17${PROBLEM_CHECK}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -600,7 +626,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_b1384f77258e48a89c29d71b538f3f17/handler/xmodule_handler/problem_get</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}b1384f77258e48a89c29d71b538f3f17${PROBLEM_GET}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -655,7 +681,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_da668d665e8e4354a1ffb221a218eee0/handler/xmodule_handler/problem_check</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}da668d665e8e4354a1ffb221a218eee0${PROBLEM_CHECK}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -683,7 +709,7 @@
                 <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
                 <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_da668d665e8e4354a1ffb221a218eee0/handler/xmodule_handler/problem_reset</stringProp>
+                <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}da668d665e8e4354a1ffb221a218eee0${PROBLEM_RESET}</stringProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -719,7 +745,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_74566a17d61a4adfa6b38175fa4f23d1/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}74566a17d61a4adfa6b38175fa4f23d1${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -747,7 +773,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_0302c6f2497d4a4189d42eafe9494873/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}0302c6f2497d4a4189d42eafe9494873${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -775,7 +801,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_d631ef90301b4c5fb720611af01e39c5/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}d631ef90301b4c5fb720611af01e39c5${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -817,7 +843,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_4c0151c75bb947b6bddef18b607dae93/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}4c0151c75bb947b6bddef18b607dae93${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -845,7 +871,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_5ba39d15309f4e29a51e7c2e765defbc/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}5ba39d15309f4e29a51e7c2e765defbc${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -880,7 +906,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_39d331eb9b0a48bfbc8a1640bc2871b4/handler/xmodule_handler/problem_check</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}39d331eb9b0a48bfbc8a1640bc2871b4${PROBLEM_CHECK}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -908,7 +934,7 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="false">
+        <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
           <collectionProp name="AuthManager.auth_list">
             <elementProp name="" elementType="Authorization">
               <stringProp name="Authorization.url">${URL}</stringProp>
@@ -950,7 +976,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="course_id" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">edx/${COURSE_NUM}/${COURSE_NAME}</stringProp>
+                <stringProp name="Argument.value">${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">course_id</stringProp>
@@ -999,7 +1025,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_50d67ebe768f4ad4a50a30d6f68bf341/handler/xmodule_handler/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}50d67ebe768f4ad4a50a30d6f68bf341${PROBLEM_GET}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1019,7 +1045,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_5ba39d15309f4e29a51e7c2e765defbc/handler/xmodule_handler/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}5ba39d15309f4e29a51e7c2e765defbc${PROBLEM_GET}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1039,7 +1065,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_c35654f5b6104696bd69446bc4746e3e/handler/xmodule_handler/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}c35654f5b6104696bd69446bc4746e3e${PROBLEM_GET}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1059,7 +1085,7 @@
               <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/courses/${COURSE_ORG}/${COURSE_NUM}/${COURSE_RUN}/xblock/i4x:;_;_${COURSE_ORG};_${COURSE_NUM};_problem;_0302c6f2497d4a4189d42eafe9494873/handler/xmodule_handler/problem_get</stringProp>
+              <stringProp name="HTTPSampler.path">${PROBLEM_URL_PREFIX}0302c6f2497d4a4189d42eafe9494873${PROBLEM_GET}</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
