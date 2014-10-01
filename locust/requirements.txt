@@ -1,1 +1,1 @@
-locustio==0.7.1
+locustio==0.7.2
