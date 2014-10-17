@@ -1,3 +1,11 @@
+"""
+Load tests for the analytics data API.
+
+The API key should be passed as an environment variable when running locust. See the example below.
+
+API_KEY="secret" locust --host="https://api.example.org"
+"""
+
 import os
 import random
 from locust import HttpLocust, TaskSet, task

@@ -1,3 +1,12 @@
+"""
+Load tests for the analytics dashboard/Insights.
+
+LMS credentials must be passed in order to login. See the example below. The basic auth credentials are optional and only
+needed if the server being load tested also requires basic auth validation.
+
+LMS_URL="https://courses.stage.example.org" LMS_USERNAME="user@example.org" LMS_PASSWORD="TopSecret" BASIC_AUTH_USERNAME="user" BASIC_AUTH_PASSWORD="TopSecret" locust --host="https://stage-insights.example.org"
+"""
+
 import os
 import random
 from locust import HttpLocust, TaskSet, task
@@ -28,12 +37,16 @@ class UserBehavior(TaskSet):
         self.login()
 
     def login(self):
+        lms_logout = '{}/logout'.format(LMS_URL)
         lms_login = '{}/login'.format(LMS_URL)
         lms_login_ajax = '{}/login_ajax'.format(LMS_URL)
 
         # Set basic auth credentials, if necessary (e.g. for edX stage environment)
         if BASIC_AUTH_CREDENTIALS:
             self.client.auth = BASIC_AUTH_CREDENTIALS
+
+        # Ensure the client is logged out.
+        self.client.get(lms_logout)
 
         # Make a call to the login page to get cookies (esp. CSRF token)
         self.client.get(lms_login)
@@ -50,6 +63,9 @@ class UserBehavior(TaskSet):
 
         # Login!
         r = self.client.post(lms_login_ajax, data=data, headers=headers)
+        if r.status_code != 200:
+            raise Exception('Login failed: ' + r.text)
+
         try:
             success = r.json().get('success', False)
         except Exception as e:
