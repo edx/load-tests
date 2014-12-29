@@ -1,6 +1,0 @@
-requests
-mechanize
-matplotlib
-loremipsum
-multi-mechanize
-blitz
