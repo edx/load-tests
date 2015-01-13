@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="API_HOST" elementType="Argument">
             <stringProp name="Argument.name">API_HOST</stringProp>
-            <stringProp name="Argument.value">0.0.0.0</stringProp>
+            <stringProp name="Argument.value">loadtest-edx-notes.edx.org</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="URL_PATH_PREFIX" elementType="Argument">
@@ -25,17 +25,12 @@
           </elementProp>
           <elementProp name="API_SCHEME" elementType="Argument">
             <stringProp name="Argument.name">API_SCHEME</stringProp>
-            <stringProp name="Argument.value">http</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT_NUMBER" elementType="Argument">
             <stringProp name="Argument.name">PORT_NUMBER</stringProp>
-            <stringProp name="Argument.value">8120</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="TOKEN" elementType="Argument">
-            <stringProp name="Argument.name">TOKEN</stringProp>
-            <stringProp name="Argument.value">test_token</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -273,7 +268,7 @@
         <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
           <stringProp name="RegexExtractor.useHeaders">false</stringProp>
           <stringProp name="RegexExtractor.refname">note_id</stringProp>
-          <stringProp name="RegexExtractor.regex">&quot;id&quot;:(\d+)</stringProp>
+          <stringProp name="RegexExtractor.regex">&quot;id&quot;:&quot;(\d+)&quot;</stringProp>
           <stringProp name="RegexExtractor.template">$1$</stringProp>
           <stringProp name="RegexExtractor.default">0</stringProp>
           <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -378,7 +373,7 @@
         <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
           <stringProp name="RegexExtractor.useHeaders">false</stringProp>
           <stringProp name="RegexExtractor.refname">note_id</stringProp>
-          <stringProp name="RegexExtractor.regex">&quot;id&quot;:(\d+)</stringProp>
+          <stringProp name="RegexExtractor.regex">&quot;id&quot;:&quot;(\d+)&quot;</stringProp>
           <stringProp name="RegexExtractor.template">$1$</stringProp>
           <stringProp name="RegexExtractor.default">0</stringProp>
           <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -562,7 +557,7 @@
         <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
           <stringProp name="RegexExtractor.useHeaders">false</stringProp>
           <stringProp name="RegexExtractor.refname">note_id</stringProp>
-          <stringProp name="RegexExtractor.regex">&quot;id&quot;:(\d+)</stringProp>
+          <stringProp name="RegexExtractor.regex">&quot;id&quot;:&quot;(\d+)&quot;</stringProp>
           <stringProp name="RegexExtractor.template">$1$</stringProp>
           <stringProp name="RegexExtractor.default">0</stringProp>
           <stringProp name="RegexExtractor.match_number">1</stringProp>
