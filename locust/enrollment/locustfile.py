@@ -129,7 +129,7 @@ class AutoAuthTaskSet(TaskSet):
 class UserBehavior(TaskSet):
     """User scripts that exercise the enrollment API. """
 
-    @task(300)
+    @task(5)
     class AuthenticatedAndEnrolledTasks(AutoAuthTaskSet):
         """User scripts in which the user is already authenticated and enrolled. """
 
@@ -153,7 +153,7 @@ class UserBehavior(TaskSet):
             """Get all enrollments for a user. """
             self.api.get_student_enrollments()
 
-    @task(300)
+    @task(5)
     class AuthenticatedButNotEnrolledTasks(AutoAuthTaskSet):
         """User scripts in which the user is authenticated but not enrolled. """
 
@@ -173,7 +173,7 @@ class UserBehavior(TaskSet):
             """Get all enrollments for a user. """
             self.api.get_student_enrollments()
 
-    @task(300)
+    @task(5)
     class NotAuthenticatedTasks(TaskSet):
         """User scripts in which the user is not authenticated. """
 
