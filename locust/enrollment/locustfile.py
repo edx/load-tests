@@ -13,13 +13,15 @@ This test REQUIRES that auto auth is enabled in the test environment.
 To enable auto auth, set the feature flag `AUTOMATIC_AUTH_FOR_TESTING` to True.
 
 By default, the test uses the demo course to enroll/unenroll students.
-You can override this by setting the environment var `COURSE_ID` to a slash-separated course key.
+You can override this by setting the environment var `COURSE_ID_LIST` to a comma-separated list
+of slash-separated course keys.
 
 """
 
 import os
 import json
 import uuid
+import random
 from locust import HttpLocust, TaskSet, task
 
 
@@ -30,7 +32,7 @@ if 'BASIC_AUTH_USER' in os.environ and 'BASIC_AUTH_PASSWORD' in os.environ:
 
 
 # Course ID
-COURSE_ID = os.environ.get('COURSE_ID', 'edX/DemoX/Demo_Course')
+COURSE_ID_LIST = os.environ.get('COURSE_ID_LIST', 'edX/DemoX/Demo_Course').split(",")
 
 EMAIL_USERNAME = "success"
 EMAIL_URL = "simulator.amazonses.com"
@@ -88,7 +90,8 @@ class EnrollmentApi(object):
             base=ENROLLMENT_API_BASE_URL,
             course_key=course_id
         )
-        self.client.get(url, verify=False)
+        name = u"{base}/course/{{course_key}}".format(base=ENROLLMENT_API_BASE_URL)
+        self.client.get(url, verify=False, name=name)
 
     @property
     def _post_headers(self):
@@ -101,36 +104,10 @@ class EnrollmentApi(object):
         }
 
 
-class UserBehavior(TaskSet):
-    """User scripts that exercise the combined login/registration page. """
+class AutoAuthTaskSet(TaskSet):
+    """Use the auto-auth end-point to create test users. """
 
-    def on_start(self):
-        """Initialize the test. """
-        self.api = EnrollmentApi(self.locust.host, self.client)
-
-    @task
-    def enroll_student(self):
-        """Enroll a student in a course. """
-        self._auto_auth()
-        self.api.enroll(COURSE_ID)
-        self.api.get_student_enrollments()
-
-    @task
-    def user_enrollment_status(self):
-        """Check a student enrollment status for a course. """
-        username = self._auto_auth()
-        self.api.enroll(COURSE_ID)
-        self.api.get_user_enrollment_status(username, COURSE_ID)
-
-    @task
-    def enrollment_detail_for_course(self):
-        """Check a student enrollment status for a course. """
-        self._auto_auth()
-        self.api.enroll(COURSE_ID)
-        del self.client.cookies["sessionid"]
-        self.api.get_enrollment_detail_for_course(COURSE_ID)
-
-    def _auto_auth(self):
+    def auto_auth(self):
         """Create a new account with given credentials and log in.
 
         This requires that the test server has the feature flag
@@ -145,8 +122,94 @@ class UserBehavior(TaskSet):
             'email': self.full_email,
             'username': self.username,
         }
-        self.client.get("/auto_auth", params=params, name="/auto_auth")
+        self.client.get("/auto_auth", params=params, verify=False, name="/auto_auth")
         return self.username
+
+
+class UserBehavior(TaskSet):
+    """User scripts that exercise the enrollment API. """
+
+    @task(300)
+    class AuthenticatedAndEnrolledTasks(AutoAuthTaskSet):
+        """User scripts in which the user is already authenticated and enrolled. """
+
+        def on_start(self):
+            """Ensure the user is logged in and enrolled. """
+            self.api = EnrollmentApi(self.locust.host, self.client)
+            self.auto_auth()
+
+            # Ensure that the user is enrolled in all the courses
+            for course_id in COURSE_ID_LIST:
+                self.api.enroll(course_id)
+
+        @task
+        def user_enrollment_status(self):
+            """Check a user's enrollment status in a course. """
+            course_id = random.choice(COURSE_ID_LIST)
+            self.api.get_user_enrollment_status(self.username, course_id)
+
+        @task
+        def list_enrollments(self):
+            """Get all enrollments for a user. """
+            self.api.get_student_enrollments()
+
+    @task(300)
+    class AuthenticatedButNotEnrolledTasks(AutoAuthTaskSet):
+        """User scripts in which the user is authenticated but not enrolled. """
+
+        def on_start(self):
+            """Ensure the user is logged in """
+            self.api = EnrollmentApi(self.locust.host, self.client)
+            self.auto_auth()
+
+        @task
+        def user_enrollment_status(self):
+            """Check a user's enrollment status in a course. """
+            course_id = random.choice(COURSE_ID_LIST)
+            self.api.get_user_enrollment_status(self.username, course_id)
+
+        @task
+        def list_enrollments(self):
+            """Get all enrollments for a user. """
+            self.api.get_student_enrollments()
+
+    @task(300)
+    class NotAuthenticatedTasks(TaskSet):
+        """User scripts in which the user is not authenticated. """
+
+        def on_start(self):
+            self.api = EnrollmentApi(self.locust.host, self.client)
+
+        @task
+        def enrollment_detail_for_course(self):
+            """Retrieve enrollment details for a course. """
+            course_id = random.choice(COURSE_ID_LIST)
+            self.api.get_enrollment_detail_for_course(course_id)
+
+    @task(1)
+    class EnrollNewUserTasks(AutoAuthTaskSet):
+        """User scripts to enroll a user into a course for the first time. """
+
+        def on_start(self):
+            self.api = EnrollmentApi(self.locust.host, self.client)
+            self._reset()
+
+        @task
+        def enroll(self):
+            """First-time enrollment in a course. """
+            # Since we can only enroll in a course once,
+            # restart as a new user once we run out of courses.
+            try:
+                course_id = next(self.course_ids)
+            except StopIteration:
+                self._reset()
+            else:
+                self.api.enroll(course_id)
+
+        def _reset(self):
+            """Log in as a new user (with no enrollments). """
+            self.auto_auth()
+            self.course_ids = iter(COURSE_ID_LIST)
 
 
 class WebsiteUser(HttpLocust):
