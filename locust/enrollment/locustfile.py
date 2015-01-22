@@ -129,7 +129,7 @@ class AutoAuthTaskSet(TaskSet):
 class UserBehavior(TaskSet):
     """User scripts that exercise the enrollment API. """
 
-    @task
+    @task(300)
     class AuthenticatedAndEnrolledTasks(AutoAuthTaskSet):
         """User scripts in which the user is already authenticated and enrolled. """
 
@@ -153,7 +153,7 @@ class UserBehavior(TaskSet):
             """Get all enrollments for a user. """
             self.api.get_student_enrollments()
 
-    @task
+    @task(300)
     class AuthenticatedButNotEnrolledTasks(AutoAuthTaskSet):
         """User scripts in which the user is authenticated but not enrolled. """
 
@@ -173,12 +173,11 @@ class UserBehavior(TaskSet):
             """Get all enrollments for a user. """
             self.api.get_student_enrollments()
 
-    @task
+    @task(300)
     class NotAuthenticatedTasks(TaskSet):
         """User scripts in which the user is not authenticated. """
 
         def on_start(self):
-            """Ensure the user is logged in """
             self.api = EnrollmentApi(self.locust.host, self.client)
 
         @task
@@ -186,6 +185,31 @@ class UserBehavior(TaskSet):
             """Retrieve enrollment details for a course. """
             course_id = random.choice(COURSE_ID_LIST)
             self.api.get_enrollment_detail_for_course(course_id)
+
+    @task(1)
+    class EnrollNewUserTasks(AutoAuthTaskSet):
+        """User scripts to enroll a user into a course for the first time. """
+
+        def on_start(self):
+            self.api = EnrollmentApi(self.locust.host, self.client)
+            self._reset()
+
+        @task
+        def enroll(self):
+            """First-time enrollment in a course. """
+            # Since we can only enroll in a course once,
+            # restart as a new user once we run out of courses.
+            try:
+                course_id = next(self.course_ids)
+            except StopIteration:
+                self._reset()
+            else:
+                self.api.enroll(course_id)
+
+        def _reset(self):
+            """Log in as a new user (with no enrollments). """
+            self.auto_auth()
+            self.course_ids = iter(COURSE_ID_LIST)
 
 
 class WebsiteUser(HttpLocust):
