@@ -79,7 +79,8 @@ class EnrollmentApi(object):
             user=user_name,
             course_key=course_id
         )
-        self.client.get(url, verify=False)
+        name = u"{base}/enrollment/{{user}},{{course_key}}".format(base=ENROLLMENT_API_BASE_URL)
+        self.client.get(url, verify=False, name=name)
 
     def get_enrollment_detail_for_course(self, course_id):
         """Get enrollment details for a course. """
@@ -144,7 +145,7 @@ class UserBehavior(TaskSet):
             'email': self.full_email,
             'username': self.username,
         }
-        self.client.get("/auto_auth", params=params)
+        self.client.get("/auto_auth", params=params, name="/auto_auth")
         return self.username
 
 
