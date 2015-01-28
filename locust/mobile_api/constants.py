@@ -118,7 +118,7 @@ COURSE_ID_LIST_XLARGE = [
     'UBCx/China300x/3T2014',
     'BerkeleyX/CS188x_1/1T2013',
     'MITx/3.091x_2/1T2014',
-    'BerkeleyX/CS188.1x-4/1T201',
+    'BerkeleyX/CS188.1x-4/1T2015',
     'MITx/6.002_4x/3T2014'
 ]
 
