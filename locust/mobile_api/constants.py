@@ -21,19 +21,16 @@ COURSE_ID_LIST_MEDIUM_A = [
     "University_of_TorontoX/OEE101x/3T2013",
     ]
 COURSE_ID_LIST_MEDIUM_B = [
-    "ANUx/ANU-ASTRO2x/2T2014",
-    "ANUx/ANU-ASTRO1x/1T2014",
-    "WellesleyX/SOC108x/2014_SOND",
-    "MITx/8.EFTx/3T2014",
-    "BerkeleyX/GG101x-2/course",
-    "UBCx/China300x/3T2014",
-    "BerkeleyX/CS188x_1/1T2013",
-    "MITx/3.091x_2/1T2014",
-    "BerkeleyX/CS188.1x-4/1T2015",
-    "MITx/6.002_4x/3T2014",
-    'BerkeleyX/EECS149.1x/2T2014',
-    'HarvardX/HDS1544.1x/2013_SOND',
-    'CornellX/INFO2040x_Spring2015/1T2015',
+    'ANUx/ANU-ASTRO3x/4T2014',
+    'ANUx/ANU-ASTRO2x/2T2014',
+    'ANUx/ANU-ASTRO1x/1T2014',
+    'WellesleyX/SOC108x/2014_SOND',
+    'MITx/8.EFTx/3T2014',
+    'UBCx/China300x/3T2014',
+    'BerkeleyX/CS188x_1/1T2013',
+    'MITx/3.091x_2/1T2014',
+    'BerkeleyX/CS188.1x-4/1T2015',
+    'MITx/6.002_4x/3T2014'
     ]
 COURSE_ID_LIST_LARGE_A = [
     "edX/DemoX/Demo_Course",
