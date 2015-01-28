@@ -41,6 +41,11 @@ USER_PASSWORD = "test"
 ENROLLMENT_API_BASE_URL = "/api/enrollment/v1"
 
 
+class NotAuthorizedException(Exception):
+    """The API returned an HTTP status 403 """
+    pass
+
+
 class EnrollmentApi(object):
     """Interact with the enrollment API. """
     def __init__(self, hostname, client):
@@ -59,7 +64,7 @@ class EnrollmentApi(object):
 
     def get_student_enrollments(self):
         """Retrieve enrollment info for the currently logged in user. """
-        self.client.get("{0}/enrollment".format(ENROLLMENT_API_BASE_URL), verify=False)
+        self._get("{0}/enrollment".format(ENROLLMENT_API_BASE_URL))
 
     def enroll(self, course_id):
         """Enroll the user in `course_id`. """
@@ -67,12 +72,7 @@ class EnrollmentApi(object):
             base=ENROLLMENT_API_BASE_URL
         )
         params = {'course_details': {'course_id': course_id}}
-        self.client.post(
-            url,
-            json.dumps(params),
-            headers=self._post_headers,
-            verify=False
-        )
+        self._post(url, json.dumps(params))
 
     def get_user_enrollment_status(self, user_name, course_id):
         """Check the user enrollment status in a given course. """
@@ -82,7 +82,7 @@ class EnrollmentApi(object):
             course_key=course_id
         )
         name = u"{base}/enrollment/{{user}},{{course_key}}".format(base=ENROLLMENT_API_BASE_URL)
-        self.client.get(url, verify=False, name=name)
+        self._get(url, name=name)
 
     def get_enrollment_detail_for_course(self, course_id):
         """Get enrollment details for a course. """
@@ -91,7 +91,7 @@ class EnrollmentApi(object):
             course_key=course_id
         )
         name = u"{base}/course/{{course_key}}".format(base=ENROLLMENT_API_BASE_URL)
-        self.client.get(url, verify=False, name=name)
+        self._get(url, name=name)
 
     @property
     def _post_headers(self):
@@ -102,6 +102,38 @@ class EnrollmentApi(object):
             'X-CSRFToken': self.client.cookies.get('csrftoken', ''),
             'Referer': self.hostname
         }
+
+    def _post(self, *args, **kwargs):
+        """Make a POST request to the server.
+
+        Skips SSL verification and sends the CSRF cookie.
+
+        Raises a NotAuthorizedException if the server responds
+        with a status 403.
+        """
+        kwargs['verify'] = False
+        kwargs['headers'] = self._post_headers
+        response = self.client.post(*args, **kwargs)
+        self._check_response(response)
+        return response
+
+    def _get(self, *args, **kwargs):
+        """Make a GET request to the server.
+
+        Skips SSL verification.
+
+        Raises a NotAuthorizedException if the server responds
+        with a status 403.
+        """
+        kwargs['verify'] = False
+        response = self.client.get(*args, **kwargs)
+        self._check_response(response)
+        return response
+
+    def _check_response(self, response):
+        """Check whether a response was successful. """
+        if response.status_code == 403:
+            raise NotAuthorizedException
 
 
 class AutoAuthTaskSet(TaskSet):
@@ -146,12 +178,19 @@ class UserBehavior(TaskSet):
         def user_enrollment_status(self):
             """Check a user's enrollment status in a course. """
             course_id = random.choice(COURSE_ID_LIST)
-            self.api.get_user_enrollment_status(self.username, course_id)
+
+            try:
+                self.api.get_user_enrollment_status(self.username, course_id)
+            except NotAuthorizedException:
+                self.auto_auth()
 
         @task
         def list_enrollments(self):
             """Get all enrollments for a user. """
-            self.api.get_student_enrollments()
+            try:
+                self.api.get_student_enrollments()
+            except NotAuthorizedException:
+                self.auto_auth()
 
     @task(5)
     class AuthenticatedButNotEnrolledTasks(AutoAuthTaskSet):
@@ -166,12 +205,18 @@ class UserBehavior(TaskSet):
         def user_enrollment_status(self):
             """Check a user's enrollment status in a course. """
             course_id = random.choice(COURSE_ID_LIST)
-            self.api.get_user_enrollment_status(self.username, course_id)
+            try:
+                self.api.get_user_enrollment_status(self.username, course_id)
+            except NotAuthorizedException:
+                self.auto_auth()
 
         @task
         def list_enrollments(self):
             """Get all enrollments for a user. """
-            self.api.get_student_enrollments()
+            try:
+                self.api.get_student_enrollments()
+            except NotAuthorizedException:
+                self.auto_auth()
 
     @task(5)
     class NotAuthenticatedTasks(TaskSet):
@@ -204,7 +249,10 @@ class UserBehavior(TaskSet):
             except StopIteration:
                 self._reset()
             else:
-                self.api.enroll(course_id)
+                try:
+                    self.api.enroll(course_id)
+                except NotAuthorizedException:
+                    self._reset()
 
         def _reset(self):
             """Log in as a new user (with no enrollments). """
