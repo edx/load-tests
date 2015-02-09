@@ -11,6 +11,13 @@ This locust tests will be testing the following endpoints.
 
 -/mobile_api.video_outlines.views:VideoTranscripts
 
+-/mobile_api.course_info.views:CourseUpdatesList
+
+-/mobile_api.course_info.views:CourseHandoutsList
+
+-/mobile_api.users.views:UserDetail
+
+
 
 This test REQUIRES that auto auth is enabled in the test environment.
 To enable auto auth, set the feature flag `AUTOMATIC_AUTH_FOR_TESTING` to True.
@@ -50,6 +57,11 @@ COURSE_ID_LIST_LARGE_B is a list of 20 highest block courses courses
 
 COURSE_ID_LIST_XLARGE is a list of 40 highest block courses courses
 
+ALL_COURSES is a list of all the courses
+
+ALL_COURSES_STACK is a list of all the courses that is used as a stack to create
+an even distribution of courses. 
+
 Split courses are not entirely dependent on the number of blocks and have an
 ascending number of videos.
 
@@ -58,4 +70,4 @@ SPLIT_COURSES_A is a list of 3 split courses.
 Some endpoints depend on a current/preset position in the course. The dict below
 is the video block_id that is in the middle of the course by number of videos/2. 
 
-MIDDLE_VIDEO_LIST is a dict reflecting the middle video_id of COURSE_ID_LIST_XLARGE
+MIDDLE_VIDEO_LIST is a dict reflecting the middle video_id of ALL_COURSES

@@ -81,7 +81,7 @@ class MobileApi(object):
         name = url
 
         if not VERBOSE:
-            name = "video_outlines.VideoSummaryList"
+            name = "GET video_outlines.VideoSummaryList"
 
         self.client.get(url, name=name)
 
@@ -172,7 +172,7 @@ class MobileApi(object):
         name = url
 
         if not VERBOSE:
-            name = "GET course_ingo.CourseUpdatesList"
+            name = "GET course_info.CourseUpdatesList"
 
         self.client.get(url, name=name, verify=False)
 
@@ -185,7 +185,7 @@ class MobileApi(object):
         name = url
 
         if not VERBOSE:
-            name = "GET course_ingo.CourseHandoutsList"
+            name = "GET course_info.CourseHandoutsList"
         self.client.get(url, name=name, verify=False)
 
 
@@ -229,7 +229,7 @@ class AutoAuthTaskSet(TaskSet):
 class UserBehavior(TaskSet):
     """User scripts that exercises the mobile API"""
 
-    # @task(8)
+    @task(8)
     class VideoSummaryList(AutoAuthTaskSet):
         """
         /api/mobile/v0.5/video_outlines/courses/edx/1/2
@@ -311,8 +311,8 @@ class UserBehavior(TaskSet):
         to true, the endpoint still needs to iterate over the available
         endpoints which is the common case.
         """
-        min_wait = 17000/100
-        max_wait = 18000/100
+        min_wait = 17000
+        max_wait = 18000
 
         #normal
         def on_start(self):
@@ -369,7 +369,7 @@ class UserBehavior(TaskSet):
 
             #cycles through courses from smallest to largest
             self.course_id = constants.ALL_COURSES_STACK.pop(0)  # pylint: disable=attribute-defined-outside-init
-            constants.ALL_COURSES.append(self.course_id)
+            constants.ALL_COURSES_STACK.append(self.course_id)
 
             self.middle_block_id = constants.MIDDLE_VIDEO_LIST[self.course_id]  # pylint: disable=attribute-defined-outside-init
             self.api.patch_course_status_info(
@@ -412,8 +412,8 @@ class UserBehavior(TaskSet):
         Requires staff access or enrollment.
         """
 
-        min_wait = 77
-        max_wait = 77
+        min_wait = 77000
+        max_wait = 77000
 
         def on_start(self):
             """Ensure the user is created and logged in"""
@@ -434,16 +434,16 @@ class UserBehavior(TaskSet):
         Requires staff access or enrollment.
         """
 
-        min_wait = 83
-        max_wait = 83
+        min_wait = 83000
+        max_wait = 83000
 
         def on_start(self):
             """Ensure the user is created and logged in"""
             self.api = MobileApi(self.locust.host, self.client) # pylint: disable=attribute-defined-outside-init
-            self.auto_auth(username="cul", staff="true")
+            self.auto_auth(username="chl", staff="true")
 
         @task
-        def course_updates_list(self):
+        def course_handouts_list(self):
             """Calls the endpoint"""
             course_id = random.choice(constants.ALL_COURSES)
             self.api.get_course_handouts_list(course_id)
@@ -452,8 +452,8 @@ class UserBehavior(TaskSet):
     class UserDetail(AutoAuthTaskSet):
         """GET /api/mobile/v0.5/users/{username}"""
 
-        min_wait = 38
-        max_wait = 39
+        min_wait = 38000
+        max_wait = 39000
 
         def on_start(self):
             """Ensure the user is created and logged in"""
