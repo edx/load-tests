@@ -1,6 +1,8 @@
 """
 Constants for locustfile
 """
+import itertools
+
 USER_PASSWORD = "test"
 ENROLLMENT_API_BASE_URL = "/api/enrollment/v1"
 MOBILE_API_BASE_URL = "/api/mobile/v0.5"
@@ -183,7 +185,7 @@ COURSE_ID_DICT = dict(
     XLARGE=COURSE_ID_LIST_XLARGE,
     SPLIT_A=SPLIT_COURSES_A
 )
-COURSE_ID_LIST = [
+COURSE_ID_LIST = itertools.cycle([
     "SMALL_A",
     "SMALL_B",
     "MEDIUM_A",
@@ -192,7 +194,7 @@ COURSE_ID_LIST = [
     "LARGE_B",
     "XLARGE",
     "SPLIT_A"
-]
+])
 
 ALL_COURSES = COURSE_ID_LIST_XLARGE + SPLIT_COURSES_A
-ALL_COURSES_STACK = COURSE_ID_LIST_XLARGE + SPLIT_COURSES_A
+ALL_COURSES_STACK = itertools.cycle(ALL_COURSES)

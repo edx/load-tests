@@ -32,6 +32,29 @@ Start with:
 
 Then visit `http://localhost:8089/`
 
+
+Other environment variables.
+
+VERBOSE=True: Detailed report on each endpoint.
+
+LARGE_COURSE_TEST=split: Use a large split course instead of random courses for
+VideoSummaryList and UserEnrollmentStatus
+LARGE_COURSE_TEST=mongo: Use a large mongo course instead of random courses for
+VideoSummaryList and UserEnrollmentStatus
+
+SINGLE_TEST=VideoSummaryList
+SINGLE_TEST=VideoTranscript
+SINGLE_TEST=UserCourseEnrollmentsList
+SINGLE_TEST=UserCourseStatus
+SINGLE_TEST=CourseUpdatesList
+SINGLE_TEST=CourseHandoutsList
+SINGLE_TEST=UserDetail
+
+Another example:
+
+`BASIC_AUTH_USER=user BASIC_AUTH_PASSWORD=pass SINGLE_TEST=VideoSummaryList VERBOSE=True LARGE_COURSE_TEST=split locust --host="http://benjilee.m.sandbox.edx.org"`
+
+
 Courses
 ---------------
 
