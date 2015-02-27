@@ -1,0 +1,10 @@
+BASIC_AUTH_USER:
+    user
+BASIC_AUTH_PASSWORD:
+    pass
+SINGLE_TEST:
+    VideoSummaryList
+LARGE_COURSE_TEST:
+    mongo
+VERBOSE:
+    "TRUE"
