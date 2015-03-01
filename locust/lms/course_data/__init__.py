@@ -62,7 +62,7 @@ class CourseData(dict):
     @property
     def discussion_id(self):
         """
-        randomly choose the id of a discussion module
+        randomly choose the discussion_id of a discussion module (aka commentable_id)
         """
         return random.choice(self['discussion_ids'])
 
@@ -211,27 +211,37 @@ demo_course = CourseData(
         "oX46YqHWgyw",
         "qWxm7CA2v24",
     ),
-    discussion_ids = (
-        "03f051f9a8814881a3783d2511613aa6",
-        "0aa7a3bdbe18427795b0c1a1d7c3cb9a",
-        "3169f89efde2452993f2f2d9bc74f5b2",
-        "412dc8dbb6674014862237b23c1f643f",
-        "4d672c5893cb4f1dad0de67d2008522e",
-        "4f06b358a96f4d1dae57d6d81acd06f2",
-        "501aed9d902349eeb2191fa505548de2",
-        "5ab88e67d46049b9aa694cb240c39cef",
-        "6244918637ed4ff4b5f94a840a7e4b43",
-        "67c26b1e826e47aaa29757f62bcd1ad0",
-        "6f7a6670f87147149caeff6afa07a526",
-        "722085be27c84ac693cfebc8ac5da700",
-        "870371212ba04dcf9536d7c7b8f3109e",
-        "9f9e1373cc8243b985c8750cc8acec7d",
-        "c6cd4bea43454aaea60ad01beb0cf213",
-        "e0d7423118ab432582d03e8e8dad8e36",
-        "e2cb0e0994f84b0abfa5f4ae42ed9d44",
-        "e5eac7e1a5a24f5fa7ed77bb6d136591",
-        "ed01bcd164e64038a78964a16eac3edc",
-        "ffa5817d49e14fec83ad6187cbe16358",
+    discussion_ids = (  # from metadata.discussion_id, not the block id
+        "d9f970a42067413cbb633f81cfb12604",
+        "98d8feb5971041a085512ae22b398613",
+        "1d153da210844719a1a6cc39ca09673c",
+        "265ca2d808814d76ad670957a2b6071f",
+        "23347cb1d1e74ec79453ce361e38eb18",
+        "4250393f9f684bfeb3f1d514e15592d1",
+        "eb264c9899b745fc81cd7405b53a7a65",
+        "aecab8f355744782af5a9470185f0005",
+        "cba3e4cd91d0466b9ac50926e495b76f",
+        "ed3164d1235645739374094a8172964b",
+        "b770140a122741fea651a50362dee7e6",
+        "c49f0dfb8fc94c9c8d9999cc95190c56",
+        "53c486b035b4437c9197a543371e0f03",
+        "d7b66e45154b4af18f33213337685e91",
+        "9ad16580878f49d1bf20ce1bc533d16e",
+        "b11488e3580241f08146cbcfca693d06",
+        "bb15269287ec44b6a2f69447db43d845",
+        "239ef52e6eee468fb698b4217a7bafc6",
+        "cdad92273f7d4622aed770b7de8583bc",
+        "e4365aad2c39498d824cf984b3f9b083",
+        "6e51dd8f181b44ffa6d91303a287ed3f"
+        "edx_demo_embedded_discussion",
+        "31c83aefa6634e83a3c80b81f5447201",
+        "0717ec26e67e49b2a9f30d2e15c417dd",
+        "df0905ee484844769644f330844253e7",
+        "e252d4de97c7426e8b67ff516a9962f6",
+        "97f19f6202e54d6a9ea59f7a573725a1",
+        "d459fcb5792b459ca0aefe141e633ccc",
+        "ba12c2e0b81e4cef8e05e22049aafd63",
+        "a56e406f164746d8bbff76545e6d981f",
     ),
     courseware_paths = (
         '',
