@@ -99,6 +99,7 @@ class PurchaseEndpointTasks(AutoAuthTaskSet):
         """ Test the endpoint for purchasing specific courses. """
         data = {"course_id": self.COURSE_ID}
         resp = self._post('/commerce/orders/', data=json.dumps(data))
+        print "status code: {}".format(resp.status_code)
         if resp.status_code != 200:
             raise ErrorResponse
 
