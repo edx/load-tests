@@ -50,16 +50,9 @@ class PurchaseEndpointTasks(AutoAuthTaskSet):
 
     """ Load tests for the purchase endpont.
 
-    Notes for running this test:
-        The expectation of the ecommerce endpoint is that users will be created
-        from this token if they do not already exist. There are two methods you can
-        use to keep your results consistent.
-
-        Method 1: Clear out the DB of all new data between each run of the test.
-        Method 2: Run the test once to generate a set of users in the DB.
-                  Discard the results of this test. All tests after this should
-                  be consistent because the users have all been created in the DB.
-
+    Notes:
+        These tests use the auto_auth endpoint on the LMS to generate unique users who will then
+        be created on the ecommerce service.
     """
 
     COURSE_ID = "edX/DemoX/Demo_Course"
