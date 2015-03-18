@@ -62,8 +62,6 @@ class PurchaseEndpointTasks(AutoAuthTaskSet):
         if BASIC_AUTH_CREDENTIALS is not None:
             self.client.auth = BASIC_AUTH_CREDENTIALS
 
-        self.auto_auth()
-
     @property
     def _post_headers(self):
         """Headers for a POST request, including the CSRF token. """
@@ -90,9 +88,12 @@ class PurchaseEndpointTasks(AutoAuthTaskSet):
     @task(1)
     def purchase(self):
         """ Test the endpoint for purchasing specific courses. """
+        self.auto_auth()
+
         data = {"course_id": self.COURSE_ID}
         resp = self._post('/commerce/orders/', data=json.dumps(data))
         print "status code: {}".format(resp.status_code)
+        # Raise an error if we have get an error code back.
         if resp.status_code != 200:
             raise ErrorResponse
 
