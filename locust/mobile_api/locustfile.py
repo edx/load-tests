@@ -24,7 +24,7 @@ SINGLE_TEST=UserDetail
 
 Another example:
 
-BASIC_AUTH_USER=user BASIC_AUTH_PASSWORD=pass SINGLE_TEST=VideoSummaryList VERBOSE=True LARGE_COURSE_TEST=split locust --host="http://benjilee.m.sandbox.edx.org"
+BASIC_AUTH_USER=user BASIC_AUTH_PASSWORD=pass SINGLE_TEST=VideoSummaryList VERBOSE=True LARGE_COURSE_TEST=split locust --host="http://localhost:8000"
 """
 
 import os
@@ -70,12 +70,12 @@ VALID_SINGLE_TEST_STRINGS = [
     "UserDetail"
 ]
 SINGLE_TEST = False
+SINGLE_TEST_WAIT = None
 if 'SINGLE_TEST' in os.environ:
+    SINGLE_TEST_WAIT = 10000
     SINGLE_TEST = os.environ['SINGLE_TEST']
     if SINGLE_TEST not in VALID_SINGLE_TEST_STRINGS:
         raise EnvironmentVariableException
-
-
 
 class MobileApi(object):
     """Interact with the Mobile API. """
@@ -274,10 +274,31 @@ class AutoAuthTaskSet(TaskSet):
 class UserBehavior(TaskSet):
     """User scripts that exercises the mobile API"""
 
+    # These weights were decided based on new relic data
     video_summary_list_weight = 8
-    if SINGLE_TEST != "VideoSummaryList" and SINGLE_TEST:
-        video_summary_list_weight = 0
+    video_transcript_weight = 9
+    enrollements_list_weight = 5
+    course_status_weight = 8
+    course_updates_weight = 1
+    course_handouts_weight = 1
+    user_detail_weight = 2
 
+    if SINGLE_TEST:
+        if SINGLE_TEST != "VideoSummaryList":
+            video_summary_list_weight = 0
+        if SINGLE_TEST != "VideoTranscript":
+            video_transcript_weight = 0
+        if SINGLE_TEST != "UserCourseEnrollmentsList":
+            enrollements_list_weight = 0
+        if SINGLE_TEST != "UserCourseStatus":
+            course_status_weight = 0
+        if SINGLE_TEST != "CourseUpdatesList":
+            course_updates_weight = 0
+        if SINGLE_TEST != "CourseHandoutsList":
+            course_handouts_weight = 0
+        if SINGLE_TEST != "UserDetail":
+            user_detail_weight = 0
+        
     @task(video_summary_list_weight)
     class VideoSummaryList(AutoAuthTaskSet):
         """
@@ -286,8 +307,8 @@ class UserBehavior(TaskSet):
         Requires a staff login for access to all courses being tested. Calls the
         url with a random course which is selected in get_course_path.
         """
-        min_wait = 10000
-        max_wait = 11000
+        min_wait = 10000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 11000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created and logged in"""
@@ -311,10 +332,6 @@ class UserBehavior(TaskSet):
                 course_id = random.choice(constants.ALL_COURSES)
             self.api.get_video_summary_list(course_id)
 
-    video_transcript_weight = 9
-    if SINGLE_TEST != "VideoTranscript" and SINGLE_TEST:
-        video_transcript_weight = 0
-
     @task(video_transcript_weight)
     class VideoTranscript(AutoAuthTaskSet):
         """
@@ -324,8 +341,8 @@ class UserBehavior(TaskSet):
         url with a random course which is selected in get_course_path.
         """
 
-        min_wait = 9000
-        max_wait = 9000
+        min_wait = 9000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 9000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created and logged in"""
@@ -354,10 +371,6 @@ class UserBehavior(TaskSet):
             lang = "en"
             self.api.get_video_transcript(course_id, transcript_id, lang)
 
-    enrollements_list_weight = 5
-    if SINGLE_TEST != "UserCourseEnrollmentsList" and SINGLE_TEST:
-        enrollements_list_weight = 0
-
     @task(enrollements_list_weight)
     class UserCourseEnrollmentsList(AutoAuthTaskSet):
         """
@@ -369,8 +382,8 @@ class UserBehavior(TaskSet):
         to true, the endpoint still needs to iterate over the available
         endpoints which is the common case.
         """
-        min_wait = 17000
-        max_wait = 18000
+        min_wait = 17000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 18000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created, logged in and enrolled. """
@@ -403,10 +416,6 @@ class UserBehavior(TaskSet):
                 course_set_id=self.course_set_id
             )
 
-    course_status_weight = 8
-    if SINGLE_TEST != "UserCourseStatus" and SINGLE_TEST:
-        course_status_weight = 0
-
     @task(course_status_weight)
     class UserCourseStatus(AutoAuthTaskSet):
         """
@@ -415,8 +424,8 @@ class UserBehavior(TaskSet):
         Requires a staff login for access to all courses being tested. Calls the
         url with a random course which is selected in get_course_path.
         """
-        min_wait = 10000
-        max_wait = 11000
+        min_wait = 10000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 11000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created, logged in and status is set."""
@@ -454,10 +463,6 @@ class UserBehavior(TaskSet):
                 username=self.username
             )
 
-    course_updates_weight = 1
-    if SINGLE_TEST != "CourseUpdatesList" and SINGLE_TEST:
-        course_updates_weight = 0
-
     @task(course_updates_weight)
     class CourseUpdatesList(AutoAuthTaskSet):
         """
@@ -466,8 +471,8 @@ class UserBehavior(TaskSet):
         Requires staff access or enrollment.
         """
 
-        min_wait = 77000
-        max_wait = 77000
+        min_wait = 77000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 77000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created and logged in"""
@@ -480,10 +485,6 @@ class UserBehavior(TaskSet):
             course_id = random.choice(constants.ALL_COURSES)
             self.api.get_course_updates_list(course_id)
 
-    course_handouts_weight = 1
-    if SINGLE_TEST != "CourseHandoutsList" and SINGLE_TEST:
-        course_handouts_weight = 0
-
     @task(course_handouts_weight)
     class CourseHandoutsList(AutoAuthTaskSet):
         """
@@ -492,8 +493,8 @@ class UserBehavior(TaskSet):
         Requires staff access or enrollment.
         """
 
-        min_wait = 83000
-        max_wait = 83000
+        min_wait = 83000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 83000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created and logged in"""
@@ -506,16 +507,12 @@ class UserBehavior(TaskSet):
             course_id = random.choice(constants.ALL_COURSES)
             self.api.get_course_handouts_list(course_id)
 
-    user_detail_weight = 2
-    if SINGLE_TEST != "UserDetail" and SINGLE_TEST:
-        user_detail_weight = 0
-
     @task(user_detail_weight)
     class UserDetail(AutoAuthTaskSet):
         """GET /api/mobile/v0.5/users/{username}"""
 
-        min_wait = 38000
-        max_wait = 39000
+        min_wait = 38000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
+        max_wait = 39000 if SINGLE_TEST_WAIT is None else SINGLE_TEST_WAIT
 
         def on_start(self):
             """Ensure the user is created and logged in"""
