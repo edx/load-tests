@@ -3,55 +3,22 @@
 
 import logging
 import os
-import re
+import sys
 
 from lazy import lazy
-from locust import task, TaskSet
 from opaque_keys.edx.keys import CourseKey
+
+# Work around the fact that this code doesn't live in a proper Python package.
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'helpers'))
+from auto_auth_tasks import AutoAuthTasks
 
 import course_data
 
 
-BASIC_AUTH_CREDENTIALS = None
-if 'BASIC_AUTH_USER' in os.environ and 'BASIC_AUTH_PASSWORD' in os.environ:
-    BASIC_AUTH_CREDENTIALS = (
-        os.environ['BASIC_AUTH_USER'],
-        os.environ['BASIC_AUTH_PASSWORD']
-    )
-
-
-class EdxAppTasks(TaskSet):
+class EdxAppTasks(AutoAuthTasks):
     """
     Methods useful to any/all HTTP tests for edx-platform (i.e. LMS or Studio).
     """
-
-    def __init__(self, *args, **kwargs):
-        """
-        Add basic auth credentials to our client object when specified.
-        """
-        super(EdxAppTasks, self).__init__(*args, **kwargs)
-        if BASIC_AUTH_CREDENTIALS:
-            self.client.auth = BASIC_AUTH_CREDENTIALS
-
-        self._user_id = None
-        self._username = None
-        self._email = None
-        self._password = None
-
-    def auto_auth(self):
-        """
-        Logs in with a new, programmatically-generated user account.
-        Requires AUTO_AUTH functionality to be enabled in the target edx instance.
-        """
-        if "sessionid" in self.client.cookies:
-            del self.client.cookies["sessionid"]
-
-        response = self.client.get("/auto_auth", name="auto_auth")
-        match = re.search(
-            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+)',
-            response.text
-        )
-        self._username, self._email, self._password, self._user_id = match.groups()
 
     @lazy
     def course_id(self):
@@ -105,14 +72,6 @@ class EdxAppTasks(TaskSet):
             'X-CSRFToken': self.client.cookies.get('csrftoken', ''),
             'Referer': self.locust.host
         }
-
-    @task
-    def stop(self):
-        """
-        Supports usage as nested or top-level task set.
-        """
-        if self.parent != self.locust:
-            self.interrupt()
 
 
 class LmsTasks(EdxAppTasks):
