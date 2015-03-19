@@ -152,11 +152,12 @@ def execute_load_test(command, load_time):
         print line
         if "--------" in line:
             break
-        split_line = line.split()
-        requests = int(split_line[2])
-        for index in range(3, 12):
-            percent_values[index-3] = int(percent_values[index-3])+int(split_line[index])*requests
-        total_requests += requests
+        if "auto_auth" not in line:
+            split_line = line.split()
+            requests = int(split_line[2])
+            for index in range(3, 12):
+                percent_values[index-3] = int(percent_values[index-3])+int(split_line[index])*requests
+            total_requests += requests
 
     if total_requests == 0:
         print "No data output"
