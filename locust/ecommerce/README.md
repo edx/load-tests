@@ -16,6 +16,4 @@ This directory contains a `locustfile.py`. In order to run the tests, cd into th
 
 Settings
 ---------
-In order to run these tests, you will need to set the JWT_SECRET environment variable in order to access the ecommerce application endpoint.
-
-In addition, you may or may not also need to set basic auth credentials depending on the server you are testing against. You can set these credentials using the environment variables BASIC_AUTH_USER and BASIC_AUTH_PASSWORD. 
+You may or may not need to set basic auth credentials depending on the server you are testing against. You can set these credentials using the environment variables BASIC_AUTH_USER and BASIC_AUTH_PASSWORD. 
