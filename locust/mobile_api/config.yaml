@@ -1,0 +1,22 @@
+BASIC_AUTH_USER:
+<<<<<<< HEAD
+    user
+BASIC_AUTH_PASSWORD:
+    pass
+SINGLE_TEST:
+    VideoSummaryList
+LARGE_COURSE_TEST:
+    mongo
+VERBOSE:
+    "TRUE"
+=======
+  user
+BASIC_AUTH_PASSWORD:
+  pass
+SINGLE_TEST:
+  VideoSummaryList
+LARGE_COURSE_TEST:
+  mongo
+VERBOSE:
+  "TRUE"
+>>>>>>> f2b8a20a4c15a2c60c82a3fcbb27a5d207b58b6f

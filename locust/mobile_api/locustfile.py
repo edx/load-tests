@@ -234,7 +234,6 @@ class MobileApi(object):
         self.client.get(url, name=name, verify=False)
 
 
-
 class AutoAuthTaskSet(TaskSet):
     """Use the auto-auth end-point to create test users. """
 
