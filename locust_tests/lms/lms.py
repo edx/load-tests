@@ -1,18 +1,11 @@
-"""
-"""
-
 import logging
 import os
-import sys
 
 from lazy import lazy
 from opaque_keys.edx.keys import CourseKey
 
-# Work around the fact that this code doesn't live in a proper Python package.
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'helpers'))
-from auto_auth_tasks import AutoAuthTasks
-
 import course_data
+from ..helpers.auto_auth_tasks import AutoAuthTasks
 
 
 class EdxAppTasks(AutoAuthTasks):
