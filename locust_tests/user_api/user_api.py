@@ -1,13 +1,9 @@
 import random
 import string
-import sys
-import os
 import logging
 import json
 
-# Work around the fact that this code doesn't live in a proper Python package.
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'helpers'))
-from auto_auth_tasks import AutoAuthTasks
+from ..helpers.auto_auth_tasks import AutoAuthTasks
 
 
 class UserAPITasks(AutoAuthTasks):
