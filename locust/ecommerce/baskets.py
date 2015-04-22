@@ -1,5 +1,4 @@
 """Locust tests related to basket operations."""
-import os
 import json
 
 from locust import task
