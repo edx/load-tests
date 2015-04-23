@@ -1,23 +1,30 @@
 import os
 
-from locust import HttpLocust
+from locust import HttpLocust, TaskSet
 
-from ecommerce import EcommerceTasks
 from baskets import BasketsTasks
+from payment import CybersourcePaymentTasks
 
 
-class EcommerceTest(EcommerceTasks):
+class EcommerceTest(TaskSet):
+    """Load test exercising ecommerce-related operations on the LMS and Otto.
+    
+    Execution probabilities are derived from a conservative estimate from
+    marketing placing the percentage of paid enrollments at 2% of all
+    enrollments.
+    """
     tasks = {
-        BasketsTasks: 1,
+        BasketsTasks: 50,
+        CybersourcePaymentTasks: 1,
     }
 
 
 class EcommerceLocust(HttpLocust):
     """Representation of an HTTP "user".
 
-    Defines how long a simulated user should wait between executing tasks, as well as which
-    TaskSet class should define the user's behavior.
+    Defines how long a simulated user should wait between executing tasks, as
+    well as which TaskSet class should define the user's behavior.
     """
     task_set = globals()[os.getenv('LOCUST_TASK_SET', 'EcommerceTest')]
-    min_wait = 5000
-    max_wait = 9000
+    min_wait = 3 * 1000
+    max_wait = 5 * 1000

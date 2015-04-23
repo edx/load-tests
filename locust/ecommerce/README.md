@@ -10,7 +10,14 @@ In order to run the tests, auto auth must be enabled on the LMS. In addition, th
 
 The tests support the following environment variables:
 
-| Variable(s)                      | Description                                                                             |
-|----------------------------------|-----------------------------------------------------------------------------------------|
-| BASIC_AUTH_USER, BASIC_AUTH_PASS | If set, will be used for HTTP authentication                                            |
-| LOCUST_TASK_SET                  | If set, the specified TaskSet will be run; it must first be imported into the locustfile|
+| Variable(s)                      | Required? | Description                                                |
+|----------------------------------|-----------|------------------------------------------------------------|
+| BASIC_AUTH_USER, BASIC_AUTH_PASS | No        | Credentials to use for basic access authentication         |
+| LOCUST_TASK_SET                  | No        | TaskSet to run; must be imported into the locustfile       |
+| COURSE_ID                        | No        | ID of a course with a SKU on its honor mode                |
+| SKU                              | No        | SKU corresponding to a product with a non-zero price       |
+| ECOMMERCE_SERVICE_URL            | No        | URL root for the ecommerce service                         |
+| ECOMMERCE_API_SIGNING_KEY        | No        | Key to use when signing JWTs sent to the ecommerce service |
+| CYBERSOURCE_SECRET_KEY           | No        | Key to use when signing CyberSource transaction parameters |
+
+Note that if you want to use the defaults provided for these variables - in particular, `ECOMMERCE_API_SIGNING_KEY` and `CYBERSOURCE_SECRET_KEY` - you will need to ensure that these defaults are configured across the LMS and Otto.

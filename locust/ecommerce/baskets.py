@@ -4,10 +4,10 @@ import json
 from locust import task
 
 import config
-from ecommerce import EcommerceTasks
+from commerce import CommerceTasks
 
 
-class BasketsTasks(EcommerceTasks):
+class BasketsTasks(CommerceTasks):
     """Contains tasks which exercise basket-related behavior."""
 
     @task
@@ -20,4 +20,4 @@ class BasketsTasks(EcommerceTasks):
         post_data = {
             'course_id': config.COURSE_ID,
         }
-        self.post('/commerce/baskets/', data=json.dumps(post_data), name='purchase_single_free_product')
+        self.post('/commerce/baskets/', data=json.dumps(post_data))
