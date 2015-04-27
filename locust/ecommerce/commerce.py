@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class EcommerceTasks(AutoAuthTasks):
-    """Base task class for exercising ecommerce-related operations on the LMS.
+class CommerceTasks(AutoAuthTasks):
+    """Base task class for exercising commerce-related operations on the LMS.
 
     These tests use the auto_auth endpoint on the LMS to generate unique users. These users
     are replicated on the ecommerce service when the LMS issues requests to it on their behalf.
