@@ -30,7 +30,7 @@ class EdxAppTasks(AutoAuthTasks):
     @lazy
     def course_key(self):
         """
-        The 'org' part of the course_id.
+        The course_id.
         """
         return CourseKey.from_string(self.course_id)
 
@@ -78,13 +78,14 @@ class LmsTasks(EdxAppTasks):
     """
     Base class for course-specific LMS TaskSets.
 
-    This class supports environment-based configuration to override default values
-    for the following:
+    This class supports environment-based configuration to override default
+    values for the following:
 
     * COURSE_ID: pass the course_id against which requests should be made.
-    * COURSE_DATA: pass the name of a CourseData object, which should be importable
-    from the `course_data` subpackage.  Obviously, the id and the data should
-    correlate, or you're likely to see a high error rate in your results.
+    * COURSE_DATA: pass the name of a CourseData object, which should be
+      importable from the `course_data` subpackage.  Obviously, the id and the
+      data should correlate, or you're likely to see a high error rate in your
+      results.
     """
 
     def enroll(self):

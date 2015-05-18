@@ -66,6 +66,13 @@ class CourseData(dict):
         """
         return random.choice(self['discussion_ids'])
 
+    @property
+    def html_usage_id(self):
+        """
+        randomly choose the usage_id of an HTML module
+        """
+        return random.choice(self['html_usage_ids'])
+
 
 # data extracted from edX/DemoX/Demo_Course as of Feb. 2015
 demo_course = CourseData(
@@ -256,5 +263,8 @@ demo_course = CourseData(
         '/social_integration/6ab9c442501d472c8ed200e367b4edfa/',
         '/1414ffd5143b4b508f739b563ab468b7/workflow/',
         '/interactive_demonstrations/basic_questions/4',
+    ),
+    html_usage_ids = (  # Note that this is not currently an exhaustive list.
+        'i4x://edX/DemoX/html/030e35c4756a4ddc8d40b95fbbfff4d4',
     ),
 )
