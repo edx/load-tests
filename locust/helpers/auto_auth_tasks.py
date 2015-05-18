@@ -25,11 +25,12 @@ class AutoAuthTasks(TaskSet):
             self.client.auth = BASIC_AUTH_CREDENTIALS
 
         self._user_id = None
+        self._anonymous_user_id = None
         self._username = None
         self._email = None
         self._password = None
 
-    def auto_auth(self):
+    def auto_auth(self, verify_ssl=True):
         """
         Logs in with a new, programmatically-generated user account.
         Requires AUTO_AUTH functionality to be enabled in the target edx instance.
@@ -37,12 +38,12 @@ class AutoAuthTasks(TaskSet):
         if "sessionid" in self.client.cookies:
             del self.client.cookies["sessionid"]
 
-        response = self.client.get("/auto_auth", name="auto_auth")
+        response = self.client.get("/auto_auth", name="auto_auth", verify=verify_ssl)
         match = re.search(
-            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+)',
+            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+) and anonymous user_id ([\w]+)',
             response.text
         )
-        self._username, self._email, self._password, self._user_id = match.groups()
+        self._username, self._email, self._password, self._user_id, self._anonymous_user_id = match.groups()
 
     @task
     def stop(self):
