@@ -100,8 +100,8 @@ class BaseNotesMixin(object):
 class CreateNotesTasks(BaseNotesMixin, EdxAppTasks):
     """
     Create many sample student notes.  Because of the complex and unnecessary
-    nature of scraping course text, both 'text' and 'quote' fields will be
-    arbitrarily generated.
+    nature of scraping course text, both 'text', 'tags', and 'quote' fields
+    will be arbitrarily generated.
     """
     @task
     def post_note(self):
@@ -110,6 +110,7 @@ class CreateNotesTasks(BaseNotesMixin, EdxAppTasks):
         # Pass in the JWT token and CSRF token from edx platform
         data = {
             "text": ' '.join(pick_some(self.text, 25)),
+            "tags": ' '.join(pick_some(self.text, 10)),
             "quote": ' '.join(pick_some(self.text, 5)),
             "usage_id": "dummy_usage_id",
             "ranges": [
