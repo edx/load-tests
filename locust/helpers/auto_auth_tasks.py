@@ -25,6 +25,7 @@ class AutoAuthTasks(TaskSet):
             self.client.auth = BASIC_AUTH_CREDENTIALS
 
         self._user_id = None
+        self._anonymous_user_id = None
         self._username = None
         self._email = None
         self._password = None
@@ -39,10 +40,10 @@ class AutoAuthTasks(TaskSet):
 
         response = self.client.get("/auto_auth", name="auto_auth")
         match = re.search(
-            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+)',
+            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+) and anonymous user_id ([\w]+)',
             response.text
         )
-        self._username, self._email, self._password, self._user_id = match.groups()
+        self._username, self._email, self._password, self._user_id, self._anonymous_user_id = match.groups()
 
     @task
     def stop(self):
