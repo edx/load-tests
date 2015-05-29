@@ -1,7 +1,7 @@
 import json
-import config
 
 from locust import task, TaskSet
+
 from marketing import MarketingTasks
 
 INSTRUCTOR_ID = '4306'
@@ -15,11 +15,10 @@ class InstructorTasks(MarketingTasks):
         """Simulate the searching of all courses by a single instructor."""
 
         get_data = {'instructor': INSTRUCTOR_ID, 'display': 'teaser'}
-        self.get('/api/catalog/v2/courses', data=json.dumps(get_data))
+        self.client.get('/api/catalog/v2/courses', data=json.dumps(get_data))
 
+    @task
     def instructor_view(self):
         """Simulate the viewing of instructor information."""
 
-        self.get('/api/instructor/v1/node/' + INSTRUCTOR_ID)
-
-
+        self.client.get('/api/instructor/v1/node/' + INSTRUCTOR_ID)
