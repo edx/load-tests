@@ -1,26 +1,24 @@
 import json
-import time
 import csv
 import random
 
-from locust import task, TaskSet
+from locust import task
 
 from marketing import MarketingTasks
 
 # Task weights are based on the percentage of overall
 # page views according to Google Analytics (05/29)
 
+search_terms = []
+
+with open('search_terms.csv', 'rb') as csv_file:
+    csv_reader = csv.reader(csv_file)
+
+    for row in csv_reader:
+        search_terms.append(row)
 
 class SearchTasks(MarketingTasks):
     """Locust tests related to searching."""
-
-    def on_start(self):
-        with open('search_terms.csv', 'rb') as csv_file:
-            csv_reader = csv.reader(csv_file)
-            search_terms = []
-
-            for row in csv_reader:
-                search_terms.append(row)
 
     def query(self, url):
         """Randomly selects a search term and passes it to the specified URL."""
@@ -36,7 +34,7 @@ class SearchTasks(MarketingTasks):
 
     @task(5)
     def search_type_course(self):
-        """Simulate the character entry for course search."""
+        """Simulate course search."""
 
         self.query('/customizable_search/bundle/course')
 

@@ -1,11 +1,10 @@
-import json
-
-from locust import task, TaskSet
+from locust import task
 
 from marketing import MarketingTasks
 
 # Task weights are based on the percentage of overall
 # page views according to Google Analytics (05/29)
+
 
 class StaticTasks(MarketingTasks):
     """Locust tests related to the viewing of static pages."""

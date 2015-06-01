@@ -1,9 +1,4 @@
-import logging
-
 from locust import task, TaskSet
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 class MarketingTasks(TaskSet):

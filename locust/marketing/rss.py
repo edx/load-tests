@@ -1,8 +1,7 @@
-import json
-
-from locust import task, TaskSet
+from locust import task
 
 from marketing import MarketingTasks
+
 
 class RSSTasks(MarketingTasks):
     """Locust tests related to RSS requests."""
