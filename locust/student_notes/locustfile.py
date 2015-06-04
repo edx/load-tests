@@ -145,7 +145,7 @@ class BaseNotesTask(EdxAppTasks):
             "user": self._anonymous_user_id,
             "course_id": self.course_id,
             "text": ' '.join(pick_some(NOTES_TEXT, NUM_WORDS)),
-            "tags": ' '.join(pick_some(NOTES_TEXT, NUM_TAGS)),
+            "tags": json.dumps(pick_some(NOTES_TEXT, NUM_TAGS)),
             "quote": ' '.join(pick_some(NOTES_TEXT, 5)),
             "usage_id": demo_course.html_usage_id,
             "ranges": [
