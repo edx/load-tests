@@ -1,5 +1,5 @@
+import json
 import os
-import re
 from locust import task, TaskSet
 
 
@@ -38,12 +38,18 @@ class AutoAuthTasks(TaskSet):
         if "sessionid" in self.client.cookies:
             del self.client.cookies["sessionid"]
 
-        response = self.client.get("/auto_auth", name="auto_auth", verify=verify_ssl)
-        match = re.search(
-            r'Logged in user ([\w]+) \(([\w@\.]+)\) with password ([\w]+) and user_id ([\d]+) and anonymous user_id ([\w]+)',
-            response.text
+        response = self.client.get(
+            "/auto_auth",
+            name="auto_auth",
+            headers={'accept': 'application/json'},
+            verify=verify_ssl
         )
-        self._username, self._email, self._password, self._user_id, self._anonymous_user_id = match.groups()
+        json_response = json.loads(response.text)
+        self._username = json_response['username']
+        self._email = json_response['email']
+        self._password = json_response['password']
+        self._user_id = json_response['user_id']
+        self._anonymous_user_id = json_response['anonymous_id']
 
     @task
     def stop(self):
