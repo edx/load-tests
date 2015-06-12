@@ -1,20 +1,21 @@
 """ Load tests for the course content search feature. """
 
 import os
+import sys
 import random
 
-from locust import HttpLocust, TaskSet, task
+from locust import HttpLocust, task
 
+# Work around the fact that Locust runs locustfiles as scripts within packages
+# and therefore doesn't allow the use of absolute or explicit relative imports.
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'helpers'))
+from auto_auth_tasks import AutoAuthTasks
 import constants
 
 # Basic auth
 BASIC_AUTH_CREDENTIALS = None
 if 'BASIC_AUTH_USER' in os.environ and 'BASIC_AUTH_PASSWORD' in os.environ:
     BASIC_AUTH_CREDENTIALS = (os.environ['BASIC_AUTH_USER'], os.environ['BASIC_AUTH_PASSWORD'])
-
-# Existing user in the LMS
-LMS_USER_EMAIL = os.environ.get('LMS_USER_EMAIL', 'honor@example.com')
-LMS_USER_PASSWORD = os.environ.get('LMS_USER_PASSWORD', 'edx')
 
 
 class LMSPage(object):
@@ -97,29 +98,24 @@ class LMSPage(object):
         }
 
 
-class UserBehavior(TaskSet):
+class UserBehavior(AutoAuthTasks):
     """User scripts that exercise the course content search feature. """
 
     def on_start(self):
         """Initialize the test. """
         self.page = LMSPage(self.locust.host, self.client)
-        self._login_success()
-
-    def _login_success(self):
-        """Simulate a successful login. """
-        self.page.get("/login")
-        self.page.login(LMS_USER_EMAIL, LMS_USER_PASSWORD)
+        self.auto_auth()
 
     @task
     def course_searching(self):
         """Simulate course content search. """
-        course_id = random.choice(constants.COURSES)
-        search_phrase = random.choice(constants.SEARCH_PHRASES[course_id])
+        course_id = random.choice(constants.COURSE_IDS)
+        search_phrase = random.choice(constants.SEARCH_PHRASES)
         search_path = "/search/{}".format(course_id)
         self.page.search(search_path, search_phrase)
 
 
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior
-    min_wait = 3000
-    max_wait = 5000
+    min_wait = 30
+    max_wait = 50
