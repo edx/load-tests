@@ -1,9 +1,17 @@
+import os
+from random import randint
+import sys
+
 from locust import task
+
+# Work around the fact that this code doesn't live in a proper Python package.
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'bookmarks_api'))
+from tasks import BookmarksTasksMixin
 
 from lms import LmsTasks
 
 
-class CoursewareViewsTasks(LmsTasks):
+class CoursewareViewsTasks(LmsTasks, BookmarksTasksMixin):
     """
     Models traffic for endpoints in lms.djangoapps.courseware.views
 
@@ -22,13 +30,26 @@ class CoursewareViewsTasks(LmsTasks):
     /courseware.views:syllabus              3          0.00%
     """
 
-    @task(50)
+    def on_start(self):
+        super(CoursewareViewsTasks, self).on_start()
+        for __ in range(randint(0, int(os.getenv('MAX_BOOKMARKS', 0)))):
+            self.create_a_bookmark()
+
+    @task(int(os.getenv('COURSEWARE_INDEX_VISIT_WEIGHT', 50)))
     def index(self):
         """
         Request a randomly-chosen top-level page in the course.
         """
         path = 'courseware' + self.course_data.courseware_path
         self.get(path, name='courseware:index')
+
+    @task(int(os.getenv('BOOKMARKS_VISIT_WEIGHT', 0)))
+    def jump_to_id(self):
+        """
+        Request a randomly-chosen block in the course.
+        """
+        path = 'jump_to_id/' + self.course_data.random_usage_key(self.course_key).block_id
+        self.get(path, name='courseware:jump_to_id')
 
     @task(33)
     def mktg_course_about(self):

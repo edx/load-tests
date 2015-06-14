@@ -96,9 +96,9 @@ class LmsTest(LmsTasks):
     """
 
     tasks = {
-        CoursewareViewsTasks: 9,
-        ForumsTasks: 2,
-        ModuleRenderTasks: 27,
+        CoursewareViewsTasks: os.getenv('COURSEWARE_VIEWS_TASKS_WEIGHT', 9),
+        ForumsTasks: os.getenv('FORUM_TASKS_WEIGHT', 2),
+        ModuleRenderTasks: os.getenv('MODULE_RENDER_TASKS_WEIGHT', 27),
     }
 
 
