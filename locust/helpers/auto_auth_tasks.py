@@ -30,17 +30,25 @@ class AutoAuthTasks(TaskSet):
         self._email = None
         self._password = None
 
-    def auto_auth(self, verify_ssl=True):
+    def auto_auth(self, verify_ssl=True, course_id=None):
         """
         Logs in with a new, programmatically-generated user account.
         Requires AUTO_AUTH functionality to be enabled in the target edx instance.
+
+        If `course_id` is specified, enrolls user in course.
         """
         if "sessionid" in self.client.cookies:
             del self.client.cookies["sessionid"]
 
+        params = dict()
+
+        if course_id is not None:
+            params['course_id'] = course_id
+
         response = self.client.get(
             "/auto_auth",
             name="auto_auth",
+            params=params,
             headers={'accept': 'application/json'},
             verify=verify_ssl
         )
