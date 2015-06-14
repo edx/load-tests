@@ -1,12 +1,18 @@
+import os
 import random
 import re
+import sys
 
 from locust import task
+
+# Work around the fact that this code doesn't live in a proper Python package.
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'bookmarks_api'))
+from tasks import BookmarksTasksMixin
 
 from lms import LmsTasks
 
 
-class ModuleRenderTasks(LmsTasks):
+class ModuleRenderTasks(LmsTasks, BookmarksTasksMixin):
     """
     Tests callback handlers implemented in lms.djangoapps.courseware.module_render
 
@@ -69,6 +75,11 @@ class ModuleRenderTasks(LmsTasks):
             data=data,
             name='handler:capa:{}'.format(handler),
         )
+
+    tasks = {
+        BookmarksTasksMixin.get_course_bookmarks: int(os.getenv('BOOKMARKS_GET_LIST_WEIGHT', 0)),
+        BookmarksTasksMixin.create_a_bookmark: int(os.getenv('BOOKMARKS_CREATE_WEIGHT', 0)),
+    }
 
     @task(13)
     def goto_position(self):
