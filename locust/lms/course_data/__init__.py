@@ -60,6 +60,13 @@ class CourseData(dict):
         return random.choice(self['sequential_ids'])
 
     @property
+    def vertical_id(self):
+        """
+        Randomly select an id from among verticals known in this course.
+        """
+        return random.choice(self['vertical_ids'])
+
+    @property
     def discussion_id(self):
         """
         randomly choose the discussion_id of a discussion module (aka commentable_id)
@@ -72,6 +79,21 @@ class CourseData(dict):
         randomly choose the usage_id of an HTML module
         """
         return random.choice(self['html_usage_ids'])
+
+    def random_usage_key(self, course_key):
+        """
+        Return a random UsageKey from the course.
+        """
+        if not '_all_ids' in self:
+            self['_all_ids'] = []
+            self['_all_ids'] += [('sequential', block_id) for block_id in self['sequential_ids']]
+            self['_all_ids'] += [('vertical', block_id) for block_id in self['vertical_ids']]
+            self['_all_ids'] += [('problem', block_id) for block_id in self['capa_problems'].keys()]
+            self['_all_ids'] += [('video', block_id) for block_id in self['video_module_ids']]
+            self['_all_ids'] += [('html', block_id) for block_id in self['html_ids']]
+
+        block_type, block_id = random.choice(self['_all_ids'])
+        return course_key.make_usage_key(block_type, block_id)
 
 
 # data extracted from edX/DemoX/Demo_Course as of Feb. 2015
@@ -87,6 +109,47 @@ demo_course = CourseData(
         "19a30717eff543078a5d94ae9d6c18a5",
         "simulations",
         "graded_simulations",
+    ),
+    vertical_ids = (
+        'vertical_0270f6de40fc',
+        '867dddb6f55d410caaa9c1eb9c6743ec',
+        '4f6c1b4e316a419ab5b6bf30e6c708e9',
+        '3dc16db8d14842e38324e95d4030b8a0',
+        '4a1bba2a403f40bca5ec245e945b0d76',
+        '256f17a44983429fb1a60802203ee4e0',
+        'e3601c0abee6427d8c17e6d6f8fdddd1',
+        '134df56c516a4a0dbb24dd5facef746e',
+        '2152d4a4aadc4cb0af5256394a3d1fc7',
+        '47dbd5f836544e61877a483c0b75606c',
+        '54bb9b142c6c4c22afc62bcb628f0e68',
+        'vertical_0c92347a5c00',
+        'vertical_1fef54c2b23b',
+        '2889db1677a549abb15eb4d886f95d1c',
+        'e8a5cc2aed424838853defab7be45e42',
+        'd0d804e8863c4a95a659c04d8a2b2bc0',
+        'vertical_2dbb0072785e',
+        'vertical_98cf62510471',
+        'vertical_d32bf9b2242c',
+        'd6cee45205a449369d7ef8f159b22bdf',
+        'vertical_0fab6aa52165',
+        'vertical_aae927868e55',
+        'vertical_c037f3757df1',
+        'vertical_bc69a47c6fae',
+        'fb79dcbad35b466a8c6364f8ffee9050',
+        '3c4b575924bf4b75a2f3542df5c354fc',
+        'vertical_3888db0bc286',
+        '312cb4faed17420e82ab3178fc3e251a',
+        '26d89b08f75d48829a63520ed8b0037d',
+        '3f2c11aba9434e459676a7d7acc4d960',
+        '934cc32c177d41b580c8413e561346b3',
+        'vertical_f04afeac0131',
+        'b6662b497c094bcc9b870d8270c90c93',
+        'f91d8d31f7cf48ce990f8d8745ae4cfa',
+        'vertical_ac391cde8a91',
+        'vertical_36e0beb03f0a',
+        '1b0e2c2c84884b95b1c99fb678cc964c',
+        'c7e98fd39a6944edb6b286c32e1150ff',
+        'd6eaa391d2be41dea20b8b1bfbcb1c45',
     ),
     capa_problems = {
         'd1b84dcd39b0423d9e288f27f0f7f242': {
@@ -209,7 +272,6 @@ demo_course = CourseData(
         "5c90cffecd9b48b188cbfea176bf7fe9",
         "636541acbae448d98ab484b028c9a7f6",
         "7e9b434e6de3435ab99bd3fb25bde807",
-        "edX_Introduction",
     ),
     video_ids = (
         "CCxmtcICYNc",
@@ -263,6 +325,36 @@ demo_course = CourseData(
         '/social_integration/6ab9c442501d472c8ed200e367b4edfa/',
         '/1414ffd5143b4b508f739b563ab468b7/workflow/',
         '/interactive_demonstrations/basic_questions/4',
+    ),
+    html_ids= (
+        '0a3b4139f51a4917a3aff9d519b1eeb6',
+        '2b94658d2eee4d85ae13f83bc24cfca9',
+        '2bee8c4248e842a19ba1e73ed8d426c2',
+        '5e009378f0b64585baa0a14b155974b9',
+        '6b6bee43c7c641509da71c9299cc9f5a',
+        '6bcccc2d7343416e9e03fd7325b2f232',
+        '8bb218cccf8d40519a971ff0e4901ccf',
+        '030e35c4756a4ddc8d40b95fbbfff4d4',
+        '55cbc99f262443d886a25cf84594eafb',
+        '78d7d3642f3a4dbabbd1b017861aa5f2',
+        '78e3719e864e45f3bee938461f3c3de6',
+        '82d599b014b246c7a9b5dfc750dc08a9',
+        '148ae8fa73ea460eb6f05505da0ba6e6',
+        '700x_pathways',
+        '2574c523e97b477a9d72fbb37bfb995f',
+        '891211e17f9a472290a5f12c7a6626d7',
+        '8293139743f34377817d537b69911530',
+        '6018785795994726950614ce7d0f38c5',
+        'c2f7008c9ccf4bd09d5d800c98fb0722',
+        'd5a5caaf35e84ebc9a747038465dcfb4',
+        'd45779ad3d024a40a09ad8cc317c0970',
+        'e0254b911fa246218bd98bbdadffef06',
+        'ed5dccf14ae94353961f46fa07217491',
+        'f4a39219742149f781a1dda6f43a623c',
+        'f9f3a25e7bab46e583fd1fbbd7a2f6a0',
+        'html_07d547513285',
+        'html_49b4494da2f7',
+        'Lab_5B_Mosfet_Amplifier_Experiment',
     ),
     html_usage_ids = (  # Note that this is not currently an exhaustive list.
         'i4x://edX/DemoX/html/030e35c4756a4ddc8d40b95fbbfff4d4',
