@@ -1,11 +1,16 @@
 """
 Load test for the Team API.
 """
-from locust import task, HttpLocust, TaskSet
+from locust import task, HttpLocust
 import os
 import random
+import requests
 import string
 import sys
+from urlparse import urlparse
+
+# Ignore SSL warnings for these tests.
+requests.packages.urllib3.disable_warnings()
 
 # Workaround for Locust running locustfiles as scripts instead of real
 # packages.
@@ -14,6 +19,8 @@ from lms import EdxAppTasks
 
 
 STUDIO_HOST = os.getenv('STUDIO_HOST', 'http://localhost:8001')
+
+TEAMS_CREATED = False
 
 class BaseTeamsTask(EdxAppTasks):
     """
@@ -30,42 +37,48 @@ class BaseTeamsTask(EdxAppTasks):
         self.teams = []
 
     def on_start(self):
-        """Create and authorize client before running tests."""
-        self.auto_auth(params={'staff': 'true'})  # log into LMS
-        self._create_topics(self.TOPICS_COUNT)
-        self.client.post(  # log into Studio
-            '{}/login_post'.format(STUDIO_HOST),
-            {
-                'email': self._email,
-                'password': self._password
-            },
-            headers=self._default_headers()
-        )
-
-    def _default_headers(self, overrides=None):
-        """Return the headers used for most operations in the Team API load
-        tests, with an optional dictionary of extra headers.
+        """Authenticate into Studio and create topics for the course, then log
+        into LMS.
         """
-        defaults= {
-            'X-CSRFToken': self.client.cookies.get('csrftoken', ''),
-            'Referer': self.locust.host
-        }
-        return dict(defaults, **overrides or {})
-
-    def _create_topics(self, num_topics):
-        """Add `num_topics` test topics to the course."""
+        self.auto_auth(hostname=STUDIO_HOST, params={'staff': 'true'}, verify_ssl=False)  # log into Studio
         self.topics = [
             {
                 'id': 'topic{}'.format(i),
                 'name': 'Topic {}'.format(i),
                 'description': 'Description for topic {}'.format(i)
-            } for i in xrange(num_topics)
+            } for i in xrange(self.TOPICS_COUNT)
         ]
+        global TEAMS_CREATED
+        if not TEAMS_CREATED:
+            TEAMS_CREATED = True
+            self._create_topics()
+        self.auto_auth(params={'staff': 'true'}, verify_ssl=False)  # log into LMS
 
+    def _get_csrftoken(self, domain):
+        try:
+            csrftoken = self.client.cookies.get('csrftoken', default='')
+        except requests.cookies.CookieConflictError:
+            csrftoken = self.client.cookies.get('csrftoken', default='', domain=domain)
+        return csrftoken
+
+    def _default_headers(self, overrides=None):
+        """Return the headers used for most operations in the Team API load
+        tests, with an optional dictionary of extra headers.
+        """
+        csrftoken = self._get_csrftoken(urlparse(self.locust.host).hostname)
+        defaults = {
+            'X-CSRFToken': csrftoken,
+            'Referer': self.locust.host
+        }
+        return dict(defaults, **overrides or {})
+
+    def _create_topics(self):
+        """Add `num_topics` test topics to the course."""
+        csrftoken = self._get_csrftoken(urlparse(STUDIO_HOST).hostname)
         self.client.post(
             '{studio_host}/settings/advanced/{course_id}'.format(
                 studio_host=STUDIO_HOST,
-                course_id=self.course_id
+                course_id=requests.compat.quote(self.course_id)
             ),
             json={
                 'teams_configuration': {
@@ -75,17 +88,18 @@ class BaseTeamsTask(EdxAppTasks):
                     }
                 }
             },
-            headers=self._default_headers({'Accept': 'application/json'})
+            verify=False,
+            headers={
+                'Accept': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Referer': STUDIO_HOST
+            }
         )
 
     def _request(self, method, path, **kwargs):
         """Send a request to the Team API."""
-        default_headers = {
-                'X-CSRFToken': self.client.cookies.get('csrftoken', ''),
-                'Referer': self.locust.host
-            }
         kwargs['headers'] = self._default_headers(kwargs.get('headers'))
-
+        kwargs['verify'] = False
         return getattr(self.client, method)(self.API_URL + path, **kwargs)
 
     def _get_team(self):
@@ -100,30 +114,32 @@ class BaseTeamsTask(EdxAppTasks):
         name and description are randomly generated. All optional parameters
         are left off.
         """
-        data = {
+        json = {
             'course_id': self.course_id,
             'topic_id': random.choice(self.topics)['id'],
             'name': ''.join(random.sample(string.lowercase, self.TOPIC_NAME_LEN)),
             'description': ''.join(random.sample(string.lowercase, self.TOPIC_DESCRIPTION_LEN))
         }
-        response = self._request('post', '/teams', data=data)
-        self.teams.append(dict(data, **{'id': response.json()['id']}))
+        response = self._request('post', '/teams', json=json)
+        self.teams.append(dict(json, **{'id': response.json()['id']}))
 
     def _list_teams(self):
         """Retrieve the list of teams for a course."""
-        url = '/teams?course_id={}'
-        self._request('get', url.format(self.course_id), name=url.format('[course_id]'))
+        url = '/teams'
+        self._request('get', url, params={'course_id': self.course_id}, name='/teams?course_id=[id]')
 
     def _list_teams_for_topic(self):
         """Retrieve the list of teams for a course which are associated with a
         particular topic. The topic is randomly chosen from those associated
         with this course.
         """
-        url = '/teams?course_id={}&topic_id={}'
+        url = '/teams'
+        topic = random.choice(self.topics)['id']
         self._request(
             'get',
-            url.format(self.course_id, random.choice(self.topics)['id']),
-            name=url.format('[course_id]', '[topic_id]')
+            url,
+            params={'course_id': self.course_id, 'topic_id': topic},
+            name='/teams?course_id=[id]&topic_id=[id]'
         )
 
     def _team_detail(self):
@@ -151,14 +167,19 @@ class BaseTeamsTask(EdxAppTasks):
 
     def _list_topics(self):
         """Retrieve the list of topics for a course."""
-        url = '/topics/?course_id={}'
-        self._request('get', url.format(self.course_id), name=url.format('[course_id]'))
+        url = '/topics/'
+        self._request('get', url, params={'course_id': self.course_id}, name='/topics/?course_id=[id]')
 
     def _topic_detail(self):
         """Retrieve the detail view for a randomly chosen topic."""
         topic = random.choice(self.topics)
         url = '/topics/{},{}'
-        self._request('get', url.format(topic['id'], self.course_id), name=url.format('[topic_id]', '[course_id]'))
+        encoded_course_id = requests.compat.quote(self.course_id)
+        self._request(
+            'get',
+            url.format(topic['id'], encoded_course_id),
+            name=url.format('[topic_id]', '[course_id]')
+        )
 
     def _stop(self):
         """Allow running as a nested or top-level task set."""
@@ -171,7 +192,7 @@ class TeamAPITasks(BaseTeamsTask):
 
     @task(5)
     def create_team(self):
-        self._create_team
+        self._create_team()
 
     @task(2)
     def update_team(self):
