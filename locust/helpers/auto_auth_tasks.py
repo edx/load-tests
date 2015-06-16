@@ -30,7 +30,7 @@ class AutoAuthTasks(TaskSet):
         self._email = None
         self._password = None
 
-    def auto_auth(self, verify_ssl=True):
+    def auto_auth(self, verify_ssl=True, params=None):
         """
         Logs in with a new, programmatically-generated user account.
         Requires AUTO_AUTH functionality to be enabled in the target edx instance.
@@ -42,6 +42,7 @@ class AutoAuthTasks(TaskSet):
             "/auto_auth",
             name="auto_auth",
             headers={'accept': 'application/json'},
+            params=params or {},
             verify=verify_ssl
         )
         json_response = json.loads(response.text)
