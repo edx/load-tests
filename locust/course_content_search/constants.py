@@ -1,24 +1,27 @@
 """ Constants used within tests """
 
-COURSES = ['edX/DemoX/Demo_Course', 'CS/CS101/20432', 'MyOrganization/MC/2014_MC']
+COURSE_IDS = [
+    'SmallX/SM101/2015_SM',
+    'SmallX/SM201/2015_SM',
+    'SmallX/SM301/2015_SM',
+    'SmallX/SM401/2015_SM',
+    'SmallX/SM501/2015_SM',
+    'SmallX/SM601/2015_SM',
+    'SmallX/SM701/2015_SM',
+    'SmallX/SM801/2015_SM',
+    'SmallX/SM901/2015_SM',
+    'SmallX/SM10X/2015_SM',
+    'MediumX/M101/2015_M',
+    'MediumX/M201/2015_M',
+    'MediumX/M301/2015_M',
+    'MediumX/M401/2015_M',
+    'MediumX/M501/2015_M',
+    'course-v1:LargeX+L101+2015_L'
+]
 
-SEARCH_PHRASES = {
-    'edX/DemoX/Demo_Course': [
-        # Indexed phrases
-        'Homework', 'School', 'Lila fisher', 'Exams', 'Social', 'Week 1', 'Video', 'Google',
-        # Non-indexed phrases
-        'Testing', 'Phrase', 'tomorrow', 'land of confusion'
-    ],
-    'CS/CS101/20432': [
-        # Indexed phrases
-        'SubsectionVideo', 'LILA FISHER', 'see the iframe specification', 'course info', 'see below', 'video subtitles',
-        # Non-indexed phrases
-        'search results', 'my xblock', 'discussion'
-    ],
-    'MyOrganization/MC/2014_MC': [
-        # Indexed phrases
-        'HTML', 'Introduction to HTML', 'Week 1', 'Components', 'Video', 'My Course', 'edX', 'ANANT AGARWAL',
-        # Non-indexed phrases
-        'Search', 'Tutorial', 'Documents', 'TIffany Smith'
-    ],
-}
+SEARCH_PHRASES = [
+    'ANANT AGARWAL', 'week', 'course', 'test', 'edX platform', 'testing', 'video', 'introduction',
+    'reading assignment', 'computer', 'demo', 'about', 'read and respond', 'introduction', 'example',
+    'Others can search', 'discussion forum', 'great place', 'HTML', 'SOcial', 'Introduction', 'homework',
+    'kinematics', 'newton', 'physics', 'course', 'exam', 'motion', 'oscillation', 'trigonometry'
+]
