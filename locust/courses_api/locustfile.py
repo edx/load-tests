@@ -1,15 +1,39 @@
 
+import json
 import locust
 import os
 import re
 
 
-COURSE_KEY = os.environ['COURSE_KEY']
+COURSES = {
+    '6.002x': 'course-v1:MITx+6.002x+Test'
+}
+COURSE_KEY = COURSES.get(os.environ.get('COURSE', None), None)
+if not COURSE_KEY:
+    raise ValueError("COURSE must be one of: " + ", ".join(COURSES.keys()))
+
+RESOURCES = [
+    ''
+    'blocks',
+    'navigation',
+    'blocks+navigation'
+]
+RESOURCE = os.environ.get('RESOURCE', None)
+if RESOURCE not in RESOURCES:
+    raise ValueError("RESOURCE must be one of: " + ", ".join(RESOURCES))
 
 
 class CoursesApiTaskSet(locust.TaskSet):
 
+    def __init__(self, *args, **kwargs):
+        super(CoursesApiTaskSet, self).__init__(*args, **kwargs)
+        self.username = None
+
     def on_start(self):
+        self.auto_auth()
+        self.enroll()
+
+    def auto_auth(self):
         response = self.client.get(
             url=u"/auto_auth",
             params={u'staff': u"True"},
@@ -18,23 +42,54 @@ class CoursesApiTaskSet(locust.TaskSet):
         if response.status_code == 200:
             match = re.search(r'(Logged in|Created) user (?P<username>[^$]+).*', response.text)
             if match:
-                username = match.group('username')
-                print "Successfully created and logged in user {}".format(username)
-        raise IOError(
-            "Failed to authorize user. Response (status {}): {}".format(
-                response.status_code, response.text
+                self.username = match.group('username')
+                print "Successfully created and logged in user {}".format(self.username)
+        else:
+            raise IOError(
+                "Failed to authorize user. Response (status {}): {}".format(
+                    response.status_code, response.text
+                )
             )
+
+    @property
+    def _post_headers(self):
+        return {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRFToken': self.client.cookies.get('csrftoken', ''),
+            'Referer': self.locust.host
+        }
+
+    def enroll(self):
+        response = self.client.post(
+            url=u"/api/enrollment/v1/enrollment",
+            data=json.dumps({'course_details': {'course_id': COURSE_KEY}}),
+            headers=self._post_headers,
+            verify=False,
+            name="enroll {}".format(COURSE_KEY)
         )
+        if response.status_code == 200:
+            print "Enrolled user {} in course {}".format(self.username, COURSE_KEY)
+        else:
+            print ("Failed to enroll user {} in course {}. Response status code = {}".format(
+                self.username,
+                COURSE_KEY,
+                response.status_code
+            ))
 
     @locust.task
     def query_course(self):
+        url = u"/api/course_structure/v0/courses/{}/{}".format(COURSE_KEY, RESOURCE)
         response = self.client.get(
-            url=u"/api/course_structure_api/v0/courses/{}/blocks+navigation".format(COURSE_KEY),
+            url=url,
             verify=False,
-            name="get {}".format(COURSE_KEY)
+            name="get courses/{}/{}".format(COURSE_KEY, RESOURCE)
         )
         if response.status_code != 200:
-            print "ERROR: Query failed with status code {}".format(response.status_code)
+            print "ERROR: GET {} failed with status code {}".format(
+                url,
+                response.status_code
+            )
 
 
 class CoursesApiTestUser(locust.HttpLocust):  # pylint: disable=too-few-public-methods
