@@ -6,7 +6,8 @@ import re
 
 
 COURSES = {
-    '6.002x': 'course-v1:MITx+6.002x+Test'
+    '6.002x': 'course-v1:MITx+6.002x+Test',
+    'DemoX.1': 'edX/DemoX.1/2014',
 }
 COURSE_KEY = COURSES.get(os.environ.get('COURSE', None), None)
 if not COURSE_KEY:
