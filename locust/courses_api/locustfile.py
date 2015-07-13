@@ -1,4 +1,3 @@
-
 import json
 import locust
 import os
@@ -6,8 +5,10 @@ import re
 
 
 COURSES = {
-    '6.002x': 'course-v1:MITx+6.002x+Test',
-    'DemoX.1': 'edX/DemoX.1/2014',
+    'demo_draft': 'edX/DemoX.1/2014',
+    'demo_split': 'course-v1:edX+DemoX.1+LT_SPLIT',
+    '6.002x_draft': 'MITx/6.002x/2013_Spring',
+    '6.002x_split': 'course-v1:MITx+6.002x_6x+1T2015',
 }
 COURSE_KEY = COURSES.get(os.environ.get('COURSE', None), None)
 if not COURSE_KEY:
@@ -37,7 +38,7 @@ class CoursesApiTaskSet(locust.TaskSet):
     def auto_auth(self):
         response = self.client.get(
             url=u"/auto_auth",
-            params={u'staff': u"True"},
+            params={u'staff': u"true"},
             name="create user"
         )
         if response.status_code == 200:
