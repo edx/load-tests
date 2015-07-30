@@ -120,26 +120,26 @@ class BaseTeamsTask(EdxAppTasks):
             'name': ''.join(random.sample(string.lowercase, self.TOPIC_NAME_LEN)),
             'description': ''.join(random.sample(string.lowercase, self.TOPIC_DESCRIPTION_LEN))
         }
-        response = self._request('post', '/teams', json=json)
+        response = self._request('post', '/teams/', json=json)
         self.teams.append(dict(json, **{'id': response.json()['id']}))
 
     def _list_teams(self):
         """Retrieve the list of teams for a course."""
-        url = '/teams'
-        self._request('get', url, params={'course_id': self.course_id}, name='/teams?course_id=[id]')
+        url = '/teams/'
+        self._request('get', url, params={'course_id': self.course_id}, name='/teams/?course_id=[id]')
 
     def _list_teams_for_topic(self):
         """Retrieve the list of teams for a course which are associated with a
         particular topic. The topic is randomly chosen from those associated
         with this course.
         """
-        url = '/teams'
+        url = '/teams/'
         topic = random.choice(self.topics)['id']
         self._request(
             'get',
             url,
             params={'course_id': self.course_id, 'topic_id': topic},
-            name='/teams?course_id=[id]&topic_id=[id]'
+            name='/teams/?course_id=[id]&topic_id=[id]'
         )
 
     def _team_detail(self):
