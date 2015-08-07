@@ -15,9 +15,6 @@ LOGOUT_URL = u"/logout"
 # Correct choice for mcq
 INPUT_CHOICE = u"choice_indonesia"
 
-# Global Password
-GLOBAL_STUDENT_PASSWORD = os.environ['GLOBAL_STUDENT_PASSWORD']
-
 # IDs of self paced courses
 SELF_PACED_COURSE_KEYS = [
     u"WebCertificate+SelfPaced01+2015",

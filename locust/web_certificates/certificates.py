@@ -79,7 +79,7 @@ class Certificates(object):
         :param password: The user's password.
         :param remember: Whether "remember me" is checked.
         """
-        self.client.get(LOGIN_URL, verify=False)
+        self._get(LOGIN_URL)
         url = POST_CREDENTIALS_URL
         params = {
             "email": email,
