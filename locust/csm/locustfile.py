@@ -19,7 +19,9 @@ sys.path.append("/home/alawi/bin/opaque-keys/")
 
 from opaque_keys.edx.locator import BlockUsageLocator
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "lms.envs.devplus"
+sys.path.append("/home/alawi/bin/load-tests/locust/csm")
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "locustsettings"
 
 class QuestionResponse(TaskSet):
     "Respond to a question in the LMS."
@@ -46,7 +48,8 @@ class QuestionResponse(TaskSet):
         usage = BlockUsageLocator.from_string('block-v1:HarvardX+SPU27x+2015_Q2+type@html+block@1a1866accf254461aa2df3e0b4238a5f')
         start_time = time.time()
         try:
-            [s for s in self.client.get_many(self.client.user.username, [usage])]
+            response = [s for s in self.client.get_many(self.client.user.username, [usage])]
+            response_length = sum([len(s.state) for s in response])
         except Exception as e:
             total_time = int((time.time() - start_time) * 1000)
             events.request_failure.fire(request_type="", name="get_many", response_time=total_time, exception=e)
@@ -67,16 +70,8 @@ class UserStateClientClient(Locust):
             raise LocustError("You must specify the base host. Either in the host attribute in the Locust class, or on the command line using the --host option.")
 
         from django.conf import settings
-        settings.DATABASES = {
-                'default': {
-                'HOST': self.host,
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'edxapp',
-                'USER': 'edxapp',
-                'PASSWORD': 'password',
-                'PORT': '3306',
-            }
-        }
+        settings.DATABASES['default']['HOST'] = self.host
+
         import courseware.user_state_client as user_state_client
         from student.tests.factories import UserFactory
 
