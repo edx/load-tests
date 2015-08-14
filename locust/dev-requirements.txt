@@ -2,3 +2,4 @@ lazy==1.2
 locustio==0.7.2
 PyJWT==1.1.0
 -e git+https://github.com/edx/opaque-keys.git@1254ed4d615a428591850656f39f26509b86d30a#egg=opaque-keys
+-e git+https://github.com/edx/edx-platform.git@master#egg=edx-platform
