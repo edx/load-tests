@@ -1,4 +1,4 @@
-import os
+import os, stat
 import csv
 
 """
@@ -47,6 +47,7 @@ def load_data_from_csv():
         :return: return the data as lists of lists
         """
         try:
+            os.chmod('credentials.csv', stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
             with open('credentials.csv', 'rb') as csv_file:
                 csv_reader = csv.reader(csv_file)
                 credentials_list = list(csv_reader)

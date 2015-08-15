@@ -41,5 +41,5 @@ class CertificateLocust(HttpLocust):
     """
     task_num = int(os.getenv('TASK_NUM', 0))
     task_set = locust_tasks[task_num]
-    min_wait = 5000
-    max_wait = 10000
+    min_wait = 500
+    max_wait = 1000

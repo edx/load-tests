@@ -1,3 +1,5 @@
+import os
+import stat
 import csv
 import random
 from timeit import default_timer
@@ -71,12 +73,13 @@ class InstructorPacedCreateStudents(AutoAuthTasks):
             # Logout as student
             self.page.logout()
             # Log the students' credential in a csv so these can be used in 3rd task
+            os.chmod('credentials.csv', stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
             with open('credentials.csv', 'a') as csv_write_file:
                 csv_writer = csv.writer(csv_write_file)
                 csv_writer.writerow([self._user_id, self._username, course_key])
         # Stop the task after running for some minutes
         duration = default_timer() - start
-        if duration > 50:
+        if duration > 100:
             raise StopLocust
 
 
@@ -141,3 +144,4 @@ class InstructorPacedViewCertificatesTask(TaskSet):
         course_key = credentials[2]
         # view the certificate for the selected user
         self.page.query_certificate(user_id, user_name, course_key)
+        self.page.delete_cookies()

@@ -68,3 +68,4 @@ class SelfPacedCompleteTask(AutoAuthTasks):
             self.course_key,
             group_url_name="/view_student_certificate_url"
         )
+        self.page.delete_cookies()

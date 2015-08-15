@@ -142,3 +142,9 @@ class Certificates(object):
         Logout the user
         """
         self._get(LOGOUT_URL)
+
+    def delete_cookies(self):
+        """
+        Delete the session cookie to rule out the cache affect
+        """
+        del self.client.cookies["sessionid"]
