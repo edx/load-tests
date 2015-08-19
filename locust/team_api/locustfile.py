@@ -1,5 +1,18 @@
 """
 Load test for the Team API.
+
+Usage:
+
+  $ locust --host="http://localhost:8000"
+
+Supported Environment Variables:
+
+  BASIC_AUTH_USER, BASIC_AUTH_PASS - if set, will use for HTTP Authentication
+  LOCUST_TASK_SET - if set, will run the specified TaskSet (must be imported in this module)
+  LOCUST_MIN_WAIT, LOCUST_MAX_WAIT - use to override defaults set in this module
+  COURSE_ID - course that will be tested on the target host, default is set in lms.LmsTasks
+  STUDIO_HOST - the URL where Studio is running, default set to http://localhost:8001.
+
 """
 from locust import task, HttpLocust
 import os
@@ -129,17 +142,20 @@ class BaseTeamsTask(EdxAppTasks):
         self._request('get', url, params={'course_id': self.course_id}, name='/teams/?course_id=[id]')
 
     def _list_teams_for_topic(self):
-        """Retrieve the list of teams for a course which are associated with a
+        """
+        Retrieve the list of teams for a course which are associated with a
         particular topic. The topic is randomly chosen from those associated
-        with this course.
+        with this course, and the sort ordering is randomly selected from the available
+        options.
         """
         url = '/teams/'
         topic = random.choice(self.topics)['id']
+        order_by = random.choice(['name', 'last_activity_at', 'open_slots'])
         self._request(
             'get',
             url,
-            params={'course_id': self.course_id, 'topic_id': topic},
-            name='/teams/?course_id=[id]&topic_id=[id]'
+            params={'course_id': self.course_id, 'topic_id': topic, 'order_by': order_by},
+            name='/teams/?course_id=[id]&topic_id=[id]&order_by=[order]'
         )
 
     def _team_detail(self):
@@ -166,9 +182,16 @@ class BaseTeamsTask(EdxAppTasks):
         )
 
     def _list_topics(self):
-        """Retrieve the list of topics for a course."""
+        """
+        Retrieve the list of topics for a course.
+        The sort ordering is randomly selected from the available options.
+        """
         url = '/topics/'
-        self._request('get', url, params={'course_id': self.course_id}, name='/topics/?course_id=[id]')
+        order_by = random.choice(['name', 'team_count'])
+        self._request(
+            'get', url, params={'course_id': self.course_id, 'order_by': order_by},
+            name='/topics/?course_id=[id]&order_by=[order]'
+        )
 
     def _topic_detail(self):
         """Retrieve the detail view for a randomly chosen topic."""
