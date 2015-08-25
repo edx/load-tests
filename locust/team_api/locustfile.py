@@ -121,16 +121,31 @@ class BaseTeamsTask(EdxAppTasks):
             self._create_team()
         return random.choice(self.teams)
 
+    def _get_search_query_string(self):
+        """ Get a random word from a team name."""
+        team = self._get_team()
+        name_words = team['name'].split(' ')
+
+        return random.sample(name_words)
+
     def _create_team(self):
         """Create a team for this course. The topic which the team is
-        associated with is randomly chosen from this course's topics, and the
-        name and description are randomly generated. All optional parameters
-        are left off.
+        associated with is randomly chosen from this course's topics. The
+        randomly generated name is prefixed with the topic_id and course_id
+        to produce varied search results when a piece of the name is chosen
+        as the query string. The description is randomly generated. All
+        optional parameters are left off.
         """
+        topic_id = random.choice(self.topics)['id']
+
         json = {
             'course_id': self.course_id,
-            'topic_id': random.choice(self.topics)['id'],
-            'name': ''.join(random.sample(string.lowercase, self.TOPIC_NAME_LEN)),
+            'topic_id': topic_id,
+            'name':  "{} {} {}".format(
+                self.course_id,
+                topic_id,
+                ''.join(random.sample(string.lowercase, self.TOPIC_NAME_LEN))
+            ),
             'description': ''.join(random.sample(string.lowercase, self.TOPIC_DESCRIPTION_LEN))
         }
         response = self._request('post', '/teams/', json=json)
@@ -156,6 +171,35 @@ class BaseTeamsTask(EdxAppTasks):
             url,
             params={'course_id': self.course_id, 'topic_id': topic, 'order_by': order_by},
             name='/teams/?course_id=[id]&topic_id=[id]&order_by=[order]'
+        )
+
+    def _search_teams(self):
+        """Retrieve the list of teams matching a particular query for a course.
+        The query string is a randomly chosen word from the team name.
+        """
+        url = '/teams/'
+        query_string = self._get_search_query_string()
+        self._request(
+            'get',
+            url,
+            params={'course_id': self.course_id, 'text_search': query_string},
+            name='/teams/?course_id=[id]&text_search=[query_string]'
+        )
+
+    def _search_teams_for_topic(self):
+        """Retrieve the list of teams matching a particular query for a course
+        which are associated with a particular topic. The topic is randomly chosen
+        from those associated with this course. The query string is a randomly
+        chosen word from the team name.
+        """
+        url = '/teams/'
+        topic = random.choice(self.topics)['id']
+        query_string = self._get_search_query_string()
+        self._request(
+            'get',
+            url,
+            params={'course_id': self.course_id, 'topic_id': topic, 'text_search': query_string},
+            name='/teams/?course_id=[id]&topic_id=[id]&text_search=[query_string]'
         )
 
     def _team_detail(self):
@@ -221,10 +265,6 @@ class TeamAPITasks(BaseTeamsTask):
     def update_team(self):
         self._update_team()
 
-    @task(1)
-    def stop(self):
-        self._stop()
-
     @task(5)
     def list_teams(self):
         self._list_teams()
@@ -232,6 +272,14 @@ class TeamAPITasks(BaseTeamsTask):
     @task(2)
     def list_teams_for_topic(self):
         self._list_teams_for_topic()
+
+    @task(2)
+    def search_teams(self):
+        self._search_teams()
+
+    @task(5)
+    def search_teams_for_topic(self):
+        self._search_teams_for_topic()
 
     @task(8)
     def team_detail(self):
