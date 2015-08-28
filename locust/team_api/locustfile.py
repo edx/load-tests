@@ -44,10 +44,17 @@ class BaseTeamsTask(EdxAppTasks):
     TOPICS_COUNT = 10
     TOPIC_NAME_LEN = 10
     TOPIC_DESCRIPTION_LEN = 10
+    MAX_TEAM_SIZE = 20
+    # This is the number of teams we are going to prioritize for memberships so the users
+    # are added to teams that are actually pulled back in the first few pages of results.
+    # TOP_TEAM_SIZE * MAX_TEAM_SIZE should always be greater than the number of users being tested against
+    # so that there are enough spots for all the users joining teams.
+    TOP_TEAM_SIZE = 50
 
-    def __init__(self, *args, **kwargs):
-        super(BaseTeamsTask, self).__init__(*args, **kwargs)
-        self.teams = []
+    top_name_teams = []
+    teams = []
+    user_memberships = {}
+    team_member_counts = {}
 
     def on_start(self):
         """Authenticate into Studio and create topics for the course, then log
@@ -66,6 +73,18 @@ class BaseTeamsTask(EdxAppTasks):
             TEAMS_CREATED = True
             self._create_topics()
         self.auto_auth(params={'staff': 'true'}, verify_ssl=False)  # log into LMS
+        self._enroll()
+
+    def _enroll(self):
+        """
+        Enrolls the test's user in the course under test.
+        """
+        self.client.post(
+            '/change_enrollment',
+            data={'course_id': self.course_id, 'enrollment_action': 'enroll'},
+            headers=self._default_headers(),
+            name='enroll',
+        )
 
     def _get_csrftoken(self, domain):
         try:
@@ -85,6 +104,19 @@ class BaseTeamsTask(EdxAppTasks):
         }
         return dict(defaults, **overrides or {})
 
+    def _append_to_top_name_teams(self, team):
+        """ In place addition and resorting of top teams. """
+        self.top_name_teams[self.TOP_TEAM_SIZE:] = [team]
+        self.top_name_teams.sort(key=lambda t: t['name'])
+        self.top_name_teams[self.TOP_TEAM_SIZE:] = []
+
+    def _get_top_name_team(self):
+        """ Randomly select a team from the top_name_teams list. """
+        if self.top_name_teams == []:
+            self._create_team()
+
+        return random.choice(self.top_name_teams)
+
     def _create_topics(self):
         """Add `num_topics` test topics to the course."""
         csrftoken = self._get_csrftoken(urlparse(STUDIO_HOST).hostname)
@@ -96,7 +128,7 @@ class BaseTeamsTask(EdxAppTasks):
             json={
                 'teams_configuration': {
                     'value': {
-                        'max_team_size': sys.maxint,
+                        'max_team_size': self.MAX_TEAM_SIZE,
                         'topics': self.topics
                     }
                 }
@@ -126,7 +158,7 @@ class BaseTeamsTask(EdxAppTasks):
         team = self._get_team()
         name_words = team['name'].split(' ')
 
-        return random.sample(name_words)
+        return random.sample(name_words, 1)
 
     def _create_team(self):
         """Create a team for this course. The topic which the team is
@@ -149,7 +181,9 @@ class BaseTeamsTask(EdxAppTasks):
             'description': ''.join(random.sample(string.lowercase, self.TOPIC_DESCRIPTION_LEN))
         }
         response = self._request('post', '/teams/', json=json)
-        self.teams.append(dict(json, **{'id': response.json()['id']}))
+        team = dict(json, **{'id': response.json()['id']})
+        self.teams.append(team)
+        self._append_to_top_name_teams(team)
 
     def _list_teams(self):
         """Retrieve the list of teams for a course."""
@@ -248,6 +282,112 @@ class BaseTeamsTask(EdxAppTasks):
             name=url.format('[topic_id]', '[course_id]')
         )
 
+    def _create_membership(self, team_id):
+        """
+        Add a user to a team.
+
+        This method assumes the following:
+        *  self._username does not belong to any team
+        *  The team represented by team_id is not full
+        """
+        url = '/team_membership/'
+
+        json = {
+            'team_id': team_id,
+            'username': self._username
+        }
+
+        membership_created = True
+        # If a user ends up joining a full team (due to a race condition)
+        # we will catch the response and still mark it as a success since
+        # that is the proper server response in that situation.
+        with self._request('post', url, json=json, catch_response=True) as response:
+            if response.status_code == 400 and "team is already full" in response.content:
+                membership_created = False
+                response.success()
+            elif response.status_code != 200:
+                membership_created = False
+
+        if membership_created:
+            self.user_memberships[self._username] = team_id
+            count = self.team_member_counts.get(team_id, 0)
+            count += 1
+            self.team_member_counts[team_id] = count
+
+    def _delete_membership(self):
+        """
+        Remove a user from a team.
+        """
+        team_id = self.user_memberships.get(self._username)
+
+        if team_id:
+            url = '/team_membership/{team_id},{username}'
+
+            self._request(
+                'delete',
+                url.format(
+                    team_id=team_id,
+                    username=self._username
+                ),
+                name='/team_membership/[team_id],[username]'
+            )
+
+            self.user_memberships[self._username] = None
+
+            count = self.team_member_counts.get(team_id, 0)
+            count -= 1
+            self.team_member_counts[team_id] = count
+
+    def _change_membership(self):
+        """
+        Add the current user to a new team from the top_name_teams list.
+        """
+        # Will only delete if there is a membership to delete
+        self._delete_membership()
+
+        self.team = self._get_top_name_team()
+        attempt = 0
+        max_attempts = 25
+
+        # Get a new team if it has reached the max size
+        while(
+            self.team_member_counts.get(self.team['id'], 0) >= self.MAX_TEAM_SIZE and
+            attempt < max_attempts
+        ):
+            self.team = self._get_top_name_team()
+            attempt += 1
+
+        # create membership if we are still under the max retry limit
+        if attempt < max_attempts:
+            self._create_membership(self.team['id'])
+
+    def _list_memberships_for_user(self):
+        """
+        Get the list of team memberships for the current user.
+        """
+        url = '/team_membership/'
+
+        self._request(
+            'get',
+            url,
+            params={'username': self._username},
+            name='/team_membership/?username=[username]'
+        )
+
+    def _list_memberships_for_team(self):
+        """
+        Get the list of team memberships for a random team.
+        """
+        self.team = self._get_team()
+        url = '/team_membership/'
+
+        self._request(
+            'get',
+            url,
+            params={'team_id': self.team['id']},
+            name='/team_membership/?team_id=[id]'
+        )
+
     def _stop(self):
         """Allow running as a nested or top-level task set."""
         if self.locust != self.parent:
@@ -255,43 +395,59 @@ class BaseTeamsTask(EdxAppTasks):
 
 
 class TeamAPITasks(BaseTeamsTask):
-    """Create and edit teams."""
+    """ Exercise Teams API endpoints. """
 
-    @task(5)
+    @task(10)
     def create_team(self):
         self._create_team()
 
-    @task(2)
+    @task(1)
     def update_team(self):
         self._update_team()
 
-    @task(5)
+    @task(120)
     def list_teams(self):
         self._list_teams()
 
-    @task(2)
+    @task(40)
     def list_teams_for_topic(self):
         self._list_teams_for_topic()
 
-    @task(2)
+    @task(50)
     def search_teams(self):
         self._search_teams()
 
-    @task(5)
+    @task(50)
     def search_teams_for_topic(self):
         self._search_teams_for_topic()
 
-    @task(8)
+    @task(200)
     def team_detail(self):
         self._team_detail()
 
-    @task(5)
+    @task(40)
     def list_topics(self):
         self._list_topics()
 
-    @task(8)
+    @task(120)
     def topic_detail(self):
         self._topic_detail()
+
+    @task(40)
+    def list_memberships_for_user(self):
+        self._list_memberships_for_user()
+
+    @task(40)
+    def list_memberships_for_team(self):
+        self._list_memberships_for_team()
+
+    @task(40)
+    def change_membership(self):
+        self._change_membership()
+
+    @task(5)
+    def delete_membership(self):
+        self._delete_membership()
 
     @task(1)
     def stop(self):
@@ -300,5 +456,18 @@ class TeamAPITasks(BaseTeamsTask):
 
 class TeamLocust(HttpLocust):
     task_set = globals()[os.getenv('LOCUST_TASK_SET', 'TeamAPITasks')]
-    min_wait = int(os.getenv('LOCUST_MIN_WAIT', 7500))
-    max_wait = int(os.getenv('LOCUST_MAX_WAIT', 15000))
+
+    """
+    Wait times were chosen using this formula to find an average, then +/- 20%
+    desired requests per sec = (number of users) * 1000 / (average wait in ms)
+
+    The assumed values are 15 rps = 100 * 1000 / 6667.
+    If more or less than 100 users are desired, scale the wait time by the same
+    factor to hold the rps steady, or choose a different factor if changing rps
+
+    These numbers were chosen to be roughly double the daytime throughput of
+    Forums (450 rpm = 7.5 rps), as reported on New Relic for prod-edx-forum.
+    """
+
+    min_wait = int(os.getenv('LOCUST_MIN_WAIT', 5333))
+    max_wait = int(os.getenv('LOCUST_MAX_WAIT', 8000))
