@@ -16,6 +16,7 @@ Supported Environment Variables:
 """
 from locust import task, HttpLocust
 import os
+import random
 import sys
 
 # Workaround for Locust running locustfiles as scripts instead of real
@@ -26,6 +27,9 @@ from team_api import BaseTeamsTask
 
 class TeamAppTasks(BaseTeamsTask):
     """ Tasks to exercise Teams API endpoints as used by the edX application. """
+    @task(2)
+    def teams_dashboard(self):
+        self._get_dashboard()
 
     @task(3)
     def create_team(self):
@@ -37,15 +41,19 @@ class TeamAppTasks(BaseTeamsTask):
 
     @task(20)
     def list_teams_for_topic(self):
-        self._list_teams_for_topic(['last_activity_at', 'open_slots'])
+        order_by = random.choice(['last_activity_at', 'open_slots'])
+        topic_id = random.choice(self.topics)['id']
+        self._list_teams({'topic_id': topic_id, 'order_by': order_by, 'expand': 'user'})
 
     @task(10)
-    def search_teams_for_topic(self):
-        self._search_teams_for_topic()
+    def list_teams_in_topic_search(self):
+        query_string = self._get_search_query_string()
+        topic_id = random.choice(self.topics)['id']
+        self._list_teams({'topic_id': topic_id, 'text_search': query_string})
 
     @task(200)
     def team_detail(self):
-        self._team_detail()
+        self._team_detail({'expand': 'user'})
 
     @task(20)
     def list_topics(self):
@@ -54,6 +62,11 @@ class TeamAppTasks(BaseTeamsTask):
     @task(20)
     def topic_detail(self):
         self._topic_detail()
+
+    @task(20)
+    def list_memberships_for_team_expand_user_and_team(self):
+        self.team = self._get_top_name_team()
+        self._list_memberships({'team_id': self.team['id'], 'expand': 'user,team'})
 
     @task(10)
     def change_membership(self):
