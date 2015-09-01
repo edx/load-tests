@@ -1,5 +1,5 @@
 """
-Load test for the Team API.
+Load test for the Team API as used by the edX application.
 
 Usage:
 
@@ -24,10 +24,10 @@ sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'team_a
 from team_api import BaseTeamsTask
 
 
-class TeamAPITasks(BaseTeamsTask):
-    """ Exercise Teams API endpoints. """
+class TeamAppTasks(BaseTeamsTask):
+    """ Tasks to exercise Teams API endpoints as used by the edX application. """
 
-    @task(10)
+    @task(3)
     def create_team(self):
         self._create_team()
 
@@ -35,19 +35,11 @@ class TeamAPITasks(BaseTeamsTask):
     def update_team(self):
         self._update_team()
 
-    @task(120)
-    def list_teams(self):
-        self._list_teams()
-
-    @task(40)
+    @task(20)
     def list_teams_for_topic(self):
-        self._list_teams_for_topic()
+        self._list_teams_for_topic(['last_activity_at', 'open_slots'])
 
-    @task(50)
-    def search_teams(self):
-        self._search_teams()
-
-    @task(50)
+    @task(10)
     def search_teams_for_topic(self):
         self._search_teams_for_topic()
 
@@ -55,27 +47,19 @@ class TeamAPITasks(BaseTeamsTask):
     def team_detail(self):
         self._team_detail()
 
-    @task(40)
+    @task(20)
     def list_topics(self):
         self._list_topics()
 
-    @task(120)
+    @task(20)
     def topic_detail(self):
         self._topic_detail()
 
-    @task(40)
-    def list_memberships_for_user(self):
-        self._list_memberships_for_user()
-
-    @task(40)
-    def list_memberships_for_team(self):
-        self._list_memberships_for_team()
-
-    @task(40)
+    @task(10)
     def change_membership(self):
         self._change_membership()
 
-    @task(5)
+    @task(1)
     def delete_membership(self):
         self._delete_membership()
 
@@ -85,8 +69,6 @@ class TeamAPITasks(BaseTeamsTask):
 
 
 class TeamLocust(HttpLocust):
-    task_set = globals()[os.getenv('LOCUST_TASK_SET', 'TeamAPITasks')]
-
     """
     Wait times were chosen using this formula to find an average, then +/- 20%
     desired requests per sec = (number of users) * 1000 / (average wait in ms)
@@ -98,6 +80,7 @@ class TeamLocust(HttpLocust):
     These numbers were chosen to be roughly double the daytime throughput of
     Forums (450 rpm = 7.5 rps), as reported on New Relic for prod-edx-forum.
     """
+    task_set = globals()[os.getenv('LOCUST_TASK_SET', 'TeamAppTasks')]
 
     min_wait = int(os.getenv('LOCUST_MIN_WAIT', 5333))
     max_wait = int(os.getenv('LOCUST_MAX_WAIT', 8000))
