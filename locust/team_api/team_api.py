@@ -159,7 +159,15 @@ class BaseTeamsTask(EdxAppTasks):
 
     def _request_name(self, url, params):
         """ Generate request name based on url and passed query params. """
-        query_string_params = map(lambda k: "{key}=[{key}]".format(key=k), params.keys())
+
+        def _to_query_string(param):
+            """ Build query string from param. Expose which values were passed for 'expand' """
+            if param[0] == 'expand':
+                return "expand=[{value}]".format(value=param[1])
+            else:
+                return "{key}=[{key}]".format(key=param[0])
+
+        query_string_params = map(_to_query_string, params.items())
         query_string = "&".join(query_string_params)
 
         if query_string:
