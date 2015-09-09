@@ -16,6 +16,7 @@ Supported Environment Variables:
 """
 from locust import task, HttpLocust
 import os
+import random
 import sys
 
 # Workaround for Locust running locustfiles as scripts instead of real
@@ -27,58 +28,145 @@ from team_api import BaseTeamsTask
 class TeamAPITasks(BaseTeamsTask):
     """ Exercise Teams API endpoints. """
 
+    # TEAMS
+    # Create Teams
     @task(10)
     def create_team(self):
         self._create_team()
 
+    # Update Teams
     @task(1)
     def update_team(self):
         self._update_team()
 
-    @task(120)
+    # List Teams
+    @task(20)
     def list_teams(self):
         self._list_teams()
 
-    @task(40)
+    @task(20)
+    def list_teams_expand_user(self):
+        self._list_teams({'expand': 'user'})
+
+    @task(20)
+    def list_teams_expand_team(self):
+        self._list_teams({'expand': 'team'})
+
+    @task(20)
+    def list_teams_expand_user_and_team(self):
+        self._list_teams({'expand': 'user,team'})
+
+    @task(20)
     def list_teams_for_topic(self):
-        self._list_teams_for_topic()
+        order_by = random.choice(['name', 'last_activity_at', 'open_slots'])
+        topic_id = random.choice(self.topics)['id']
+        self._list_teams({'topic_id': topic_id, 'order_by': order_by})
 
+    @task(20)
+    def list_teams_search(self):
+        query_string = self._get_search_query_string()
+        self._list_teams({'text_search': query_string})
+
+    @task(20)
+    def list_teams_in_topic_search(self):
+        query_string = self._get_search_query_string()
+        topic_id = random.choice(self.topics)['id']
+        self._list_teams({'topic_id': topic_id, 'text_search': query_string})
+
+    # Get Team Details
     @task(50)
-    def search_teams(self):
-        self._search_teams()
-
-    @task(50)
-    def search_teams_for_topic(self):
-        self._search_teams_for_topic()
-
-    @task(200)
     def team_detail(self):
         self._team_detail()
 
+    @task(50)
+    def team_detail_expands_user(self):
+        self._team_detail({'expand': 'user'})
+
+    @task(50)
+    def team_detail_expands_team(self):
+        self._team_detail({'expand': 'team'})
+
+    @task(50)
+    def team_detail_expands_user_and_team(self):
+        self._team_detail({'expand': 'user,team'})
+
+    # TOPICS
+    # List topics
     @task(40)
     def list_topics(self):
         self._list_topics()
 
+    # Get topic details
     @task(120)
     def topic_detail(self):
         self._topic_detail()
 
+    # MEMBERSHIPS
+    # Create/Update memberships
     @task(40)
-    def list_memberships_for_user(self):
-        self._list_memberships_for_user()
-
-    @task(40)
-    def list_memberships_for_team(self):
-        self._list_memberships_for_team()
-
-    @task(40)
-    def change_membership(self):
+    def create_or_change_membership(self):
         self._change_membership()
 
+    # List Memberships
+    @task(25)
+    def list_memberships_for_user(self):
+        self._list_memberships({'username': self._username})
+
+    @task(25)
+    def list_memberships_for_user_expand_user(self):
+        self._list_memberships({'username': self._username, 'expand': 'user'})
+
+    @task(25)
+    def list_memberships_for_user_expand_team(self):
+        self._list_memberships({'username': self._username, 'expand': 'team'})
+
+    @task(25)
+    def list_memberships_for_user_expand_user_and_team(self):
+        self._list_memberships({'username': self._username, 'expand': 'user,team'})
+
+    @task(25)
+    def list_memberships_for_team(self):
+        self.team = self._get_team()
+        self._list_memberships({'team_id': self.team['id']})
+
+    @task(25)
+    def list_memberships_for_team_expand_user(self):
+        self.team = self._get_team()
+        self._list_memberships({'team_id': self.team['id'], 'expand': 'user'})
+
+    @task(25)
+    def list_memberships_for_team_expand_team(self):
+        self.team = self._get_team()
+        self._list_memberships({'team_id': self.team['id'], 'expand': 'team'})
+
+    @task(25)
+    def list_memberships_for_team_expand_user_and_team(self):
+        self.team = self._get_team()
+        self._list_memberships({'team_id': self.team['id'], 'expand': 'user,team'})
+
+    # Get membership details
+    @task(5)
+    def membership_details(self):
+        self._membership_details()
+
+    @task(5)
+    def membership_details_expand_user(self):
+        self._membership_details({'expand': 'user'})
+
+    @task(5)
+    def membership_details_expand_team(self):
+        self._membership_details({'expand': 'team'})
+
+    @task(5)
+    def membership_details_expand_user_and_team(self):
+        self._membership_details({'expand': 'user,team'})
+
+    # Delete membership
     @task(5)
     def delete_membership(self):
         self._delete_membership()
 
+    # Disconnect
     @task(1)
     def stop(self):
         self._stop()

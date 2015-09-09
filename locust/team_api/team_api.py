@@ -153,6 +153,34 @@ class BaseTeamsTask(EdxAppTasks):
 
         return random.sample(name_words, 1)
 
+    def _merge_params(self, default_params, params):
+        """ Merge two sets of query params. """
+        return dict(default_params, **params or {})
+
+    def _request_name(self, url, params):
+        """ Generate request name based on url and passed query params. """
+
+        def _to_query_string(param):
+            """ Build query string from param. Expose which values were passed for 'expand' """
+            if param[0] == 'expand':
+                return "expand=[{value}]".format(value=param[1])
+            else:
+                return "{key}=[{key}]".format(key=param[0])
+
+        query_string_params = map(_to_query_string, params.items())
+        query_string = "&".join(query_string_params)
+
+        if query_string:
+            return "?".join([url, query_string])
+        else:
+            return url
+
+    def _get_dashboard(self):
+        """ Load the dashboard HTML page """
+        url = '/courses/{course_id}/teams/'
+        url = url.format(course_id=self.course_id)
+        self.client.get(url, name=url.format(course_id='[course_id]'))
+
     def _create_team(self):
         """Create a team for this course. The topic which the team is
         associated with is randomly chosen from this course's topics. The
@@ -181,61 +209,18 @@ class BaseTeamsTask(EdxAppTasks):
     def _list_teams(self, params=None):
         """Retrieve the list of teams for a course."""
         url = '/teams/'
-        default_params = {'course_id': self.course_id}
-        return self._request('get', url, params=dict(default_params, **params or {}), name='/teams/?course_id=[id]')
+        merged_params = self._merge_params({'course_id': self.course_id}, params)
+        request_name = self._request_name('/teams/', merged_params)
 
-    def _list_teams_for_topic(self, order_fields=None):
-        """
-        Retrieve the list of teams for a course which are associated with a
-        particular topic. The topic is randomly chosen from those associated
-        with this course, and the sort ordering is randomly selected from the available
-        options.
-        """
-        url = '/teams/'
-        if not order_fields:
-            order_fields = ['name', 'last_activity_at', 'open_slots']
-        topic = random.choice(self.topics)['id']
-        order_by = random.choice(order_fields)
-        self._request(
-            'get',
-            url,
-            params={'course_id': self.course_id, 'topic_id': topic, 'order_by': order_by},
-            name='/teams/?course_id=[id]&topic_id=[id]&order_by=[order]'
-        )
+        return self._request('get', url, params=merged_params, name=request_name)
 
-    def _search_teams(self):
-        """Retrieve the list of teams matching a particular query for a course.
-        The query string is a randomly chosen word from the team name.
-        """
-        url = '/teams/'
-        query_string = self._get_search_query_string()
-        self._request(
-            'get',
-            url,
-            params={'course_id': self.course_id, 'text_search': query_string},
-            name='/teams/?course_id=[id]&text_search=[query_string]'
-        )
-
-    def _search_teams_for_topic(self):
-        """Retrieve the list of teams matching a particular query for a course
-        which are associated with a particular topic. The topic is randomly chosen
-        from those associated with this course. The query string is a randomly
-        chosen word from the team name.
-        """
-        url = '/teams/'
-        topic = random.choice(self.topics)['id']
-        query_string = self._get_search_query_string()
-        self._request(
-            'get',
-            url,
-            params={'course_id': self.course_id, 'topic_id': topic, 'text_search': query_string},
-            name='/teams/?course_id=[id]&topic_id=[id]&text_search=[query_string]'
-        )
-
-    def _team_detail(self):
+    def _team_detail(self, params=None):
         """Retrieve the detail view for a randomly chosen team."""
         team = self._get_team()
-        self._request('get', '/teams/{}'.format(team['id']), name='/teams/[id]')
+        merged_params = self._merge_params({}, params)
+        request_name = self._request_name('/teams/[id]', merged_params)
+
+        self._request('get', '/teams/{}'.format(team['id']), params=merged_params, name=request_name)
 
     def _update_team(self):
         """Update a randomly-chosen team for this course with a new
@@ -261,16 +246,16 @@ class BaseTeamsTask(EdxAppTasks):
         The sort ordering is randomly selected from the available options.
         """
         url = '/topics/'
-
-        default_params = {
-            'course_id': self.course_id,
-            'order_by': random.choice(['name', 'team_count'])
-        }
-
-        return self._request(
-            'get', url, params=dict(default_params, **params or {}),
-            name='/topics/?course_id=[id]&order_by=[order]'
+        merged_params = self._merge_params(
+            {
+                'course_id': self.course_id,
+                'order_by': random.choice(['name', 'team_count'])
+            },
+            params
         )
+        request_name = self._request_name(url, merged_params)
+
+        return self._request('get', url, params=merged_params, name=request_name)
 
     def _topic_detail(self):
         """Retrieve the detail view for a randomly chosen topic."""
@@ -308,6 +293,10 @@ class BaseTeamsTask(EdxAppTasks):
                 response.success()
             elif response.status_code != 200:
                 membership_created = False
+                print "**Error creating membership:**"
+                print "POST BODY: {json}".format(json=json)
+                print "STATUS CODE: {code}".format(code=response.status_code)
+                print "RESPONSE: {content}".format(content=response.content)
 
         if membership_created:
             self.user_memberships[self._username] = team_id
@@ -339,6 +328,31 @@ class BaseTeamsTask(EdxAppTasks):
             count -= 1
             self.team_member_counts[team_id] = count
 
+    def _membership_details(self, params=None):
+        """
+        Get the membership of a user and team.
+        """
+        team_id = self.user_memberships.get(self._username)
+
+        if team_id:
+            url = '/team_membership/{team_id},{username}'
+
+            merged_params = self._merge_params({}, params)
+            request_name = self._request_name(
+                url.format(team_id='[team_id]', username='[username]'),
+                merged_params
+            )
+
+            self._request(
+                'get',
+                url.format(
+                    team_id=team_id,
+                    username=self._username
+                ),
+                params=merged_params,
+                name=request_name
+            )
+
     def _change_membership(self):
         """
         Add the current user to a new team from the top_name_teams list.
@@ -362,32 +376,15 @@ class BaseTeamsTask(EdxAppTasks):
         if attempt < max_attempts:
             self._create_membership(self.team['id'])
 
-    def _list_memberships_for_user(self):
+    def _list_memberships(self, params=None):
         """
-        Get the list of team memberships for the current user.
+        Get the list of team memberships.
         """
         url = '/team_membership/'
+        merged_params = self._merge_params({}, params)
+        request_name = self._request_name(url, merged_params)
 
-        self._request(
-            'get',
-            url,
-            params={'username': self._username},
-            name='/team_membership/?username=[username]'
-        )
-
-    def _list_memberships_for_team(self):
-        """
-        Get the list of team memberships for a random team.
-        """
-        self.team = self._get_team()
-        url = '/team_membership/'
-
-        self._request(
-            'get',
-            url,
-            params={'team_id': self.team['id']},
-            name='/team_membership/?team_id=[id]'
-        )
+        self._request('get', url, params=merged_params, name=request_name)
 
     def _stop(self):
         """Allow running as a nested or top-level task set."""

@@ -22,12 +22,15 @@ Supported Environment Variables:
 
   TOPICS_COUNT - Number of topics to create during setup *DEFAULT: 10*
   TEAMS_COUNT - Number of teams to create during setup (will be assigned randomly to topics) *DEFAULT: 1000*
+  TEAM_CREATE_SLEEP_CYCLE - Pause for a duration after each set of X teams have been created *DEFAULT: TEAMS_COUNT*
+  TEAM_CREATE_SLEEP_TIME - How many seconds to pause for in between cycles (Integer or Float accepted) *DEFAULT: 1*
 """
 from locust import task, HttpLocust
 import os
 import sys
 import requests
 from urlparse import urlparse
+from time import sleep
 
 # Workaround for Locust running locustfiles as scripts instead of real
 # packages.
@@ -38,6 +41,8 @@ STUDIO_HOST = os.getenv('STUDIO_HOST', 'http://localhost:8001')
 TEAMS_SETUP = False
 TOPICS_COUNT = int(os.getenv('TOPICS_COUNT', 10))
 TEAMS_COUNT = int(os.getenv('TEAMS_COUNT', 1000))
+TEAM_CREATE_SLEEP_CYCLE = int(os.getenv('TEAM_CREATE_SLEEP_CYCLE', TEAMS_COUNT))
+TEAM_CREATE_SLEEP_TIME = float(os.getenv('TEAM_CREATE_SLEEP_TIME', 1.0))
 
 
 class TeamsInitTask(BaseTeamsTask):
@@ -69,7 +74,13 @@ class TeamsInitTask(BaseTeamsTask):
             # log into LMS and create teams
             self.auto_auth(params={'staff': 'true'}, verify_ssl=False)
             for i in xrange(TEAMS_COUNT):
-                self._create_team()
+                if i % TEAM_CREATE_SLEEP_CYCLE == 0:
+                    sleep(TEAM_CREATE_SLEEP_TIME)
+                try:
+                    self._create_team()
+                except ValueError:
+                    # If there is an error creating a team and no JSON is returned to parse just move on
+                    pass
 
     def _create_topics(self):
         """Add test topics to the course based on number set by TOPICS_COUNT."""
