@@ -121,15 +121,14 @@ class ExamPages(BasePage):
         start the exam
         :return:
         """
-        csrftoken = self.client.cookies.get('csrftoken', '')
-        sessionid = self.client.cookies.get('sessionid', '')
+        sessionid = self.client.cookies.get('loadtest-edx-sessionid', '')
         self._post_headers = {
             'Accept': 'application/json, text/javascript, */*; q=0.01',
-            'X-CSRFToken': csrftoken,
+            'X-CSRFToken': 'NOTPROVIDED',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             'X-Requested-With': 'XMLHttpRequest',
             'Referer': self.hostname + exam_info[0],
-            'Cookie': 'csrftoken=' + csrftoken + '; sessionid=' + sessionid
+            'Cookie': 'csrftoken=NOTPROVIDED; loadtest-edx-sessionid=' + sessionid
         }
         params = {"exam_id": exam_id, "start_clock": "true"}
         self._post(START_EXAM_URL, data=params)

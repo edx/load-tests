@@ -1,10 +1,8 @@
 import random
 from locust import task
 from config import (
-    PROCTORED_COURSE_IDS,
-    NON_PROCTORED_COURSE_IDS,
-    PROCTORED_EXAM,
-    NON_PROCTORED_EXAM
+    PROCTORED_COURSES,
+    NON_PROCTORED_COURSES
 )
 from exam_pages import ExamPages
 from auto_auth_tasks import AutoAuthTasks
@@ -29,10 +27,10 @@ class ProctoredTasks(AutoAuthTasks):
         enroll this user to proctored course
         Go to exm page and start a timed exam
         """
-        course_id = random.choice(PROCTORED_COURSE_IDS)
-        self.auto_auth(params={'course_id': course_id, 'enrollment_mode': 'verified'})
+        course_info = random.choice(PROCTORED_COURSES.items())
+        self.auto_auth(params={'course_id': course_info[0], 'enrollment_mode': 'verified'})
         # fetch the exam url from courseware source code
-        self.exam_info = self.page.fetch_exam_url(course_id, PROCTORED_EXAM)
+        self.exam_info = self.page.fetch_exam_url(course_info[0], course_info[1])
         exam_id = self.page.load_start_exam_screen(self.exam_info)
         self.page.start_exam(exam_id, self.exam_info)
 
@@ -63,10 +61,10 @@ class NonProctoredTasks(AutoAuthTasks):
         enroll this user to non proctored course
         Fetch the exam url from courseware page source
         """
-        course_id = random.choice(NON_PROCTORED_COURSE_IDS)
-        self.auto_auth(params={'course_id': course_id})
+        course_info = random.choice(NON_PROCTORED_COURSES.items())
+        self.auto_auth(params={'course_id': course_info[0]})
         # fetch the exam url from courseware source code
-        self.exam_info = self.page.fetch_exam_url(course_id, NON_PROCTORED_EXAM)
+        self.exam_info = self.page.fetch_exam_url(course_info[0], course_info[1])
 
     @task
     def load_exam(self):
