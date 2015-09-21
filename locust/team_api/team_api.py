@@ -126,7 +126,11 @@ class BaseTeamsTask(EdxAppTasks):
         """Send a request to the Team API."""
         kwargs['headers'] = self._default_headers(kwargs.get('headers'))
         kwargs['verify'] = False
-        return getattr(self.client, method)(self.API_URL + path, **kwargs)
+#DEBUG printing requests instead of making them
+        print '{} {}{}'.format(method, self.API_URL, path)
+        print kwargs['json']
+        print '-----------'
+        #DEBUGreturn getattr(self.client, method)(self.API_URL + path, **kwargs)
 
     def _append_to_top_name_teams(self, team):
         """ In place addition and resorting of top teams. """
