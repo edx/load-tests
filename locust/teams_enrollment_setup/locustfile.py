@@ -24,6 +24,8 @@ import csv
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'team_api'))
 from team_api import BaseTeamsTask
 
+TEAMS_SETUP = False
+
 class TeamEnrollmentTask(BaseTeamsTask):
     """ The task, singular, that does the work of enrolling students """
     def on_start(self):
@@ -39,16 +41,18 @@ class TeamEnrollmentTask(BaseTeamsTask):
             self._load_topics()
             self._load_teams()
 
-        for user in user_list:
+        for user in self.user_list:
             #Note: we aren't checking if teams are full anywhere, so some users will not be on a team
             team_to_join = self._get_team()
-            self._create_membership(username=user, team_id=team)
+            self._create_membership(username=user, team_id=team_to_join['id'])
 
-    def _get_user_list():
-        with open(TEAMS_ENROLLMENT_CSV, 'r') as csv_input:
+    def _get_user_list(self):
+        filename = os.getenv('TEAMS_ENROLLMENT_CSV', 'test.csv')
+        enrollment_csv = '{}/{}'.format(os.path.dirname(__file__), filename)
+        with open(enrollment_csv, 'r') as csv_input:
             reader = csv.DictReader(csv_input)
             for row in reader:
-                self.user_list.extend(row['username'])
+                self.user_list.append(row['username'])
 
     def _create_membership(self, username, team_id):
         url = '/team_membership/'
@@ -61,9 +65,10 @@ class TeamEnrollmentTask(BaseTeamsTask):
         # If a user ends up joining a full team
         # we will catch the response and still mark it as a success since
         # that is the proper server response in that situation.
-        with self._request('post', url, json=json, catch_response=True) as response:
-            if response.status_code == 400 and "team is already full" in response.content:
-                response.success()
+        self._request('post', url, stub_run=True, json=json, catch_response=True)
+            #TODO: once not stub_running, uncomment these ones
+            #if response.status_code == 400 and "team is already full" in response.content:
+                #response.success()
 
 class TeamLocust(HttpLocust):
     """
