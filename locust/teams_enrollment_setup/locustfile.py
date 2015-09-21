@@ -65,10 +65,9 @@ class TeamEnrollmentTask(BaseTeamsTask):
         # If a user ends up joining a full team
         # we will catch the response and still mark it as a success since
         # that is the proper server response in that situation.
-        self._request('post', url, stub_run=True, json=json, catch_response=True)
-            #TODO: once not stub_running, uncomment these ones
-            #if response.status_code == 400 and "team is already full" in response.content:
-                #response.success()
+        self._request('post', url, json=json, catch_response=True)
+            if response.status_code == 400 and "team is already full" in response.content:
+                response.success()
 
 class TeamLocust(HttpLocust):
     """
