@@ -1,58 +1,54 @@
-""" Locust tests for the E-Commerce API. """
-import json
-
-import jwt
+from ecommerce_api_client import exceptions
+from ecommerce_api_client.client import EcommerceApiClient
 import requests
-from locust import task, TaskSet
+import slumber
 
 
-class EcommerceApiClient(object):
-    """Ecommerce API client."""
+class LocustResource(slumber.Resource):
+    """Custom Slumber Resource which takes advantage of Locust's extended HttpSession."""
+    def _request(self, method, data=None, files=None, params=None):
+        serializer = self._store['serializer']
+        url = self.url()
 
-    def __init__(self, url, signing_key, username, user_email, client=None):
-        self.url = url.strip('/')
-        self.signing_key = signing_key
-        self.username = username
-        self.user_email = user_email
+        headers = {'accept': serializer.get_content_type()}
 
-        self._client = client or requests.Session()
-        self._client.headers.update({
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT {}'.format(self._get_jwt())
-        })
+        if not files:
+            headers['content-type'] = serializer.get_content_type()
+            if data is not None:
+                data = serializer.dumps(data)
 
-    def _get_jwt(self):
-        """Returns a JWT object with the specified user's info.
+        # An optional argument that can be used to specify a label to use in Locust's statistics
+        # instead of the actual URL. Can be used to group requests to the same API endpoint that vary
+        # only by resource ID included in the URL into a single entry in Locust's statistics. For example,
+        # requests to
+        #   'http://localhost:8002/api/v2/baskets/1/order'
+        # and
+        #   'http://localhost:8002/api/v2/baskets/2/order'
+        # might be grouped under the name:
+        #   '/api/v2/baskets/:id/order/'
+        # See: http://docs.locust.io/en/latest/api.html#httpsession-class/.
+        name = params.pop('name', None)
 
-        Raises AttributeError if self.api_signing_key is not set.
-        """
-        data = {
-            'username': self.username,
-            'email': self.user_email
-        }
-        return jwt.encode(data, self.signing_key)
+        resp = self._store['session'].request(
+            method,
+            url,
+            data=data,
+            params=params,
+            files=files,
+            headers=headers,
+            name=name
+        )
 
-    def _create_api_url(self, path):
-        """Returns a complete URL to an API endpoint."""
-        return self.url + path
+        if 400 <= resp.status_code <= 499:
+            exception_class = exceptions.HttpNotFoundError if resp.status_code == 404 else exceptions.HttpClientError
+            raise exception_class('Client Error %s: %s' % (resp.status_code, url), response=resp, content=resp.content)
+        elif 500 <= resp.status_code <= 599:
+            raise exceptions.HttpServerError('Server Error %s: %s' % (resp.status_code, url), response=resp, content=resp.content)
 
-    def list_payment_processors(self):
-        """Tests the /payment/processors/ endpoint."""
-        url = self._create_api_url('/payment/processors/')
-        return self._client.get(url).json()
+        self._ = resp
 
-    def retrieve_basket_order(self, basket_id):
-        """Retrieves the order associated with the specified basket."""
-        url = self._create_api_url('/baskets/{}/order/'.format(basket_id))
-        return self._client.get(url, name='/api/v2/baskets/:id/order/').json()
+        return resp
 
-    def create_basket(self, sku, checkout=True):
-        """Creates a new basket with the specified product included."""
-        url = self._create_api_url('/baskets/')
-        data = {
-            'products': [{'sku': sku}],
-            'checkout': checkout,
-            'payment_processor_name': 'cybersource'
-        }
-        response = self._client.post(url, data=json.dumps(data))
-        return response.json()
+
+class LocustEcommerceApiClient(EcommerceApiClient):
+    resource_class = LocustResource
