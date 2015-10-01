@@ -3,7 +3,7 @@ import json
 
 from locust import task
 
-import config
+from config import FREE_COURSE_ID
 from commerce import CommerceTasks
 
 
@@ -18,6 +18,6 @@ class BasketsTasks(CommerceTasks):
         self.auto_auth()
 
         post_data = {
-            'course_id': config.COURSE_ID,
+            'course_id': FREE_COURSE_ID,
         }
-        self.post('/commerce/baskets/', data=json.dumps(post_data))
+        self.post('/api/commerce/v0/baskets/', data=json.dumps(post_data))
