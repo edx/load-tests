@@ -1,45 +1,43 @@
 import json
-import locust
+import itertools
 import os
 import re
+import urllib
+
+from locust import HttpLocust, task, TaskSet
 
 
-COURSES = {
-    'demo_draft': 'edX/DemoX.1/2014',
-    'demo_split': 'course-v1:edX+DemoX.1+LT_SPLIT',
-    '6.002x_draft': 'MITx/6.002x/2013_Spring',
-    '6.002x_split': 'course-v1:MITx+6.002x_6x+1T2015',
-}
-COURSE_KEY = COURSES.get(os.environ.get('COURSE', None), None)
-if not COURSE_KEY:
-    raise ValueError("COURSE must be one of: " + ", ".join(COURSES.keys()))
 
-RESOURCES = [
-    ''
-    'blocks',
-    'navigation',
-    'blocks+navigation'
-]
-RESOURCE = os.environ.get('RESOURCE', None)
-if RESOURCE not in RESOURCES:
-    raise ValueError("RESOURCE must be one of: " + ", ".join(RESOURCES))
+COURSES_CYCLE_OLD = itertools.cycle([
+    'edX/DemoX.1/2014',
+    'course-v1:edX+DemoX.1+split',
+    'MITx/6.002x/2013_Spring',
+    'course-v1:MITx+6.002x+2013',
+])
+
+COURSES_CYCLE_NEW = itertools.cycle([
+    'edX/DemoX.1/2014',
+    'course-v1:edX+DemoX.1+split',
+    'MITx/6.002x/2013_Spring',
+    'course-v1:MITx+6.002x+2013',
+])
 
 
-class CoursesApiTaskSet(locust.TaskSet):
+class CoursesApiTaskSet(TaskSet):
 
     def __init__(self, *args, **kwargs):
         super(CoursesApiTaskSet, self).__init__(*args, **kwargs)
         self.username = None
 
     def on_start(self):
-        self.auto_auth()
-        self.enroll()
+        self.auto_auth(staff="true")
+        # self.enroll() # Seems like some of the samples used are not allowing students to enroll
 
-    def auto_auth(self):
+    def auto_auth(self, staff="false"):
         response = self.client.get(
             url=u"/auto_auth",
-            params={u'staff': u"true"},
-            name="create user"
+            params={u'staff': staff},
+            name="create_user"
         )
         if response.status_code == 200:
             match = re.search(r'(Logged in|Created) user (?P<username>[^$]+).*', response.text)
@@ -63,29 +61,33 @@ class CoursesApiTaskSet(locust.TaskSet):
         }
 
     def enroll(self):
-        response = self.client.post(
-            url=u"/api/enrollment/v1/enrollment",
-            data=json.dumps({'course_details': {'course_id': COURSE_KEY}}),
-            headers=self._post_headers,
-            verify=False,
-            name="enroll {}".format(COURSE_KEY)
-        )
-        if response.status_code == 200:
-            print "Enrolled user {} in course {}".format(self.username, COURSE_KEY)
-        else:
-            print ("Failed to enroll user {} in course {}. Response status code = {}".format(
-                self.username,
-                COURSE_KEY,
-                response.status_code
-            ))
+        for course in COURSES_LIST:
+            response = self.client.post(
+                url=u"/api/enrollment/v1/enrollment",
+                data=json.dumps({'course_details': {'course_id': course}}),
+                headers=self._post_headers,
+                verify=False,
+                name="enroll {}".format(course)
+            )
+            if response.status_code == 200:
+                print "Enrolled user {} in course {}".format(self.username, course)
+            else:
+                print ("Failed to enroll user {} in course {}. Response status code = {}".format(
+                    self.username,
+                    course,
+                    response.status_code
+                ))
 
-    @locust.task
+
+class OldApiTask(CoursesApiTaskSet):
+    @task
     def query_course(self):
-        url = u"/api/course_structure/v0/courses/{}/{}".format(COURSE_KEY, RESOURCE)
+        course_id = COURSES_CYCLE_OLD.next()
+        url = u"/api/course_structure/v0/courses/{}/blocks+navigation".format(course_id)
         response = self.client.get(
             url=url,
             verify=False,
-            name="get courses/{}/{}".format(COURSE_KEY, RESOURCE)
+            name="GET_{},_using_the_{}".format(course_id, "Old_API")
         )
         if response.status_code != 200:
             print "ERROR: GET {} failed with status code {}".format(
@@ -94,9 +96,40 @@ class CoursesApiTaskSet(locust.TaskSet):
             )
 
 
-class CoursesApiTestUser(locust.HttpLocust):  # pylint: disable=too-few-public-methods
+class NewApiTask(CoursesApiTaskSet):
+    @task
+    def query_course(self):
+        original_course_id =COURSES_CYCLE_NEW.next()
+        course_id = urllib.quote_plus(original_course_id)
+        base_url = u"/api/courses/v1/blocks"
+        user = u"user={}".format(self.username.split(" ")[0])
+        other_fields = u"depth=all&requested_fields=graded&requested_fields=format&requested_fields=student_view_multi_device&block_counts=video&student_view_data=video"
+        course = u"course_id={}".format(course_id)
+
+        url = u"{}/?{}&{}&{}".format(base_url, user, other_fields, course)
+        response = self.client.get(
+            url=url,
+            verify=False,
+            name="GET_{},_using_the_{}".format(original_course_id, "New_API")
+        )
+        if response.status_code != 200:
+            print "ERROR: GET {} failed with status code {}".format(
+                url,
+                response.status_code
+            )
+
+
+class CoursesApiTests(CoursesApiTaskSet):
+
+    tasks = {
+        OldApiTask: 1,
+        NewApiTask: 1
+    }
+
+
+class CoursesApiTestUser(HttpLocust):  # pylint: disable=too-few-public-methods
     """
     A single 'locust' in the swarm.
     """
-    task_set = CoursesApiTaskSet
+    task_set = globals()[os.getenv('LOCUST_TASK_SET', 'CoursesApiTests')]
     min_wait = max_wait = 1000
