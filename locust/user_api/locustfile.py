@@ -7,7 +7,7 @@ Usage:
 
 Supported Environment Variables:
 
-  BASIC_AUTH_USER, BASIC_AUTH_PASS - if set, will use for HTTP Authentication
+  BASIC_AUTH_USER, BASIC_AUTH_PASSWORD - if set, will use for HTTP Authentication
   LOCUST_TASK_SET - if set, will run the specified TaskSet (must be imported in this module)
   LOCUST_MIN_WAIT, LOCUST_MAX_WAIT - use to override defaults set in this module
 
