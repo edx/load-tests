@@ -125,7 +125,7 @@ class ProfileImagesTasks(AutoAuthTasks):
         with open(image_file_path, 'rb') as image_file:
             self.post_raw(
                 headers=headers,
-                data=image_file.read(),
+                data=image_file,
                 name='profile_images:{}_{}_raw'.format(extension, name)
             )
 
@@ -142,7 +142,11 @@ class ProfileImagesTasks(AutoAuthTasks):
             )
 
     def post_multipart(self, *args, **kwargs):
-        self.submit_multipart('POST', *args, **kwargs)
+        kwargs['headers'] = kwargs.get('headers', {})
+        kwargs['headers'].update({
+            'format': 'multipart',
+        })
+        self.submit('POST', *args, **kwargs)
 
     def post_raw(self, *args, **kwargs):
         """
@@ -155,16 +159,6 @@ class ProfileImagesTasks(AutoAuthTasks):
             name='profile_images:remove',
             *args, **kwargs
         )
-
-    def submit_multipart(self, method, *args, **kwargs):
-        """
-        Perform a request of the specified type.
-        """
-        kwargs['headers'] = kwargs.get('headers', {})
-        kwargs['headers'].update({
-            'format': 'multipart',
-        })
-        self.submit(method, *args, **kwargs)
 
     def submit(self, method, *args, **kwargs):
         kwargs['headers'] = kwargs.get('headers', {})
