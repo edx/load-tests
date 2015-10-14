@@ -103,7 +103,7 @@ class ExamPage(BasePage):
         :param course_id, url_name:
         :return:
         """
-        courseware_url = COURSE_URL_PREFIX + course_id + '/courseware'
+        courseware_url = COURSE_URL_PREFIX + course_id + u"/courseware"
         self._get(courseware_url, url_group_name=url_name)
 
     def load_exam(self, exam_url, url_name):
@@ -174,7 +174,7 @@ class InstructorPage(BasePage):
 
     def reset_attempt(self, student_username, action_api_url):
         """
-        Perform Entrance Exam related task from Instructor Dashboard
+        Reset student attempts from Instructor Dashboard
         :param student_username, action_api_url:
         """
         reset_attempt_url = (
@@ -187,7 +187,7 @@ class InstructorPage(BasePage):
 
     def rescore_exam(self, student_username, action_api_url):
         """
-        Perform Entrance Exam related task from Instructor Dashboard
+        Rescore student exam from Instructor Dashboard
         :param student_username, action_api_url:
         """
         rescore_exam_url = (
@@ -199,7 +199,7 @@ class InstructorPage(BasePage):
 
     def delete_attempt(self, student_username, action_api_url):
         """
-        Perform Entrance Exam related task from Instructor Dashboard
+        Delete student attempt from Instructor Dashboard
         :param student_username, action_api_url:
         """
         delete_attempt_url = (
@@ -212,7 +212,7 @@ class InstructorPage(BasePage):
 
     def skip_exam(self, student_username, action_api_url):
         """
-        Perform Entrance Exam related task from Instructor Dashboard
+        Enable the user to skip entrance exam from Instructor Dashboard
         :param student_username, action_api_url:
         """
         skip_exam_url = action_api_url + u"/mark_student_can_skip_entrance_exam"

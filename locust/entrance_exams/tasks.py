@@ -1,6 +1,5 @@
-import random
 from locust import task
-from config import COURSES
+from config import COURSES, TASK_TYPE
 from pages import ExamPage, InstructorPage
 from auto_auth_tasks import AutoAuthTasks
 
@@ -22,8 +21,13 @@ class EntranceExamStudentTasks(AutoAuthTasks):
         create a new user using auto auth functionality,
         enroll this user to entrance exam course
         """
-        course = random.choice(COURSES)
-        self.course_type = course['course_type']
+        course = {}
+        if TASK_TYPE == 'PreEntrance':
+            course = COURSES[0]
+        elif TASK_TYPE == 'PostEntrance':
+            course = COURSES[1]
+        elif TASK_TYPE == 'Simple':
+            course = COURSES[2]
         self.course_id = course['course_id']
         self.exam_name = course['exam_name']
         self.coursware_link = course['coursware_link']
@@ -37,20 +41,20 @@ class EntranceExamStudentTasks(AutoAuthTasks):
             self.exam_name,
             self.coursware_link
         )
-        # attempt the entrance exam once in case of cleared entrance exam course
-        if self.course_type == 'Entrance Exam Cleared':
+        # attempt the entrance exam once in case of post entrance exam task
+        if TASK_TYPE == 'PostEntrance':
             self.page.exam_attempt(
                 self.course_id,
                 self.exam_url,
                 self.input_choice,
                 self.input_choice_type,
-                '[EntranceExam Uncleared Exam Page]'
+                '[EntranceExam Initial State Exam Page]'
             )
 
     @task
     def load_courseware_page(self):
         """
-        load course ware repeatedly
+        load courseware repeatedly
         """
         self.page.load_courseware(self.course_id, self.coursware_link)
 
@@ -97,7 +101,6 @@ class EntranceExamInstructorTasks(AutoAuthTasks):
         Now create a staff user using auto auth and enroll to the same course
         """
         course = COURSES[1]
-        self.course_type = course['course_type']
         self.course_id = course['course_id']
         self.exam_name = course['exam_name']
         self.coursware_link = course['coursware_link']
@@ -118,7 +121,7 @@ class EntranceExamInstructorTasks(AutoAuthTasks):
             self.exam_url,
             self.input_choice,
             self.input_choice_type,
-            '[EntranceExam Uncleared Exam Page]'
+            '[EntranceExam Initial State Exam Page]'
         )
         self.auto_auth(params={'course_id': self.course_id, 'staff': 'true'})
         self.action_api_url = self.instructor_page.go_to_instructor_dashboard(self.course_id)
