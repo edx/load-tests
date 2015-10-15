@@ -12,9 +12,9 @@ You can omit basic auth credentials if the test server is not protected by basic
 The optional environment variable LOCUST_TASK_SET is used run an individual task, test will
 run for all tasks of courses by default
 
-TASK_TYPE=PreEntrance will run the Student Task for course with Entrance Exam without passing it
-TASK_TYPE=PostEntrance will run the Student Task for course with Entrance Exam after it is passed
-TASK_TYPE=Simple will run the Student Task for a simple course without Entrance Exam
+TASK_TYPE=pre-entrance will run the Student Task for course with Entrance Exam without passing it
+TASK_TYPE=post-entrance will run the Student Task for course with Entrance Exam after it is passed
+TASK_TYPE=simple will run the Student Task for a simple course without Entrance Exam
 Not using the TASK_TYPE will result in running the Instructor task
 """
 from config import TASK_TYPE

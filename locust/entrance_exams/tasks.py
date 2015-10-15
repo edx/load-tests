@@ -21,13 +21,7 @@ class EntranceExamStudentTasks(AutoAuthTasks):
         create a new user using auto auth functionality,
         enroll this user to entrance exam course
         """
-        course = {}
-        if TASK_TYPE == 'PreEntrance':
-            course = COURSES[0]
-        elif TASK_TYPE == 'PostEntrance':
-            course = COURSES[1]
-        elif TASK_TYPE == 'Simple':
-            course = COURSES[2]
+        course = COURSES[TASK_TYPE]
         self.course_id = course['course_id']
         self.exam_name = course['exam_name']
         self.coursware_link = course['coursware_link']
@@ -42,7 +36,7 @@ class EntranceExamStudentTasks(AutoAuthTasks):
             self.coursware_link
         )
         # attempt the entrance exam once in case of post entrance exam task
-        if TASK_TYPE == 'PostEntrance':
+        if TASK_TYPE == 'post-entrance':
             self.page.exam_attempt(
                 self.course_id,
                 self.exam_url,
@@ -100,7 +94,7 @@ class EntranceExamInstructorTasks(AutoAuthTasks):
         Record the student user name in a variable
         Now create a staff user using auto auth and enroll to the same course
         """
-        course = COURSES[1]
+        course = COURSES['post-entrance']
         self.course_id = course['course_id']
         self.exam_name = course['exam_name']
         self.coursware_link = course['coursware_link']

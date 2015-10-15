@@ -9,8 +9,8 @@ COURSE_URL_PREFIX = u"/courses/"
 
 # Courses detail
 
-COURSES = [
-    {
+COURSES = {
+    'pre-entrance': {
         'course_id': u'course-v1:EE+EE1+EE2015',
         'exam_name': 'Entrance Exam',
         'coursware_link': '[EntranceExam Initial State Courseware]',
@@ -18,7 +18,7 @@ COURSES = [
         'input_choice': 'choice_brazil',
         'input_choice_type': 'incorrect'
     },
-    {
+    'post-entrance': {
         'course_id': u'course-v1:EE2+EE2+EE2015',
         'exam_name': 'Entrance Exam',
         'coursware_link': '[EntranceExam Passed Courseware]',
@@ -26,7 +26,7 @@ COURSES = [
         'input_choice': 'choice_indonesia',
         'input_choice_type': 'correct'
     },
-    {
+    'simple': {
         'course_id': u'course-v1:SE+SE1+SE2015',
         'exam_name': 'Simple Exam',
         'coursware_link': '[Simple Course Courseware]',
@@ -34,14 +34,14 @@ COURSES = [
         'input_choice': 'choice_indonesia',
         'input_choice_type': 'correct'
     }
-]
+}
 
 """
 Global variable for deciding which task should be run
 
-TASK_TYPE=PreEntrance will run the Student Task for course with Entrance Exam without passing it
-TASK_TYPE=PostEntrance will run the Student Task for course with Entrance Exam after it is passed
-TASK_TYPE=Simple will run the Student Task for a simple course without Entrance Exam
+TASK_TYPE=pre-entrance will run the Student Task for course with Entrance Exam without passing it
+TASK_TYPE=post-entrance will run the Student Task for course with Entrance Exam after it is passed
+TASK_TYPE=simple will run the Student Task for a simple course without Entrance Exam
 
 Not using the TASK_TYPE will result in running the Instructor task
 """
