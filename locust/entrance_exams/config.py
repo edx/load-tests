@@ -19,7 +19,7 @@ COURSES = {
         'input_choice_type': 'incorrect'
     },
     'post-entrance': {
-        'course_id': u'course-v1:EE2+EE2+EE2015',
+        'course_id': u'course-v1:EE+EE2+EE2015',
         'exam_name': 'Entrance Exam',
         'coursware_link': '[EntranceExam Passed Courseware]',
         'exam_link': '[EntranceExam Passed Exam Page]',
