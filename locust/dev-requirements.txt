@@ -1,4 +1,4 @@
 edx-ecommerce-api-client==1.1.2
 lazy==1.2
-locustio==0.7.2
+locustio==0.7.3
 -e git+https://github.com/edx/opaque-keys.git@1254ed4d615a428591850656f39f26509b86d30a#egg=opaque-keys

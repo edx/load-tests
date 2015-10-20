@@ -15,7 +15,7 @@ class EcommerceTest(TaskSet):
     """
     tasks = {
         BasketsTasks: 50,
-        CybersourcePaymentTasks: 1,
+        CybersourcePaymentTasks: 40,
     }
 
 
