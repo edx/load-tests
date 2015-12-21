@@ -183,12 +183,12 @@ class BaseNotesTask(EdxAppTasks):
 
     def _list_notes(self):
         """List notes in the LMS."""
-        path = '/courses/{course_id}/edxnotes/'.format(course_id=self.course_id)
+        path = '/courses/{course_id}/edxnotes/notes/'.format(course_id=self.course_id)
         self.client.get(path, verify=False)
 
     def _search_notes(self):
         """Search notes from the LMS for random text."""
-        path = '/courses/{course_id}/edxnotes/search/'.format(course_id=self.course_id)
+        path = '/courses/{course_id}/edxnotes/notes/'.format(course_id=self.course_id)
         params = {'text': ' '.join(pick_some(NOTES_TEXT, NUM_SEARCH_TERMS))}
         # Custom name ensures searches are grouped together in locust results.
         self.client.get(path, params=params, name=path + '?text=[search_text]', verify=False)
