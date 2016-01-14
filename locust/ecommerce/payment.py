@@ -76,10 +76,10 @@ class CybersourcePaymentTasks(AutoAuthTasks):
         self.api_client.payment.processors().get()
 
         # Emulate basket creation and payment
-        basket_id = self.cybersource_notification()
+        order_id = self.cybersource_notification()
 
         # Emulate rendering of the receipt page
-        self.api_client.baskets(basket_id).order.get(name='/api/v2/baskets/:id/order/')
+        self.api_client.orders(order_id).get(name='/api/v2/orders/:id/')
 
     def cybersource_notification(self):
         """Contact Otto's CyberSource notification endpoint."""
@@ -95,7 +95,9 @@ class CybersourcePaymentTasks(AutoAuthTasks):
             headers={'Content-Type': 'application/x-www-form-urlencoded'}
         )
 
-        return basket_id
+        order_id = data['req_reference_number']
+
+        return order_id
 
     def _get_basket_details(self):
         """Creates a basket and returns its ID and amount.
