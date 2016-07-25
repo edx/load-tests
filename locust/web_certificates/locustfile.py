@@ -39,7 +39,7 @@ class CertificateLocust(HttpLocust):
     Defines how long a simulated user should wait between executing tasks, as
     well as which TaskSet class should define the user's behavior.
     """
-    task_num = int(os.getenv('TASK_NUM', 0))
+    task_num = int(os.getenv('TASK_NUM', 3))
     task_set = locust_tasks[task_num]
-    min_wait = 5000
-    max_wait = 10000
+    min_wait = 500
+    max_wait = 1000
