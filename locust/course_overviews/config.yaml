@@ -1,8 +1,0 @@
-# This is a configuration file that declares environment variables to be set
-# when running locustauto (https://github.com/BenjiLee/locustauto). If you are
-# not using locustauto, and instead are running this load test directly through
-# Locust, then you can ignore this file.
-ENDPOINT_TO_TEST:
-  "student_dashboard"
-DEVELOPER_MODE:
-  "False"
