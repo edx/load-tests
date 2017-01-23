@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVER" elementType="Argument">
             <stringProp name="Argument.name">SERVER</stringProp>
-            <stringProp name="Argument.value">extra.edx.org</stringProp>
+            <stringProp name="Argument.value">load.edx.org</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
@@ -25,7 +25,7 @@
           </elementProp>
           <elementProp name="URL" elementType="Argument">
             <stringProp name="Argument.name">URL</stringProp>
-            <stringProp name="Argument.value">https://extra.edx.org/</stringProp>
+            <stringProp name="Argument.value">https://load.edx.org/</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PROTOCOL" elementType="Argument">
@@ -35,12 +35,12 @@
           </elementProp>
           <elementProp name="RAMPUP_SEC" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP_SEC</stringProp>
-            <stringProp name="Argument.value">1200</stringProp>
+            <stringProp name="Argument.value">300</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="TIMEOUT_MS" elementType="Argument">
             <stringProp name="Argument.name">TIMEOUT_MS</stringProp>
-            <stringProp name="Argument.value">30000</stringProp>
+            <stringProp name="Argument.value">5000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="BASIC_AUTH_USER" elementType="Argument">
@@ -110,6 +110,59 @@
           <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${MKTG_URL}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="search_all" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${RAMPUP_SEC}</stringProp>
+        <longProp name="ThreadGroup.start_time">1374077103000</longProp>
+        <longProp name="ThreadGroup.end_time">1374077103000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+          <collectionProp name="AuthManager.auth_list">
+            <elementProp name="" elementType="Authorization">
+              <stringProp name="Authorization.url">${URL}</stringProp>
+              <stringProp name="Authorization.username">${BASIC_AUTH_USER}</stringProp>
+              <stringProp name="Authorization.password">${BASIC_AUTH_PASSWORD}</stringProp>
+              <stringProp name="Authorization.domain"></stringProp>
+              <stringProp name="Authorization.realm"></stringProp>
+            </elementProp>
+          </collectionProp>
+        </AuthManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="search_all" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${SERVER}</stringProp>
+          <stringProp name="HTTPSampler.port">${PORT}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout">${TIMEOUT_MS}</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">${TIMEOUT_MS}</stringProp>
+          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/search/api/all</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
