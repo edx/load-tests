@@ -1,0 +1,1189 @@
+[2017-01-13 21:41:57,137] pwnage101/INFO/helpers.settings: using settings file: /home/pwnage101/edx-load-tests/settings_files/lms.yml
+[2017-01-13 21:41:57,140] pwnage101/INFO/helpers.settings: no secrets were specified in the settings file
+[2017-01-13 21:41:57,140] pwnage101/INFO/helpers.settings: loaded the following public settings:
+{'COURSE_DATA': 'demo_course',
+ 'COURSE_ID': 'course-v1:Fx+LT001+2015_T3',
+ 'LOCUST_MAX_WAIT': 1500,
+ 'LOCUST_MIN_WAIT': 750,
+ 'LOCUST_TASK_SET': 'LmsTest',
+ 'MODULE_RENDER_MODIFIER': 1,
+ 'PROCTORED_EXAM_MODIFIER': 1}
+[2017-01-13 21:41:57,141] pwnage101/INFO/locust.main: Starting Locust 0.7.5
+[2017-01-13 21:41:57,141] pwnage101/INFO/locust.runners: Hatching and swarming 275 clients at the rate 25 clients/s...
+[2017-01-13 21:41:57,681] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:41:57,933] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:42:01,698] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:42:03,415] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:42:03,729] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:42:07,010] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:42:08,734] pwnage101/INFO/locust.runners: All locusts hatched: LmsLocust: 275
+[2017-01-13 21:42:08,734] pwnage101/INFO/locust.runners: Resetting stats
+
+[2017-01-13 21:42:08,964] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-01-13 21:45:18,203] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:20,222] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:28,606] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:34,027] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:45,123] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:52,664] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:54,217] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:45:54,951] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:09,039] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:18,530] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:36,638] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:46,761] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:56,264] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:57,821] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:46:59,705] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:03,294] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:04,664] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:11,953] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:16,072] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:28,806] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:46,106] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:47:50,666] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:00,524] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:02,041] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:05,198] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:06,499] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:11,413] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:11,767] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:16,789] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:25,863] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:33,089] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:37,373] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:48:59,777] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:49:13,512] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:49:30,428] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:49:37,121] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:49:42,743] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:02,436] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:02,853] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:09,892] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:22,209] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:23,337] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:26,543] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:39,043] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:45,210] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:50:50,902] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:09,473] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:33,866] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:35,299] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:40,652] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:46,430] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:49,511] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 267, in create_response
+    super(ForumsTasks, self).create_response(thread_id)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 143, in create_response
+    return response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:49,515] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 224, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 109, in create_thread
+    thread_id = response.json()['id']
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/requests/models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/__init__.py", line 516, in loads
+    return _default_decoder.decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 374, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/simplejson/decoder.py", line 404, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+JSONDecodeError: Expecting value: line 9 column 1 (char 8)
+[2017-01-13 21:51:56,865] pwnage101/INFO/locust.main: Got SIGTERM signal
+[2017-01-13 21:51:56,865] pwnage101/INFO/locust.main: Shutting down (exit code 0), bye.
