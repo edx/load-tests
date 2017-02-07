@@ -1,6 +1,8 @@
-# How I ran this test
+How I ran this test
+===================
 
-## setup
+setup
+-----
 
 .. code-block:: sh
 
@@ -53,7 +55,8 @@
         #BASIC_AUTH_PASS:
         EOF
 
-## test session
+test session
+------------
 
 .. code-block:: sh
 
@@ -62,7 +65,8 @@
         TEST_DURATION=10  # minutes
         DRIVER_ID=$(wget -q -O - http://169.254.169.254/latest/meta-data/instance-id)
 
-## search for peak throughput
+search for peak throughput
+--------------------------
 
 .. code-block:: sh
 
@@ -73,7 +77,8 @@
         
         CLIENT_COUNT_PEAK_THROUGHPUT= # fill-me with value of client count that yeilds highest throughput
 
-## run experiment for the current gunicorn worker count:
+run experiment for the current gunicorn worker count
+----------------------------------------------------
 
 .. code-block:: sh
 
