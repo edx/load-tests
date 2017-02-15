@@ -1,0 +1,139 @@
+[2017-02-14 18:05:42,754] pwnage101/INFO/helpers.settings: using settings file: /home/pwnage101/edx-load-tests/settings_files/lms.yml
+[2017-02-14 18:05:42,757] pwnage101/INFO/helpers.settings: no secrets were specified in the settings file
+[2017-02-14 18:05:42,758] pwnage101/INFO/helpers.settings: loaded the following public settings:
+{'LOCUST_MAX_WAIT': 1000,
+ 'LOCUST_MIN_WAIT': 300,
+ 'LOCUST_TASK_SET': 'LmsTest',
+ 'MODULE_RENDER_MODIFIER': 1,
+ 'PROCTORED_EXAM_MODIFIER': 1,
+ 'courses': {'course-v1:Fx+LT001+2015_T3': {'course_data': 'demo_course_feanil',
+                                            'ratio': 1},
+             'edX/DemoX/Demo_Course': {'course_data': 'demo_course',
+                                       'ratio': 1}}}
+[2017-02-14 18:05:42,758] pwnage101/INFO/locust.main: Starting Locust 0.7.5
+[2017-02-14 18:05:42,758] pwnage101/INFO/locust.runners: Hatching and swarming 210 clients at the rate 25 clients/s...
+[2017-02-14 18:05:45,566] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:46,995] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:49,308] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:49,355] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:50,747] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:51,533] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 302, in execute_task
+    task(self).run(*args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 251, in run
+    self.on_start()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 21, in on_start
+    self.create_attempt()
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/proctoring.py", line 27, in create_attempt
+    data = {'exam_id': self.course_data.exam_id, 'start_clock': True}
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/course_data/__init__.py", line 76, in exam_id
+    return random.choice(self['special_exam_ids'])
+KeyError: 'special_exam_ids'
+[2017-02-14 18:05:51,679] pwnage101/INFO/locust.runners: All locusts hatched: LmsLocust: 210
+[2017-02-14 18:05:51,679] pwnage101/INFO/locust.runners: Resetting stats
+
+[2017-02-14 18:09:46,274] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 230, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 115, in create_thread
+    thread_id = response.json()['id']
+KeyError: 'id'
+[2017-02-14 18:12:24,658] pwnage101/ERROR/stderr: Traceback (most recent call last):
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 267, in run
+    self.execute_next_task()
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 293, in execute_next_task
+    self.execute_task(task["callable"], *task["args"], **task["kwargs"])
+  File "/home/pwnage101/edx-load-tests/venv/local/lib/python2.7/site-packages/locust/core.py", line 305, in execute_task
+    task(self, *args, **kwargs)
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 230, in create_thread
+    thread = super(ForumsTasks, self).create_thread(self.random_topic_id(), name='forums:create_thread')
+  File "/home/pwnage101/edx-load-tests/loadtests/lms/forums.py", line 115, in create_thread
+    thread_id = response.json()['id']
+KeyError: 'id'
+[2017-02-14 18:15:42,488] pwnage101/INFO/locust.main: Got SIGTERM signal
+[2017-02-14 18:15:42,488] pwnage101/INFO/locust.main: Shutting down (exit code 0), bye.

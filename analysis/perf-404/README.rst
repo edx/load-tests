@@ -6,7 +6,7 @@ setup
 
 .. code-block:: sh
 
-        mkdir ~/results/perf-404
+        mkdir -p ~/results/perf-404
         git clone https://github.com/edx/edx-load-tests
         cd edx-load-tests
         git checkout pwnage101/perf-404-working-branch
